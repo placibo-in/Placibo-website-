@@ -4,12 +4,14 @@ import { Button } from "@/components/ui/button";
 import { Calendar, MessageCircle } from "lucide-react";
 import { useInView } from 'react-intersection-observer';
 import { cn } from '@/lib/utils';
+import { useEnrollmentDialog } from "@/hooks/use-enrollment-dialog";
 
 export const ContactSection = () => {
   const { ref, inView } = useInView({
     triggerOnce: true,
     threshold: 0.1,
   });
+  const { onOpen } = useEnrollmentDialog();
 
   const handleWhatsAppClick = () => {
     window.open('https://wa.me/9566627297', '_blank');
@@ -44,7 +46,14 @@ export const ContactSection = () => {
           >
             Join on WhatsApp
           </Button>
-          <Button size="lg" variant="outline" className="bg-transparent border-white text-white hover:bg-white hover:text-blue-600">Apply Now</Button>
+          <Button 
+            size="lg" 
+            variant="outline" 
+            className="bg-transparent border-white text-white hover:bg-white hover:text-blue-600"
+            onClick={onOpen}
+          >
+            Apply Now
+          </Button>
         </div>
       </div>
     </section>

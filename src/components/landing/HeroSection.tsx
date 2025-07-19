@@ -3,12 +3,14 @@
 import { Button } from "@/components/ui/button";
 import { useInView } from 'react-intersection-observer';
 import { cn } from '@/lib/utils';
+import { useEnrollmentDialog } from "@/hooks/use-enrollment-dialog";
 
 export const HeroSection = () => {
   const { ref, inView } = useInView({
     triggerOnce: true,
     threshold: 0.1,
   });
+  const { onOpen } = useEnrollmentDialog();
 
   return (
     <section
@@ -43,6 +45,7 @@ export const HeroSection = () => {
           <Button 
             size="lg" 
             className="bg-white text-blue-600 hover:bg-gray-200 shadow-xl transition-all transform hover:scale-105"
+            onClick={onOpen}
           >
             Enroll Now
           </Button>

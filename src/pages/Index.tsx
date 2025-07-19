@@ -8,11 +8,13 @@ import { ContactSection } from "@/components/landing/ContactSection";
 import { Footer } from "@/components/landing/Footer";
 import { FloatingActionButton } from "@/components/landing/FloatingActionButton";
 import { LoadingScreen } from "@/components/landing/LoadingScreen";
+import { EnrollmentDialog } from "@/components/landing/EnrollmentDialog";
 
 const Index = () => {
   return (
     <div className="bg-white text-gray-800 antialiased">
       <LoadingScreen />
+      <EnrollmentDialog />
       <Header />
       <main>
         <HeroSection />

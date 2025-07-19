@@ -3,9 +3,16 @@
 import { Button } from "@/components/ui/button";
 import { Code, Menu, X } from "lucide-react";
 import { useState } from "react";
+import { useEnrollmentDialog } from "@/hooks/use-enrollment-dialog";
 
 export const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { onOpen } = useEnrollmentDialog();
+
+  const handleEnrollClick = () => {
+    onOpen();
+    setMobileMenuOpen(false);
+  };
 
   return (
     <header className="w-full py-4 px-4 sm:px-6 lg:px-8 bg-white shadow-sm sticky top-0 z-50">
@@ -23,7 +30,7 @@ export const Header = () => {
         </nav>
 
         <div className="flex items-center gap-4">
-          <Button className="hidden md:inline-flex bg-blue-600 hover:bg-blue-700">Enroll Now</Button>
+          <Button onClick={onOpen} className="hidden md:inline-flex bg-blue-600 hover:bg-blue-700">Enroll Now</Button>
           <button 
             className="md:hidden text-gray-600 hover:text-gray-900"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -65,7 +72,7 @@ export const Header = () => {
             >
               Contact
             </a>
-            <Button className="w-full bg-blue-600 hover:bg-blue-700">Enroll Now</Button>
+            <Button onClick={handleEnrollClick} className="w-full bg-blue-600 hover:bg-blue-700">Enroll Now</Button>
           </div>
         </div>
       )}
