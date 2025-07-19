@@ -11,6 +11,10 @@ export const ContactSection = () => {
     threshold: 0.1,
   });
 
+  const handleWhatsAppClick = () => {
+    window.open('https://wa.me/9566627297', '_blank');
+  };
+
   return (
     <section
       id="contact"
@@ -33,7 +37,13 @@ export const ContactSection = () => {
           </div>
         </div>
         <div className="mt-8 flex justify-center gap-4">
-          <Button size="lg" variant="secondary">Join on WhatsApp</Button>
+          <Button 
+            size="lg" 
+            variant="secondary"
+            onClick={handleWhatsAppClick}
+          >
+            Join on WhatsApp
+          </Button>
           <Button size="lg" variant="outline" className="bg-transparent border-white text-white hover:bg-white hover:text-blue-600">Apply Now</Button>
         </div>
       </div>
