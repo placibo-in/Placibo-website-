@@ -16,7 +16,15 @@ export const Footer = () => {
         </div>
         <p className="text-center md:text-left mb-4 md:mb-0">Placibo – Design your future with us.</p>
         <div className="flex items-center gap-6">
-          <a href="#" aria-label="Instagram" className="hover:text-white transition-colors"><Instagram className="h-6 w-6" /></a>
+          <a 
+            href="https://www.instagram.com/placibo_official?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            aria-label="Instagram" 
+            className="hover:text-white transition-colors"
+          >
+            <Instagram className="h-6 w-6" />
+          </a>
           <button 
             aria-label="WhatsApp" 
             className="hover:text-white transition-colors"
