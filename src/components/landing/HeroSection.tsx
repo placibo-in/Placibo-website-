@@ -42,7 +42,7 @@ export const HeroSection = () => {
         <div className="mt-8 flex flex-wrap justify-center gap-4">
           <Button 
             size="lg" 
-            className="bg-white/20 backdrop-blur-sm border border-white/30 text-white hover:bg-white/30 shadow-lg transition-all"
+            className="bg-white text-blue-600 hover:bg-gray-200 shadow-xl transition-all transform hover:scale-105"
           >
             Enroll Now
           </Button>
