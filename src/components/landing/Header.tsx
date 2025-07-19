@@ -1,9 +1,12 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Code } from "lucide-react";
+import { Code, Menu, X } from "lucide-react";
+import { useState } from "react";
 
 export const Header = () => {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   return (
     <header className="w-full py-4 px-4 sm:px-6 lg:px-8 bg-white shadow-sm sticky top-0 z-50">
       <div className="container mx-auto flex justify-between items-center">
@@ -11,14 +14,61 @@ export const Header = () => {
           <Code className="h-8 w-8 text-blue-600" />
           <h1 className="text-2xl font-bold text-gray-900">Placibo</h1>
         </div>
+        
         <nav className="hidden md:flex items-center gap-6">
           <a href="#about" className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">About</a>
           <a href="#learn" className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">Curriculum</a>
           <a href="#why" className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">Why Us</a>
           <a href="#contact" className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">Contact</a>
         </nav>
-        <Button className="hidden md:inline-flex bg-blue-600 hover:bg-blue-700">Enroll Now</Button>
+
+        <div className="flex items-center gap-4">
+          <Button className="hidden md:inline-flex bg-blue-600 hover:bg-blue-700">Enroll Now</Button>
+          <button 
+            className="md:hidden text-gray-600 hover:text-gray-900"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          >
+            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
       </div>
+
+      {/* Mobile menu */}
+      {mobileMenuOpen && (
+        <div className="md:hidden bg-white absolute top-full left-0 right-0 shadow-lg py-4 px-6">
+          <div className="flex flex-col gap-4">
+            <a 
+              href="#about" 
+              className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              About
+            </a>
+            <a 
+              href="#learn" 
+              className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Curriculum
+            </a>
+            <a 
+              href="#why" 
+              className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Why Us
+            </a>
+            <a 
+              href="#contact" 
+              className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Contact
+            </a>
+            <Button className="w-full bg-blue-600 hover:bg-blue-700">Enroll Now</Button>
+          </div>
+        </div>
+      )}
     </header>
   );
 };

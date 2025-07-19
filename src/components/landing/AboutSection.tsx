@@ -47,9 +47,12 @@ export const AboutSection = () => {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {features.map((feature, index) => (
-            <Card key={feature.title} className="text-center shadow-sm hover:shadow-md transition-shadow">
+            <Card 
+              key={feature.title} 
+              className="text-center shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
+            >
               <CardHeader>
-                <div className="mx-auto bg-blue-100 rounded-full p-3 w-fit">
+                <div className="mx-auto bg-blue-100 rounded-full p-3 w-fit transition-colors duration-300 group-hover:bg-blue-200">
                   {feature.icon}
                 </div>
                 <CardTitle className="mt-4">{feature.title}</CardTitle>

@@ -6,10 +6,13 @@ import { WhyPlaciboSection } from "@/components/landing/WhyPlaciboSection";
 import { TestimonialsSection } from "@/components/landing/TestimonialsSection";
 import { ContactSection } from "@/components/landing/ContactSection";
 import { Footer } from "@/components/landing/Footer";
+import { FloatingActionButton } from "@/components/landing/FloatingActionButton";
+import { LoadingScreen } from "@/components/landing/LoadingScreen";
 
 const Index = () => {
   return (
     <div className="bg-white text-gray-800 antialiased">
+      <LoadingScreen />
       <Header />
       <main>
         <HeroSection />
@@ -20,6 +23,7 @@ const Index = () => {
         <ContactSection />
       </main>
       <Footer />
+      <FloatingActionButton />
     </div>
   );
 };
