@@ -40,8 +40,18 @@ export const HeroSection = () => {
           Placibo offers hands-on online courses to help you build real skills and land real jobs.
         </p>
         <div className="mt-8 flex flex-wrap justify-center gap-4">
-          <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-100">Enroll Now</Button>
-          <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">Get Syllabus</Button>
+          <Button 
+            size="lg" 
+            className="bg-white/20 backdrop-blur-sm border border-white/30 text-white hover:bg-white/30 shadow-lg transition-all"
+          >
+            Enroll Now
+          </Button>
+          <Button 
+            size="lg" 
+            className="bg-white/10 backdrop-blur-sm border border-white/20 text-white hover:bg-white/20 shadow-lg transition-all"
+          >
+            Get Syllabus
+          </Button>
         </div>
       </div>
     </section>
