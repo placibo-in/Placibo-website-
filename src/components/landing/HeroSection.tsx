@@ -1,10 +1,23 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { useInView } from 'react-intersection-observer';
+import { cn } from '@/lib/utils';
 
 export const HeroSection = () => {
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
+
   return (
-    <section className="py-20 md:py-32 bg-white">
+    <section
+      ref={ref}
+      className={cn(
+        "py-20 md:py-32 bg-white transition-all duration-700 ease-in-out",
+        inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"
+      )}
+    >
       <div className="container mx-auto text-center px-4">
         <div className="max-w-3xl mx-auto">
           <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-gray-900">

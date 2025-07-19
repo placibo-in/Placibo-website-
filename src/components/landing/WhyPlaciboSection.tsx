@@ -2,6 +2,8 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Award, FolderKanban, MessageSquare, Briefcase } from "lucide-react";
+import { useInView } from 'react-intersection-observer';
+import { cn } from '@/lib/utils';
 
 const benefits = [
   {
@@ -27,8 +29,20 @@ const benefits = [
 ];
 
 export const WhyPlaciboSection = () => {
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
+
   return (
-    <section id="why" className="py-16 md:py-24 bg-gray-50">
+    <section
+      id="why"
+      ref={ref}
+      className={cn(
+        "py-16 md:py-24 bg-gray-50 transition-all duration-700 ease-in-out",
+        inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"
+      )}
+    >
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900">Why Placibo?</h2>

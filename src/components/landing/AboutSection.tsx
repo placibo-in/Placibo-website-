@@ -2,6 +2,8 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Clock, Video, Users } from "lucide-react";
+import { useInView } from 'react-intersection-observer';
+import { cn } from '@/lib/utils';
 
 const features = [
   {
@@ -22,8 +24,20 @@ const features = [
 ];
 
 export const AboutSection = () => {
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
+
   return (
-    <section id="about" className="py-16 md:py-24 bg-gray-50">
+    <section
+      id="about"
+      ref={ref}
+      className={cn(
+        "py-16 md:py-24 bg-gray-50 transition-all duration-700 ease-in-out",
+        inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"
+      )}
+    >
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900">About the Course</h2>
@@ -32,7 +46,7 @@ export const AboutSection = () => {
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {features.map((feature) => (
+          {features.map((feature, index) => (
             <Card key={feature.title} className="text-center shadow-sm hover:shadow-md transition-shadow">
               <CardHeader>
                 <div className="mx-auto bg-blue-100 rounded-full p-3 w-fit">

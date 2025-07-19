@@ -1,6 +1,8 @@
 "use client";
 
 import { PenTool, LayoutGrid, Smartphone, GitBranch, Code } from "lucide-react";
+import { useInView } from 'react-intersection-observer';
+import { cn } from '@/lib/utils';
 
 const topics = [
   { icon: <PenTool className="h-6 w-6 text-blue-600" />, name: "UX Basics" },
@@ -11,8 +13,20 @@ const topics = [
 ];
 
 export const WhatYoullLearnSection = () => {
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
+
   return (
-    <section id="learn" className="py-16 md:py-24 bg-white">
+    <section
+      id="learn"
+      ref={ref}
+      className={cn(
+        "py-16 md:py-24 bg-white transition-all duration-700 ease-in-out",
+        inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"
+      )}
+    >
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900">What You'll Learn</h2>
