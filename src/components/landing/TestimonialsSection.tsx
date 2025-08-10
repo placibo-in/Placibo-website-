@@ -4,6 +4,14 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent } from "@/components/ui/card";
 import { useInView } from 'react-intersection-observer';
 import { cn } from '@/lib/utils';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import Autoplay from "embla-carousel-autoplay";
 
 const testimonials = [
   {
@@ -23,6 +31,18 @@ const testimonials = [
     role: "Student",
     image: "https://i.pravatar.cc/150?img=3",
     review: "The best investment I've made in my career. The curriculum is up-to-date and focuses on skills that employers are actually looking for.",
+  },
+  {
+    name: "David C.",
+    role: "Product Manager",
+    image: "https://i.pravatar.cc/150?img=4",
+    review: "The community is amazing. I connected with so many talented people and even found a co-founder for my startup idea.",
+  },
+  {
+    name: "Emily S.",
+    role: "Full-Stack Developer",
+    image: "https://i.pravatar.cc/150?img=5",
+    review: "I was skeptical about online courses, but Placibo exceeded all my expectations. The content is top-notch and very practical.",
   },
 ];
 
@@ -48,25 +68,46 @@ export const TestimonialsSection = () => {
             Don't just take our word for it. Here's what our students have to say.
           </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {testimonials.map((testimonial) => (
-            <Card key={testimonial.name} className="shadow-sm hover:shadow-md transition-shadow">
-              <CardContent className="pt-6">
-                <p className="text-gray-600 italic">"{testimonial.review}"</p>
-                <div className="mt-4 flex items-center gap-4">
-                  <Avatar>
-                    <AvatarImage src={testimonial.image} alt={testimonial.name} />
-                    <AvatarFallback>{testimonial.name.charAt(0)}</AvatarFallback>
-                  </Avatar>
-                  <div>
-                    <p className="font-semibold text-gray-900">{testimonial.name}</p>
-                    <p className="text-sm text-gray-500">{testimonial.role}</p>
-                  </div>
+        
+        <Carousel
+          plugins={[
+            Autoplay({
+              delay: 5000,
+              stopOnInteraction: true,
+            }),
+          ]}
+          opts={{
+            align: "start",
+            loop: true,
+          }}
+          className="w-full"
+        >
+          <CarouselContent className="-ml-4">
+            {testimonials.map((testimonial, index) => (
+              <CarouselItem key={index} className="pl-4 md:basis-1/2 lg:basis-1/3">
+                <div className="p-1 h-full">
+                  <Card className="shadow-sm hover:shadow-md transition-shadow h-full flex flex-col">
+                    <CardContent className="pt-6 flex-grow flex flex-col">
+                      <p className="text-gray-600 italic mb-4">"{testimonial.review}"</p>
+                      <div className="mt-auto flex items-center gap-4">
+                        <Avatar>
+                          <AvatarImage src={testimonial.image} alt={testimonial.name} />
+                          <AvatarFallback>{testimonial.name.charAt(0)}</AvatarFallback>
+                        </Avatar>
+                        <div>
+                          <p className="font-semibold text-gray-900">{testimonial.name}</p>
+                          <p className="text-sm text-gray-500">{testimonial.role}</p>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
                 </div>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious className="hidden md:flex" />
+          <CarouselNext className="hidden md:flex" />
+        </Carousel>
       </div>
     </section>
   );
