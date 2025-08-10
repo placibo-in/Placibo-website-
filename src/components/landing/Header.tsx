@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Code, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import { useEnrollmentDialog } from "@/hooks/use-enrollment-dialog";
 
@@ -17,10 +17,9 @@ export const Header = () => {
   return (
     <header className="w-full py-4 px-4 sm:px-6 lg:px-8 bg-white shadow-sm sticky top-0 z-50">
       <div className="container mx-auto flex justify-between items-center">
-        <div className="flex items-center gap-2">
-          <Code className="h-8 w-8 text-blue-600" />
-          <h1 className="text-2xl font-bold text-gray-900">Placibo</h1>
-        </div>
+        <a href="/" className="flex items-center">
+          <img src="/logo.png" alt="Placibo Logo" className="h-8" />
+        </a>
         
         <nav className="hidden md:flex items-center gap-6">
           <a href="#about" className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">About</a>

@@ -1,6 +1,6 @@
 "use client";
 
-import { Code, Instagram, MessageCircle } from "lucide-react";
+import { Instagram, MessageCircle } from "lucide-react";
 
 export const Footer = () => {
   const handleWhatsAppClick = () => {
@@ -10,9 +10,8 @@ export const Footer = () => {
   return (
     <footer className="bg-gray-900 text-gray-400 py-8">
       <div className="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
-        <div className="flex items-center gap-2 mb-4 md:mb-0">
-          <Code className="h-6 w-6 text-blue-500" />
-          <p className="font-bold text-white">Placibo</p>
+        <div className="flex items-center mb-4 md:mb-0">
+          <img src="/logo.png" alt="Placibo Logo" className="h-6" />
         </div>
         <p className="text-center md:text-left mb-4 md:mb-0">Placibo – Design your future with us.</p>
         <div className="flex items-center gap-6">
