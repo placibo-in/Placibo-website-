@@ -55,9 +55,9 @@ export const InstagramReelsSection = () => {
         
         {loading ? (
           <div className="flex justify-center gap-4">
-            <Skeleton className="w-[200px] h-[360px] rounded-xl" />
-            <Skeleton className="w-[200px] h-[360px] rounded-xl hidden md:block" />
-            <Skeleton className="w-[200px] h-[360px] rounded-xl hidden lg:block" />
+            <Skeleton className="w-[200px] h-[320px] rounded-xl" />
+            <Skeleton className="w-[200px] h-[320px] rounded-xl hidden md:block" />
+            <Skeleton className="w-[200px] h-[320px] rounded-xl hidden lg:block" />
           </div>
         ) : reels.length > 0 ? (
           <Carousel
@@ -65,7 +65,7 @@ export const InstagramReelsSection = () => {
               align: "start",
               loop: true,
             }}
-            className="w-full max-w-xs sm:max-w-lg md:max-w-2xl lg:max-w-4xl mx-auto"
+            className="w-full max-w-xs sm:max-w-lg md:max-w-2xl lg:max-w-4xl mx-auto relative"
           >
             <CarouselContent className="-ml-4">
               {reels.map((reel) => (
@@ -73,7 +73,7 @@ export const InstagramReelsSection = () => {
                   <div className="p-1">
                     <iframe
                       src={reel.reel_url}
-                      className="w-full h-[360px] rounded-xl shadow-md"
+                      className="w-full h-[320px] rounded-xl shadow-md"
                       allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
                       allowFullScreen
                       loading="lazy"
@@ -84,8 +84,8 @@ export const InstagramReelsSection = () => {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious className="hidden sm:flex" />
-            <CarouselNext className="hidden sm:flex" />
+            <CarouselPrevious className="absolute left-2 top-1/2 -translate-y-1/2 z-30 flex text-gray-700 hover:text-blue-600 transition-colors cursor-pointer" />
+            <CarouselNext className="absolute right-2 top-1/2 -translate-y-1/2 z-30 flex text-gray-700 hover:text-blue-600 transition-colors cursor-pointer" />
           </Carousel>
         ) : (
           <div className="text-center text-gray-500">
