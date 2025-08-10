@@ -15,10 +15,10 @@ export const EnrollmentDialog = () => {
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-[425px] bg-white">
+      <DialogContent className="sm:max-w-[425px] bg-white text-gray-900">
         <DialogHeader>
           <DialogTitle>Enroll Now</DialogTitle>
-          <DialogDescription>
+          <DialogDescription className="text-gray-600">
             Fill out the form below to start your application. We're excited to have you!
           </DialogDescription>
         </DialogHeader>
