@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { cn } from '@/lib/utils';
 
@@ -13,6 +14,14 @@ export const InstagramReelsSection = () => {
     triggerOnce: true,
     threshold: 0.1,
   });
+
+  useEffect(() => {
+    // The Instagram embed script needs to be re-triggered when new
+    // blockquotes are added to the page dynamically.
+    if (inView && (window as any).instgrm) {
+      (window as any).instgrm.Embeds.process();
+    }
+  }, [inView]);
 
   return (
     <section
