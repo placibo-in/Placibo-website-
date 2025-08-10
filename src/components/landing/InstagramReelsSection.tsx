@@ -55,9 +55,9 @@ export const InstagramReelsSection = () => {
         
         {loading ? (
           <div className="flex justify-center gap-4">
-            <Skeleton className="w-[200px] h-[320px] rounded-xl" />
-            <Skeleton className="w-[200px] h-[320px] rounded-xl hidden md:block" />
-            <Skeleton className="w-[200px] h-[320px] rounded-xl hidden lg:block" />
+            <Skeleton className="w-[180px] aspect-[9/16] rounded-xl" />
+            <Skeleton className="w-[180px] aspect-[9/16] rounded-xl hidden md:block" />
+            <Skeleton className="w-[180px] aspect-[9/16] rounded-xl hidden lg:block" />
           </div>
         ) : reels.length > 0 ? (
           <Carousel
@@ -71,15 +71,17 @@ export const InstagramReelsSection = () => {
               {reels.map((reel) => (
                 <CarouselItem key={reel.id} className="pl-4 sm:basis-1/2 md:basis-1/2 lg:basis-1/3">
                   <div className="p-1">
-                    <iframe
-                      src={reel.reel_url}
-                      className="w-full h-[320px] rounded-xl shadow-md"
-                      allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-                      allowFullScreen
-                      loading="lazy"
-                      title={`Instagram Reel ${reel.id}`}
-                      frameBorder="0"
-                    />
+                    <div className="w-[180px] sm:w-[220px] md:w-[280px] lg:w-[320px] aspect-[9/16] rounded-xl shadow-md overflow-hidden">
+                      <iframe
+                        src={reel.reel_url}
+                        className="w-full h-full"
+                        allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                        allowFullScreen
+                        loading="lazy"
+                        title={`Instagram Reel ${reel.id}`}
+                        frameBorder="0"
+                      />
+                    </div>
                   </div>
                 </CarouselItem>
               ))}
