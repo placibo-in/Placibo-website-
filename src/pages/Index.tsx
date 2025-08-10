@@ -3,6 +3,7 @@ import { HeroSection } from "@/components/landing/HeroSection";
 import { AboutSection } from "@/components/landing/AboutSection";
 import { WhyPlaciboSection } from "@/components/landing/WhyPlaciboSection";
 import { TestimonialsSection } from "@/components/landing/TestimonialsSection";
+import { InstagramReelsSection } from "@/components/landing/InstagramReelsSection";
 import { ContactSection } from "@/components/landing/ContactSection";
 import { Footer } from "@/components/landing/Footer";
 import { FloatingActionButton } from "@/components/landing/FloatingActionButton";
@@ -20,6 +21,7 @@ const Index = () => {
         <AboutSection />
         <WhyPlaciboSection />
         <TestimonialsSection />
+        <InstagramReelsSection />
         <ContactSection />
       </main>
       <Footer />
