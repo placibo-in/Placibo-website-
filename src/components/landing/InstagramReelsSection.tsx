@@ -22,12 +22,12 @@ export const InstagramReelsSection = () => {
             See what our students and community are up to.
           </p>
         </div>
-        <div className="grid grid-cols-2 gap-4 justify-items-center">
+        <div className="grid grid-cols-2 gap-6 justify-items-center">
           {reels.map((url, index) => (
             <iframe
               key={index}
               src={url}
-              className="w-[180px] h-[320px] rounded-md border border-gray-300"
+              className="w-[180px] h-[320px] rounded-xl shadow-md"
               allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
               allowFullScreen
               loading="lazy"
