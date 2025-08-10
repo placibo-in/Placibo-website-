@@ -227,7 +227,7 @@ const SlideForm = ({
             )}
           />
         </div>
-        <Button type="submit" className="w-full" disabled={isSubmitting}>
+        <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700" disabled={isSubmitting}>
           {isSubmitting ? "Saving..." : "Save Slide"}
         </Button>
       </form>
@@ -290,8 +290,11 @@ export const HeroSlideManager = () => {
   return (
     <div>
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-xl font-semibold">Hero Section Management</h2>
-        <Button onClick={handleAddNew}>
+        <h2 className="text-xl font-semibold text-gray-900">Hero Section Management</h2>
+        <Button 
+          onClick={handleAddNew} 
+          className="bg-blue-600 text-white hover:bg-blue-700 flex items-center gap-2 px-4 py-2 rounded-md shadow-md"
+        >
           <PlusCircle className="mr-2 h-4 w-4" /> Add New Slide
         </Button>
       </div>
@@ -306,7 +309,7 @@ export const HeroSlideManager = () => {
           <SlideForm currentSlide={editingSlide} onSuccess={onFormSuccess} />
         </DialogContent>
       </Dialog>
-      <div className="rounded-md border">
+      <div className="rounded-md border border-gray-300">
         {loading ? (
           <div className="space-y-2 p-4">
             <Skeleton className="h-8 w-full" />
@@ -326,17 +329,27 @@ export const HeroSlideManager = () => {
             <TableBody>
               {slides.map((slide) => (
                 <TableRow key={slide.id}>
-                  <TableCell className="font-medium">{slide.slide_order}</TableCell>
-                  <TableCell>{slide.title || "No Title"}</TableCell>
+                  <TableCell className="font-medium text-gray-900">{slide.slide_order}</TableCell>
+                  <TableCell className="text-gray-900">{slide.title || "No Title"}</TableCell>
                   <TableCell>
                     <img src={slide.image_url} alt={slide.title || "Slide"} className="h-10 w-16 object-cover rounded-md border" />
                   </TableCell>
                   <TableCell className="text-right">
-                    <Button variant="ghost" size="icon" onClick={() => handleEdit(slide)}>
+                    <Button 
+                      variant="ghost" 
+                      size="icon" 
+                      className="text-gray-900" 
+                      onClick={() => handleEdit(slide)}
+                    >
                       <Edit className="h-4 w-4" />
                     </Button>
-                    <Button variant="ghost" size="icon" onClick={() => handleDelete(slide.id)}>
-                      <Trash2 className="h-4 w-4 text-destructive" />
+                    <Button 
+                      variant="ghost" 
+                      size="icon" 
+                      className="text-destructive" 
+                      onClick={() => handleDelete(slide.id)}
+                    >
+                      <Trash2 className="h-4 w-4" />
                     </Button>
                   </TableCell>
                 </TableRow>

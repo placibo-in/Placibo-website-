@@ -98,7 +98,7 @@ export const InstagramReelManager = () => {
 
   return (
     <div className="mt-8">
-      <h2 className="text-xl font-semibold mb-4">Instagram Reels Management</h2>
+      <h2 className="text-xl font-semibold text-gray-900 mb-4">Instagram Reels Management</h2>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="flex items-start gap-4 mb-6">
           <FormField
@@ -111,13 +111,17 @@ export const InstagramReelManager = () => {
               </FormItem>
             )}
           />
-          <Button type="submit" disabled={form.formState.isSubmitting}>
+          <Button 
+            type="submit" 
+            className="bg-blue-600 text-white hover:bg-blue-700 flex items-center gap-2 px-4 py-2 rounded-md shadow-md"
+            disabled={form.formState.isSubmitting}
+          >
             <PlusCircle className="mr-2 h-4 w-4" /> Add Reel
           </Button>
         </form>
       </Form>
       
-      <div className="rounded-md border">
+      <div className="rounded-md border border-gray-300">
         {loading ? (
           <div className="p-4 space-y-2">
             <Skeleton className="h-8 w-full" />
@@ -134,10 +138,15 @@ export const InstagramReelManager = () => {
             <TableBody>
               {reels.map((reel) => (
                 <TableRow key={reel.id}>
-                  <TableCell className="font-medium truncate max-w-xs">{reel.reel_url}</TableCell>
+                  <TableCell className="font-medium truncate max-w-xs text-gray-900">{reel.reel_url}</TableCell>
                   <TableCell className="text-right">
-                    <Button variant="ghost" size="icon" onClick={() => handleDelete(reel.id)}>
-                      <Trash2 className="h-4 w-4 text-destructive" />
+                    <Button 
+                      variant="ghost" 
+                      size="icon" 
+                      className="text-gray-900" 
+                      onClick={() => handleDelete(reel.id)}
+                    >
+                      <Trash2 className="h-4 w-4" />
                     </Button>
                   </TableCell>
                 </TableRow>
