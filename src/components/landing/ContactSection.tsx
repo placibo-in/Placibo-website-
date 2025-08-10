@@ -41,10 +41,11 @@ export const ContactSection = () => {
         <div className="mt-8 flex justify-center gap-4">
           <Button 
             size="lg" 
-            className="bg-green-600 text-white hover:bg-green-700"
+            className="bg-green-600 text-white hover:bg-green-700 flex items-center gap-2"
             onClick={handleWhatsAppClick}
           >
-            Join on WhatsApp
+            <img src="/icons/whatsapp.png" alt="WhatsApp" className="w-6 h-6" />
+            <span>Join on WhatsApp</span>
           </Button>
           <Button 
             size="lg" 
