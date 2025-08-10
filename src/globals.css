@@ -18,7 +18,7 @@
   }
 
   p {
-    line-height: 1.6;
+    @apply text-sm leading-relaxed;
   }
 
   a {
