@@ -104,7 +104,7 @@ export const HeroSection = () => {
                           </h1>
                         )}
                         {slide.subtitle && (
-                          <p className="mt-6 text-xl sm:text-2xl lg:text-3xl text-blue-300 max-w-3xl mx-auto drop-shadow-md animate-fade-in delay-200">
+                          <p className="mt-6 text-base sm:text-lg lg:text-xl text-blue-300 max-w-3xl mx-auto drop-shadow-md animate-fade-in delay-200">
                             {slide.subtitle}
                           </p>
                         )}
