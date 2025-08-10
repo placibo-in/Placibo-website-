@@ -15,6 +15,8 @@ import {
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
 
+const GOOGLE_FORM_ACTION_URL = "https://docs.google.com/forms/d/e/YOUR_FORM_ID/formResponse";
+
 const formSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters." }),
   email: z.string().email({ message: "Please enter a valid email address." }),
@@ -33,11 +35,25 @@ export const EnrollmentForm = ({ onSuccess }: { onSuccess?: () => void }) => {
     },
   });
 
-  const onSubmit = (data: EnrollmentFormValues) => {
-    console.log("Enrollment data:", data);
-    toast.success("Thank you for your interest! We will be in touch shortly.");
-    onSuccess?.();
-    form.reset();
+  const onSubmit = async (data: EnrollmentFormValues) => {
+    const formData = new FormData();
+    formData.append("entry.1234567890", data.name);  // Replace with your Google Form entry ID for name
+    formData.append("entry.0987654321", data.email); // Replace with your Google Form entry ID for email
+    formData.append("entry.1122334455", data.phone); // Replace with your Google Form entry ID for phone
+
+    try {
+      await fetch(GOOGLE_FORM_ACTION_URL, {
+        method: "POST",
+        mode: "no-cors",
+        body: formData,
+      });
+
+      toast.success("Thank you for your interest! We will be in touch shortly.");
+      onSuccess?.();
+      form.reset();
+    } catch (error) {
+      toast.error("Failed to submit. Please try again later.");
+    }
   };
 
   return (
