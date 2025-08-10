@@ -40,7 +40,6 @@ export const ContactSection = () => {
         </div>
         <div className="mt-6 flex justify-center gap-6 flex-wrap">
           <Button 
-            size="md" 
             className="bg-green-600 text-white hover:bg-green-700 flex items-center gap-2 justify-center px-4 py-2 min-w-[160px]"
             onClick={handleWhatsAppClick}
           >
@@ -48,7 +47,6 @@ export const ContactSection = () => {
             <span className="text-sm md:text-base">Join on WhatsApp</span>
           </Button>
           <Button 
-            size="md" 
             variant="outline" 
             className="bg-transparent border-white text-white hover:bg-white hover:text-blue-600 px-4 py-2 min-w-[160px]"
             onClick={onOpen}
