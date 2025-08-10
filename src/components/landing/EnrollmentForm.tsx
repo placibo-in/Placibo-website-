@@ -82,7 +82,7 @@ export const EnrollmentForm = ({ onSuccess }: { onSuccess?: () => void }) => {
             </FormItem>
           )}
         />
-        <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700">
+        <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 text-white">
           Submit Application
         </Button>
       </form>
