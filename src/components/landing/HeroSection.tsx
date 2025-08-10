@@ -1,9 +1,18 @@
 "use client";
 
+import React from "react";
 import { Button } from "@/components/ui/button";
 import { useInView } from 'react-intersection-observer';
 import { cn } from '@/lib/utils';
 import { useEnrollmentDialog } from "@/hooks/use-enrollment-dialog";
+import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
+import Autoplay from "embla-carousel-autoplay";
+
+const backgroundImages = [
+  "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2070&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2071&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1542744095-291d1f67b221?q=80&w=2070&auto=format&fit=crop",
+];
 
 export const HeroSection = () => {
   const { ref, inView } = useInView({
@@ -20,13 +29,34 @@ export const HeroSection = () => {
         inView ? "opacity-100" : "opacity-0"
       )}
     >
-      {/* Background Image, Blur, and Gradient Overlay */}
+      {/* Background Carousel, Blur, and Gradient Overlay */}
       <div className="absolute inset-0 z-0">
-        <img
-          src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2070&auto=format&fit=crop"
-          alt="Background of people collaborating"
-          className="w-full h-full object-cover filter blur-sm"
-        />
+        <Carousel
+          plugins={[
+            Autoplay({
+              delay: 5000,
+              stopOnInteraction: false,
+            }),
+          ]}
+          opts={{
+            loop: true,
+          }}
+          className="w-full h-full"
+        >
+          <CarouselContent className="-ml-0">
+            {backgroundImages.map((src, index) => (
+              <CarouselItem key={index} className="pl-0">
+                <div className="w-full h-full">
+                  <img
+                    src={src}
+                    alt={`Background slide ${index + 1}`}
+                    className="w-full h-full object-cover filter blur-sm"
+                  />
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+        </Carousel>
         <div className="absolute inset-0 bg-gradient-to-br from-blue-600/70 via-blue-800/80 to-indigo-900/90"></div>
       </div>
 
