@@ -40,7 +40,7 @@ export const HeroSection = () => {
 
   if (loading) {
     return (
-      <section className="relative w-full h-[60vh] sm:h-[75vh] md:h-[90vh] max-h-[700px]">
+      <section className="relative w-full h-[50vh] sm:h-[60vh] md:h-[75vh] max-h-[600px]">
         <Skeleton className="w-full h-full rounded-xl" />
       </section>
     );
@@ -48,9 +48,9 @@ export const HeroSection = () => {
 
   if (!slides.length) {
     return (
-      <section className="relative w-full h-[60vh] sm:h-[75vh] md:h-[90vh] max-h-[700px] bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 flex flex-col items-center justify-center text-center text-white p-4 rounded-xl">
+      <section className="relative w-full h-[50vh] sm:h-[60vh] md:h-[75vh] max-h-[600px] bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 flex flex-col items-center justify-center text-center text-white p-4 rounded-xl">
         <h1 className="text-3xl sm:text-4xl font-extrabold tracking-wide">Hero Section</h1>
-        <p className="mt-4 text-base sm:text-lg text-gray-300 max-w-lg">No slides have been configured yet. Please add slides in the admin dashboard.</p>
+        <p className="mt-3 text-base sm:text-lg text-gray-300 max-w-lg">No slides have been configured yet. Please add slides in the admin dashboard.</p>
       </section>
     );
   }
@@ -76,7 +76,7 @@ export const HeroSection = () => {
 
             return (
               <CarouselItem key={slide.id}>
-                <div className="relative w-full h-[60vh] sm:h-[75vh] md:h-[90vh] max-h-[700px] text-white rounded-xl overflow-hidden">
+                <div className="relative w-full h-[50vh] sm:h-[60vh] md:h-[75vh] max-h-[600px] text-white rounded-xl overflow-hidden">
                   <div className="absolute inset-0 z-0">
                     <img
                       src={slide.image_url}
@@ -94,7 +94,7 @@ export const HeroSection = () => {
 
                   <div className={cn(
                     "relative z-10 container mx-auto px-4 h-full flex flex-col items-center text-center transition-opacity duration-700",
-                    hasText ? "justify-center opacity-100" : "justify-end pb-12 sm:pb-16 md:pb-24 opacity-90"
+                    hasText ? "justify-center opacity-100" : "justify-end pb-8 sm:pb-12 md:pb-16 opacity-90"
                   )}>
                     {hasText && (
                       <>
@@ -104,14 +104,14 @@ export const HeroSection = () => {
                           </h1>
                         )}
                         {slide.subtitle && (
-                          <p className="mt-4 text-sm sm:text-base md:text-lg lg:text-xl text-blue-300 max-w-3xl mx-auto drop-shadow-md animate-fade-in delay-200">
+                          <p className="mt-3 text-sm sm:text-base md:text-lg lg:text-xl text-blue-300 max-w-3xl mx-auto drop-shadow-md animate-fade-in delay-200">
                             {slide.subtitle}
                           </p>
                         )}
                       </>
                     )}
                     
-                    <div className={cn("flex flex-wrap justify-center gap-4 mt-8", hasText && "mt-10")}>
+                    <div className={cn("flex flex-wrap justify-center gap-4 mt-6", hasText && "mt-8")}>
                       {slide.enroll_button_visible && (
                         <Button 
                           className="h-10 px-6 text-sm sm:text-base md:h-12 md:px-8 bg-blue-600 hover:bg-blue-700 shadow-lg shadow-blue-500/50 transition-all transform hover:scale-110"

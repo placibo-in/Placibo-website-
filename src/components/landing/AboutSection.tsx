@@ -50,27 +50,27 @@ export const AboutSection = () => {
       id="about"
       ref={ref}
       className={cn(
-        "py-12 md:py-20 bg-gray-50 transition-all duration-700 ease-in-out",
+        "py-10 md:py-16 bg-gray-50 transition-all duration-700 ease-in-out",
         inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"
       )}
     >
       <div className="container mx-auto px-4">
-        <div className="text-center mb-10 md:mb-16">
+        <div className="text-center mb-8 md:mb-12">
           <h2 className="text-2xl md:text-3xl font-bold text-gray-900">About the Course</h2>
-          <p className="mt-3 max-w-xl mx-auto text-base md:text-lg text-gray-600">
+          <p className="mt-2 max-w-xl mx-auto text-base md:text-lg text-gray-600">
             We offer a range of programs designed to help you achieve your career goals.
           </p>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
           {programs.map((program) => (
             <Card key={program.title} className="flex flex-col shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-              <CardHeader className="flex-row items-start gap-4">
-                <div className="bg-blue-100 rounded-full p-3 w-fit">
+              <CardHeader className="flex-row items-start gap-3">
+                <div className="bg-blue-100 rounded-full p-2.5 w-fit">
                   {program.icon}
                 </div>
                 <div className="flex-1">
                   <CardTitle className="text-lg md:text-xl">{program.title}</CardTitle>
-                  <Badge variant="secondary" className="mt-2 text-xs md:text-sm">{program.duration}</Badge>
+                  <Badge variant="secondary" className="mt-1 text-xs md:text-sm">{program.duration}</Badge>
                 </div>
               </CardHeader>
               <CardContent className="flex-grow">

@@ -39,11 +39,11 @@ const FaqPage = () => {
     <>
       <Header />
       <main className="bg-white">
-        <section className="py-12 md:py-20">
+        <section className="py-10 md:py-16">
           <div className="container mx-auto px-4">
-            <div className="text-center mb-10 md:mb-16">
+            <div className="text-center mb-8 md:mb-12">
               <h1 className="text-2xl md:text-3xl font-bold text-gray-900">Frequently Asked Questions</h1>
-              <p className="mt-3 max-w-xl mx-auto text-base md:text-lg text-gray-600">
+              <p className="mt-2 max-w-xl mx-auto text-base md:text-lg text-gray-600">
                 Have questions? We've got answers. If you can't find what you're looking for, feel free to reach out to us.
               </p>
             </div>
