@@ -46,8 +46,8 @@ export type Slide = {
 };
 
 const slideFormSchema = z.object({
-  title: z.string().min(1, "Title is required"),
-  subtitle: z.string().min(1, "Subtitle is required"),
+  title: z.string(),
+  subtitle: z.string(),
   image_url: z.string().url("Must be a valid image URL"),
   enroll_button_visible: z.boolean().default(true),
   syllabus_button_visible: z.boolean().default(true),
