@@ -1,7 +1,7 @@
 import { Header } from "@/components/landing/Header";
 import { HeroSection } from "@/components/landing/HeroSection";
 import { AboutSection } from "@/components/landing/AboutSection";
-import { WhatYoullLearnSection } from "@/components/landing/WhatYoullLearnSection";
+import { ProgramsSection } from "@/components/landing/ProgramsSection";
 import { WhyPlaciboSection } from "@/components/landing/WhyPlaciboSection";
 import { TestimonialsSection } from "@/components/landing/TestimonialsSection";
 import { ContactSection } from "@/components/landing/ContactSection";
@@ -19,7 +19,7 @@ const Index = () => {
       <main>
         <HeroSection />
         <AboutSection />
-        <WhatYoullLearnSection />
+        <ProgramsSection />
         <WhyPlaciboSection />
         <TestimonialsSection />
         <ContactSection />

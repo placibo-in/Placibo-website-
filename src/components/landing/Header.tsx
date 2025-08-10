@@ -24,7 +24,7 @@ export const Header = () => {
         
         <nav className="hidden md:flex items-center gap-6">
           <a href="#about" className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">About</a>
-          <a href="#learn" className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">Curriculum</a>
+          <a href="#programs" className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">Programs</a>
           <a href="#why" className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">Why Us</a>
           <a href="#contact" className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">Contact</a>
         </nav>
@@ -52,11 +52,11 @@ export const Header = () => {
               About
             </a>
             <a 
-              href="#learn" 
+              href="#programs" 
               className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors"
               onClick={() => setMobileMenuOpen(false)}
             >
-              Curriculum
+              Programs
             </a>
             <a 
               href="#why" 
