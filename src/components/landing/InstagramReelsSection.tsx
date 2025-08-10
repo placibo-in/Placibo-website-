@@ -42,22 +42,22 @@ export const InstagramReelsSection = () => {
     <section
       id="reels"
       className={cn(
-        "py-16 bg-gray-50 transition-all duration-700 ease-in-out"
+        "py-12 md:py-20 bg-gray-50 transition-all duration-700 ease-in-out"
       )}
     >
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900">From Our Instagram</h2>
-          <p className="mt-3 max-w-md mx-auto text-lg text-gray-600">
+        <div className="text-center mb-10 md:mb-16">
+          <h2 className="text-2xl md:text-3xl font-bold text-gray-900">From Our Instagram</h2>
+          <p className="mt-3 max-w-xl mx-auto text-base md:text-lg text-gray-600">
             See what our students and community are up to.
           </p>
         </div>
         
         {loading ? (
-          <div className="flex justify-center gap-6">
-            <Skeleton className="w-[270px] h-[480px] rounded-xl" />
-            <Skeleton className="w-[270px] h-[480px] rounded-xl hidden md:block" />
-            <Skeleton className="w-[270px] h-[480px] rounded-xl hidden lg:block" />
+          <div className="flex justify-center gap-4">
+            <Skeleton className="w-[220px] h-[400px] rounded-xl" />
+            <Skeleton className="w-[220px] h-[400px] rounded-xl hidden md:block" />
+            <Skeleton className="w-[220px] h-[400px] rounded-xl hidden lg:block" />
           </div>
         ) : reels.length > 0 ? (
           <Carousel
@@ -65,7 +65,7 @@ export const InstagramReelsSection = () => {
               align: "start",
               loop: true,
             }}
-            className="w-full max-w-xs sm:max-w-xl md:max-w-3xl lg:max-w-5xl mx-auto"
+            className="w-full max-w-xs sm:max-w-lg md:max-w-2xl lg:max-w-4xl mx-auto"
           >
             <CarouselContent className="-ml-4">
               {reels.map((reel) => (
@@ -73,7 +73,7 @@ export const InstagramReelsSection = () => {
                   <div className="p-1">
                     <iframe
                       src={reel.reel_url}
-                      className="w-full h-[480px] rounded-xl shadow-md"
+                      className="w-full h-[400px] rounded-xl shadow-md"
                       allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
                       allowFullScreen
                       loading="lazy"
@@ -84,8 +84,8 @@ export const InstagramReelsSection = () => {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious />
-            <CarouselNext />
+            <CarouselPrevious className="hidden sm:flex" />
+            <CarouselNext className="hidden sm:flex" />
           </Carousel>
         ) : (
           <div className="text-center text-gray-500">

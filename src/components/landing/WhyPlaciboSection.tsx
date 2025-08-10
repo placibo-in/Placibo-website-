@@ -7,22 +7,22 @@ import { cn } from '@/lib/utils';
 
 const benefits = [
   {
-    icon: <Award className="h-8 w-8 text-blue-600" />,
+    icon: <Award className="h-7 w-7 text-blue-600" />,
     title: "Learn from Experts",
     description: "Our instructors are seasoned professionals with years of industry experience.",
   },
   {
-    icon: <FolderKanban className="h-8 w-8 text-blue-600" />,
+    icon: <FolderKanban className="h-7 w-7 text-blue-600" />,
     title: "Project-Based Learning",
     description: "Build a portfolio of real-world projects that showcase your skills.",
   },
   {
-    icon: <MessageSquare className="h-8 w-8 text-blue-600" />,
+    icon: <MessageSquare className="h-7 w-7 text-blue-600" />,
     title: "Personalized Mentorship",
     description: "Get 1-on-1 guidance and feedback to accelerate your growth.",
   },
   {
-    icon: <Briefcase className="h-8 w-8 text-blue-600" />,
+    icon: <Briefcase className="h-7 w-7 text-blue-600" />,
     title: "Job-Ready Portfolio",
     description: "Graduate with a polished portfolio to impress potential employers.",
   },
@@ -39,27 +39,27 @@ export const WhyPlaciboSection = () => {
       id="why"
       ref={ref}
       className={cn(
-        "py-16 md:py-24 bg-gray-50 transition-all duration-700 ease-in-out",
+        "py-12 md:py-20 bg-gray-50 transition-all duration-700 ease-in-out",
         inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"
       )}
     >
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900">Why Placibo?</h2>
-          <p className="mt-3 max-w-2xl mx-auto text-lg text-gray-600">
+        <div className="text-center mb-10 md:mb-16">
+          <h2 className="text-2xl md:text-3xl font-bold text-gray-900">Why Placibo?</h2>
+          <p className="mt-3 max-w-xl mx-auto text-base md:text-lg text-gray-600">
             We're invested in your success. Here's how we help you achieve your goals.
           </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8">
           {benefits.map((benefit) => (
-            <Card key={benefit.title} className="shadow-sm hover:shadow-md transition-shadow flex flex-col sm:flex-row items-center p-6">
-              <div className="bg-blue-100 rounded-full p-4 mb-4 sm:mb-0 sm:mr-6">
+            <Card key={benefit.title} className="shadow-sm hover:shadow-md transition-shadow flex flex-col sm:flex-row items-center p-5 sm:p-6">
+              <div className="bg-blue-100 rounded-full p-3 mb-4 sm:mb-0 sm:mr-5">
                 {benefit.icon}
               </div>
               <div className="text-center sm:text-left">
-                <CardTitle>{benefit.title}</CardTitle>
+                <CardTitle className="text-lg">{benefit.title}</CardTitle>
                 <CardContent className="p-0 mt-2">
-                  <p className="text-gray-600">{benefit.description}</p>
+                  <p className="text-gray-600 text-sm md:text-base">{benefit.description}</p>
                 </CardContent>
               </div>
             </Card>
