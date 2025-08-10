@@ -50,7 +50,7 @@ export const HeroSection = () => {
         <CarouselContent>
           {slides.map((slide, index) => (
             <CarouselItem key={index}>
-              <div className="relative w-full h-[90vh] max-h-[700px] text-white">
+              <div className="relative w-full h-[75vh] md:h-[90vh] max-h-[700px] text-white">
                 {/* Background Image, Blur, and Gradient Overlay */}
                 <div className="absolute inset-0 z-0">
                   <img
@@ -63,23 +63,21 @@ export const HeroSection = () => {
 
                 {/* Content */}
                 <div className="relative z-10 container mx-auto px-4 h-full flex flex-col justify-center items-center text-center">
-                  <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-white drop-shadow-lg animate-fade-in-down">
+                  <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white drop-shadow-lg animate-fade-in-down">
                     {slide.title}
                   </h1>
-                  <p className="mt-4 text-lg md:text-xl text-blue-100 max-w-3xl mx-auto drop-shadow-md animate-fade-in-up">
+                  <p className="mt-4 text-base sm:text-lg lg:text-xl text-blue-100 max-w-3xl mx-auto drop-shadow-md animate-fade-in-up">
                     {slide.subtitle}
                   </p>
                   <div className="mt-8 flex flex-wrap justify-center gap-4">
                     <Button 
-                      size="lg" 
-                      className="bg-white text-blue-600 hover:bg-gray-200 shadow-xl transition-all transform hover:scale-105"
+                      className="h-10 px-6 text-base md:h-11 md:px-8 bg-white text-blue-600 hover:bg-gray-200 shadow-xl transition-all transform hover:scale-105"
                       onClick={onOpen}
                     >
                       Enroll Now
                     </Button>
                     <Button 
-                      size="lg" 
-                      className="bg-white/10 backdrop-blur-sm border border-white/20 text-white hover:bg-white/20 shadow-lg transition-all"
+                      className="h-10 px-6 text-base md:h-11 md:px-8 bg-white/10 backdrop-blur-sm border border-white/20 text-white hover:bg-white/20 shadow-lg transition-all"
                     >
                       Get Syllabus
                     </Button>
