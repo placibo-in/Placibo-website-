@@ -39,6 +39,8 @@ import { Skeleton } from "@/components/ui/skeleton";
 export type Slide = {
   id: string;
   created_at: string;
+  title?: string | null;
+  subtitle?: string | null;
   image_url: string;
   enroll_button_visible: boolean;
   syllabus_button_visible: boolean;
@@ -46,6 +48,8 @@ export type Slide = {
 };
 
 const slideFormSchema = z.object({
+  title: z.string().optional(),
+  subtitle: z.string().optional(),
   image: z.any().optional(),
   enroll_button_visible: z.boolean().default(true),
   syllabus_button_visible: z.boolean().default(true),
@@ -64,6 +68,8 @@ const SlideForm = ({
   const form = useForm<SlideFormValues>({
     resolver: zodResolver(slideFormSchema),
     defaultValues: {
+      title: currentSlide?.title || "",
+      subtitle: currentSlide?.subtitle || "",
       image: undefined,
       enroll_button_visible: currentSlide?.enroll_button_visible ?? true,
       syllabus_button_visible: currentSlide?.syllabus_button_visible ?? true,
@@ -79,7 +85,6 @@ const SlideForm = ({
     try {
       let imageUrl = currentSlide?.image_url;
 
-      // Check if a new image file is provided
       if (data.image && data.image.size > 0) {
         const file = data.image as File;
         const fileExt = file.name.split(".").pop();
@@ -103,6 +108,8 @@ const SlideForm = ({
       }
 
       const payload = {
+        title: data.title,
+        subtitle: data.subtitle,
         image_url: imageUrl,
         enroll_button_visible: data.enroll_button_visible,
         syllabus_button_visible: data.syllabus_button_visible,
@@ -131,6 +138,32 @@ const SlideForm = ({
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+        <FormField
+          control={form.control}
+          name="title"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Title (Optional)</FormLabel>
+              <FormControl>
+                <Input placeholder="Learn UX/UI & Front-End Online" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="subtitle"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Subtitle (Optional)</FormLabel>
+              <FormControl>
+                <Input placeholder="Placibo offers hands-on online courses..." {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
         <FormField
           control={form.control}
           name="image"
@@ -218,7 +251,7 @@ export const HeroSlideManager = () => {
     if (error) {
       toast.error("Failed to fetch slides.");
     } else {
-      setSlides(data);
+      setSlides(data as Slide[]);
     }
     setLoading(false);
   };
@@ -285,9 +318,8 @@ export const HeroSlideManager = () => {
             <TableHeader>
               <TableRow>
                 <TableHead>Order</TableHead>
+                <TableHead>Title</TableHead>
                 <TableHead>Image</TableHead>
-                <TableHead>Enroll Button</TableHead>
-                <TableHead>Syllabus Button</TableHead>
                 <TableHead className="text-right">Actions</TableHead>
               </TableRow>
             </TableHeader>
@@ -295,11 +327,10 @@ export const HeroSlideManager = () => {
               {slides.map((slide) => (
                 <TableRow key={slide.id}>
                   <TableCell className="font-medium">{slide.slide_order}</TableCell>
+                  <TableCell>{slide.title || "No Title"}</TableCell>
                   <TableCell>
-                    <img src={slide.image_url} alt="Slide" className="h-10 w-16 object-cover rounded-md border" />
+                    <img src={slide.image_url} alt={slide.title || "Slide"} className="h-10 w-16 object-cover rounded-md border" />
                   </TableCell>
-                  <TableCell>{slide.enroll_button_visible ? "Visible" : "Hidden"}</TableCell>
-                  <TableCell>{slide.syllabus_button_visible ? "Visible" : "Hidden"}</TableCell>
                   <TableCell className="text-right">
                     <Button variant="ghost" size="icon" onClick={() => handleEdit(slide)}>
                       <Edit className="h-4 w-4" />
