@@ -38,10 +38,10 @@ export const ContactSection = () => {
             <span>WhatsApp: <strong>95666 27297</strong></span>
           </div>
         </div>
-        <div className="mt-8 flex flex-col sm:flex-row justify-center gap-4">
+        <div className="mt-8 flex justify-center gap-6 flex-wrap">
           <Button 
             size="md" 
-            className="bg-green-600 text-white hover:bg-green-700 flex items-center gap-2 justify-center px-4 py-2"
+            className="bg-green-600 text-white hover:bg-green-700 flex items-center gap-2 justify-center px-4 py-2 min-w-[160px]"
             onClick={handleWhatsAppClick}
           >
             <img src="/icons/whatsapp.png" alt="WhatsApp" className="w-4 h-4" />
@@ -50,7 +50,7 @@ export const ContactSection = () => {
           <Button 
             size="md" 
             variant="outline" 
-            className="bg-transparent border-white text-white hover:bg-white hover:text-blue-600 px-4 py-2"
+            className="bg-transparent border-white text-white hover:bg-white hover:text-blue-600 px-4 py-2 min-w-[160px]"
             onClick={onOpen}
           >
             <span className="text-sm md:text-base">Apply Now</span>
