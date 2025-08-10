@@ -16,6 +16,7 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
+  DialogDescription,
 } from "@/components/ui/dialog";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -23,6 +24,7 @@ import * as z from "zod";
 import {
   Form,
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -37,8 +39,6 @@ import { Skeleton } from "@/components/ui/skeleton";
 export type Slide = {
   id: string;
   created_at: string;
-  title: string;
-  subtitle: string;
   image_url: string;
   enroll_button_visible: boolean;
   syllabus_button_visible: boolean;
@@ -46,9 +46,7 @@ export type Slide = {
 };
 
 const slideFormSchema = z.object({
-  title: z.string(),
-  subtitle: z.string(),
-  image_url: z.string().url("Must be a valid image URL"),
+  image: z.any().optional(),
   enroll_button_visible: z.boolean().default(true),
   syllabus_button_visible: z.boolean().default(true),
   slide_order: z.coerce.number().int().optional(),
@@ -66,9 +64,7 @@ const SlideForm = ({
   const form = useForm<SlideFormValues>({
     resolver: zodResolver(slideFormSchema),
     defaultValues: {
-      title: currentSlide?.title || "",
-      subtitle: currentSlide?.subtitle || "",
-      image_url: currentSlide?.image_url || "",
+      image: undefined,
       enroll_button_visible: currentSlide?.enroll_button_visible ?? true,
       syllabus_button_visible: currentSlide?.syllabus_button_visible ?? true,
       slide_order: currentSlide?.slide_order || 0,
@@ -81,7 +77,38 @@ const SlideForm = ({
 
   const onSubmit = async (data: SlideFormValues) => {
     try {
-      const payload = { ...data, slide_order: data.slide_order || 0 };
+      let imageUrl = currentSlide?.image_url;
+
+      // Check if a new image file is provided
+      if (data.image && data.image.size > 0) {
+        const file = data.image as File;
+        const fileExt = file.name.split(".").pop();
+        const fileName = `${Date.now()}.${fileExt}`;
+        
+        const { error: uploadError } = await supabase.storage
+          .from("hero_images")
+          .upload(fileName, file);
+
+        if (uploadError) throw new Error(uploadError.message);
+
+        const { data: urlData } = supabase.storage
+          .from("hero_images")
+          .getPublicUrl(fileName);
+        imageUrl = urlData.publicUrl;
+      }
+
+      if (!imageUrl) {
+        form.setError("image", { message: "An image is required." });
+        return;
+      }
+
+      const payload = {
+        image_url: imageUrl,
+        enroll_button_visible: data.enroll_button_visible,
+        syllabus_button_visible: data.syllabus_button_visible,
+        slide_order: data.slide_order || 0,
+      };
+
       if (currentSlide) {
         const { error } = await supabase
           .from("hero_slides")
@@ -106,39 +133,20 @@ const SlideForm = ({
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
         <FormField
           control={form.control}
-          name="title"
+          name="image"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Title</FormLabel>
+              <FormLabel>Slide Image</FormLabel>
               <FormControl>
-                <Input placeholder="Learn UX/UI & Front-End Online" {...field} />
+                <Input 
+                  type="file" 
+                  accept="image/png, image/jpeg, image/webp"
+                  onChange={(e) => field.onChange(e.target.files ? e.target.files[0] : null)}
+                />
               </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="subtitle"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Subtitle</FormLabel>
-              <FormControl>
-                <Input placeholder="Placibo offers hands-on online courses..." {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="image_url"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Image URL</FormLabel>
-              <FormControl>
-                <Input placeholder="https://images.unsplash.com/..." {...field} />
-              </FormControl>
+              <FormDescription>
+                Recommended dimensions: 1920x1080 pixels. Max size: 5MB.
+              </FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -157,34 +165,34 @@ const SlideForm = ({
           )}
         />
         <div className="flex items-center space-x-4">
-            <FormField
+          <FormField
             control={form.control}
             name="enroll_button_visible"
             render={({ field }) => (
-                <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
+              <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
                 <FormControl>
-                    <Checkbox checked={field.value} onCheckedChange={field.onChange} />
+                  <Checkbox checked={field.value} onCheckedChange={field.onChange} />
                 </FormControl>
                 <div className="space-y-1 leading-none">
-                    <FormLabel>Show Enroll Button</FormLabel>
+                  <FormLabel>Show Enroll Button</FormLabel>
                 </div>
-                </FormItem>
+              </FormItem>
             )}
-            />
-            <FormField
+          />
+          <FormField
             control={form.control}
             name="syllabus_button_visible"
             render={({ field }) => (
-                <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
+              <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
                 <FormControl>
-                    <Checkbox checked={field.value} onCheckedChange={field.onChange} />
+                  <Checkbox checked={field.value} onCheckedChange={field.onChange} />
                 </FormControl>
                 <div className="space-y-1 leading-none">
-                    <FormLabel>Show Syllabus Button</FormLabel>
+                  <FormLabel>Show Syllabus Button</FormLabel>
                 </div>
-                </FormItem>
+              </FormItem>
             )}
-            />
+          />
         </div>
         <Button type="submit" className="w-full" disabled={isSubmitting}>
           {isSubmitting ? "Saving..." : "Save Slide"}
@@ -258,47 +266,52 @@ export const HeroSlideManager = () => {
         <DialogContent className="sm:max-w-[600px]">
           <DialogHeader>
             <DialogTitle>{editingSlide ? "Edit Slide" : "Add New Slide"}</DialogTitle>
+            <DialogDescription>
+              {editingSlide ? "Update the details for this slide." : "Upload a new image and configure the slide options."}
+            </DialogDescription>
           </DialogHeader>
           <SlideForm currentSlide={editingSlide} onSuccess={onFormSuccess} />
         </DialogContent>
       </Dialog>
       <div className="rounded-md border">
         {loading ? (
-            <div className="space-y-2 p-4">
-                <Skeleton className="h-8 w-full" />
-                <Skeleton className="h-8 w-full" />
-                <Skeleton className="h-8 w-full" />
-            </div>
+          <div className="space-y-2 p-4">
+            <Skeleton className="h-8 w-full" />
+            <Skeleton className="h-8 w-full" />
+            <Skeleton className="h-8 w-full" />
+          </div>
         ) : (
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead>Order</TableHead>
-              <TableHead>Title</TableHead>
-              <TableHead>Image</TableHead>
-              <TableHead className="text-right">Actions</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {slides.map((slide) => (
-              <TableRow key={slide.id}>
-                <TableCell className="font-medium">{slide.slide_order}</TableCell>
-                <TableCell>{slide.title}</TableCell>
-                <TableCell>
-                  <img src={slide.image_url} alt={slide.title} className="h-10 w-16 object-cover rounded-md border" />
-                </TableCell>
-                <TableCell className="text-right">
-                  <Button variant="ghost" size="icon" onClick={() => handleEdit(slide)}>
-                    <Edit className="h-4 w-4" />
-                  </Button>
-                  <Button variant="ghost" size="icon" onClick={() => handleDelete(slide.id)}>
-                    <Trash2 className="h-4 w-4 text-destructive" />
-                  </Button>
-                </TableCell>
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead>Order</TableHead>
+                <TableHead>Image</TableHead>
+                <TableHead>Enroll Button</TableHead>
+                <TableHead>Syllabus Button</TableHead>
+                <TableHead className="text-right">Actions</TableHead>
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
+            </TableHeader>
+            <TableBody>
+              {slides.map((slide) => (
+                <TableRow key={slide.id}>
+                  <TableCell className="font-medium">{slide.slide_order}</TableCell>
+                  <TableCell>
+                    <img src={slide.image_url} alt="Slide" className="h-10 w-16 object-cover rounded-md border" />
+                  </TableCell>
+                  <TableCell>{slide.enroll_button_visible ? "Visible" : "Hidden"}</TableCell>
+                  <TableCell>{slide.syllabus_button_visible ? "Visible" : "Hidden"}</TableCell>
+                  <TableCell className="text-right">
+                    <Button variant="ghost" size="icon" onClick={() => handleEdit(slide)}>
+                      <Edit className="h-4 w-4" />
+                    </Button>
+                    <Button variant="ghost" size="icon" onClick={() => handleDelete(slide.id)}>
+                      <Trash2 className="h-4 w-4 text-destructive" />
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
         )}
       </div>
     </div>
