@@ -65,23 +65,21 @@ export const InstagramReelsSection = () => {
               align: "start",
               loop: true,
             }}
-            className="w-full max-w-xs sm:max-w-lg md:max-w-2xl lg:max-w-4xl mx-auto relative"
+            className="w-full max-w-5xl mx-auto relative"
           >
-            <CarouselContent className="-ml-4">
+            <CarouselContent className="flex gap-4 -ml-4">
               {reels.map((reel) => (
-                <CarouselItem key={reel.id} className="pl-4 sm:basis-1/2 md:basis-1/2 lg:basis-1/3">
-                  <div className="p-1">
-                    <div className="w-[180px] sm:w-[220px] md:w-[280px] lg:w-[320px] aspect-[9/16] rounded-xl shadow-md overflow-hidden">
-                      <iframe
-                        src={reel.reel_url}
-                        className="w-full h-full"
-                        allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-                        allowFullScreen
-                        loading="lazy"
-                        title={`Instagram Reel ${reel.id}`}
-                        frameBorder="0"
-                      />
-                    </div>
+                <CarouselItem key={reel.id} className="flex-shrink-0 w-[180px] sm:w-[220px] md:w-[280px] lg:w-[320px]">
+                  <div className="aspect-[9/16] rounded-xl shadow-md overflow-hidden">
+                    <iframe
+                      src={reel.reel_url}
+                      className="w-full h-full"
+                      allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                      allowFullScreen
+                      loading="lazy"
+                      title={`Instagram Reel ${reel.id}`}
+                      frameBorder="0"
+                    />
                   </div>
                 </CarouselItem>
               ))}
