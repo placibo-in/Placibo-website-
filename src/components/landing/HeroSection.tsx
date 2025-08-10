@@ -14,6 +14,7 @@ import Autoplay from "embla-carousel-autoplay";
 import { supabase } from "@/integrations/supabase/client";
 import type { Slide } from "@/components/admin/HeroSlideManager";
 import { Skeleton } from "@/components/ui/skeleton";
+import { cn } from "@/lib/utils";
 
 export const HeroSection = () => {
   const { onOpen } = useEnrollmentDialog();
@@ -69,51 +70,69 @@ export const HeroSection = () => {
         className="w-full"
       >
         <CarouselContent>
-          {slides.map((slide) => (
-            <CarouselItem key={slide.id}>
-              <div className="relative w-full h-[75vh] md:h-[90vh] max-h-[700px] text-white">
-                <div className="absolute inset-0 z-0">
-                  <img
-                    src={slide.image_url}
-                    alt={slide.title || "Hero slide"}
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-black/50"></div>
-                </div>
+          {slides.map((slide) => {
+            const hasText = slide.title || slide.subtitle;
+            const hasButtons = slide.enroll_button_visible || slide.syllabus_button_visible;
 
-                <div className="relative z-10 container mx-auto px-4 h-full flex flex-col justify-center items-center text-center">
-                  {slide.title && (
-                    <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white drop-shadow-lg">
-                      {slide.title}
-                    </h1>
-                  )}
-                  {slide.subtitle && (
-                    <p className="mt-4 text-base sm:text-lg lg:text-xl text-blue-100 max-w-3xl mx-auto drop-shadow-md">
-                      {slide.subtitle}
-                    </p>
-                  )}
-                  
-                  <div className="mt-8 flex flex-wrap justify-center gap-4">
-                    {slide.enroll_button_visible && (
-                      <Button 
-                        className="h-10 px-6 text-base md:h-11 md:px-8 bg-white text-blue-600 hover:bg-gray-200 shadow-xl transition-all transform hover:scale-105"
-                        onClick={onOpen}
-                      >
-                        Enroll Now
-                      </Button>
+            return (
+              <CarouselItem key={slide.id}>
+                <div className="relative w-full h-[75vh] md:h-[90vh] max-h-[700px] text-white">
+                  <div className="absolute inset-0 z-0">
+                    <img
+                      src={slide.image_url}
+                      alt={slide.title || "Hero slide"}
+                      className={cn(
+                        "w-full h-full object-cover",
+                        hasText && "blur-sm"
+                      )}
+                    />
+                    <div className={cn(
+                      "absolute inset-0",
+                      hasText ? "bg-black/50" : hasButtons ? "bg-black/30" : "bg-transparent"
+                    )}></div>
+                  </div>
+
+                  <div className={cn(
+                    "relative z-10 container mx-auto px-4 h-full flex flex-col items-center text-center",
+                    hasText ? "justify-center" : "justify-end pb-16 md:pb-24"
+                  )}>
+                    {hasText && (
+                      <>
+                        {slide.title && (
+                          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white drop-shadow-lg">
+                            {slide.title}
+                          </h1>
+                        )}
+                        {slide.subtitle && (
+                          <p className="mt-4 text-base sm:text-lg lg:text-xl text-blue-100 max-w-3xl mx-auto drop-shadow-md">
+                            {slide.subtitle}
+                          </p>
+                        )}
+                      </>
                     )}
-                    {slide.syllabus_button_visible && (
-                      <Button 
-                        className="h-10 px-6 text-base md:h-11 md:px-8 bg-white/10 backdrop-blur-sm border border-white/20 text-white hover:bg-white/20 shadow-lg transition-all"
-                      >
-                        Get Syllabus
-                      </Button>
-                    )}
+                    
+                    <div className={cn("flex flex-wrap justify-center gap-4", hasText && "mt-8")}>
+                      {slide.enroll_button_visible && (
+                        <Button 
+                          className="h-10 px-6 text-base md:h-11 md:px-8 bg-white text-blue-600 hover:bg-gray-200 shadow-xl transition-all transform hover:scale-105"
+                          onClick={onOpen}
+                        >
+                          Enroll Now
+                        </Button>
+                      )}
+                      {slide.syllabus_button_visible && (
+                        <Button 
+                          className="h-10 px-6 text-base md:h-11 md:px-8 bg-white/10 backdrop-blur-sm border border-white/20 text-white hover:bg-white/20 shadow-lg transition-all"
+                        >
+                          Get Syllabus
+                        </Button>
+                      )}
+                    </div>
                   </div>
                 </div>
-              </div>
-            </CarouselItem>
-          ))}
+              </CarouselItem>
+            );
+          })}
         </CarouselContent>
         <CarouselPrevious className="absolute left-4 top-1/2 -translate-y-1/2 z-20 hidden md:flex" />
         <CarouselNext className="absolute right-4 top-1/2 -translate-y-1/2 z-20 hidden md:flex" />
