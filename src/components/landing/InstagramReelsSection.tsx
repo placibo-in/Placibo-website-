@@ -12,22 +12,22 @@ export const InstagramReelsSection = () => {
     <section
       id="reels"
       className={cn(
-        "py-16 md:py-24 bg-gray-50 transition-all duration-700 ease-in-out"
+        "py-12 md:py-16 bg-gray-50 transition-all duration-700 ease-in-out"
       )}
     >
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900">From Our Instagram</h2>
-          <p className="mt-3 max-w-2xl mx-auto text-lg text-gray-600">
+        <div className="text-center mb-10">
+          <h2 className="text-2xl md:text-3xl font-bold text-gray-900">From Our Instagram</h2>
+          <p className="mt-2 max-w-xl mx-auto text-base text-gray-600">
             See what our students and community are up to.
           </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 justify-items-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 justify-items-center">
           {reels.map((url, index) => (
             <iframe
               key={index}
               src={url}
-              className="w-full max-w-sm aspect-[9/16] rounded-md border border-gray-300"
+              className="w-[280px] h-[500px] rounded-md border border-gray-300"
               allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
               allowFullScreen
               loading="lazy"
