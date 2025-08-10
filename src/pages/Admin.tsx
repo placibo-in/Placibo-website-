@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import type { User } from "@supabase/supabase-js";
+import { HeroSlideManager } from "@/components/admin/HeroSlideManager";
 
 const Admin = () => {
   const navigate = useNavigate();
@@ -47,20 +48,16 @@ const Admin = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-100 p-8">
-      <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-md p-6">
-        <div className="flex justify-between items-center mb-6">
+    <div className="min-h-screen bg-gray-100 p-4 md:p-8">
+      <div className="max-w-5xl mx-auto bg-white rounded-lg shadow-md p-6">
+        <div className="flex flex-col sm:flex-row justify-between sm:items-center mb-6 gap-4">
           <div>
             <h1 className="text-2xl font-bold">Admin Dashboard</h1>
             <p className="text-gray-600">Welcome, {user.email}</p>
           </div>
           <Button onClick={handleLogout} variant="destructive">Logout</Button>
         </div>
-        <div>
-          <h2 className="text-xl font-semibold mb-4">Hero Section Management</h2>
-          <p className="text-gray-500">Content management form will go here.</p>
-          {/* Future form for editing hero section will be added here */}
-        </div>
+        <HeroSlideManager />
       </div>
     </div>
   );
