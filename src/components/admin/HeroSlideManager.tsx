@@ -299,7 +299,7 @@ export const HeroSlideManager = () => {
         </Button>
       </div>
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-        <DialogContent className="sm:max-w-[600px]">
+        <DialogContent className="sm:max-w-[600px] bg-white">
           <DialogHeader>
             <DialogTitle>{editingSlide ? "Edit Slide" : "Add New Slide"}</DialogTitle>
             <DialogDescription>
