@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import type { User } from "@supabase/supabase-js";
 import { HeroSlideManager } from "@/components/admin/HeroSlideManager";
+import { InstagramReelManager } from "@/components/admin/InstagramReelManager";
+import { Separator } from "@/components/ui/separator";
 
 const Admin = () => {
   const navigate = useNavigate();
@@ -58,6 +60,8 @@ const Admin = () => {
           <Button onClick={handleLogout} variant="destructive">Logout</Button>
         </div>
         <HeroSlideManager />
+        <Separator className="my-8" />
+        <InstagramReelManager />
       </div>
     </div>
   );
