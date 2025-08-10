@@ -57,7 +57,12 @@ const Admin = () => {
             <h1 className="text-2xl font-bold">Admin Dashboard</h1>
             <p className="text-gray-700">Welcome, {user.email}</p>
           </div>
-          <Button onClick={handleLogout} variant="destructive">Logout</Button>
+          <Button 
+            onClick={handleLogout} 
+            className="bg-black text-white hover:bg-gray-800"
+          >
+            Logout
+          </Button>
         </div>
         <HeroSlideManager />
         <Separator className="my-8" />
