@@ -28,32 +28,32 @@ export const ContactSection = () => {
     >
       <div className="container mx-auto px-4 text-center">
         <h2 className="text-2xl md:text-3xl font-bold">Start Your Journey Today</h2>
-        <div className="mt-6 flex flex-col md:flex-row justify-center items-center gap-4 md:gap-8 text-base md:text-lg">
+        <div className="mt-6 flex flex-col md:flex-row justify-center items-center gap-4 md:gap-8 text-sm md:text-base">
           <div className="flex items-center gap-2">
-            <Calendar className="h-5 w-5" />
+            <Calendar className="h-4 w-4 md:h-5 md:w-5" />
             <span>Next batch starts: <strong>August 5, 2025</strong></span>
           </div>
           <div className="flex items-center gap-2">
-            <MessageCircle className="h-5 w-5" />
+            <MessageCircle className="h-4 w-4 md:h-5 md:w-5" />
             <span>WhatsApp: <strong>95666 27297</strong></span>
           </div>
         </div>
         <div className="mt-8 flex flex-col sm:flex-row justify-center gap-4">
           <Button 
-            size="lg" 
-            className="bg-green-600 text-white hover:bg-green-700 flex items-center gap-2 justify-center"
+            size="md" 
+            className="bg-green-600 text-white hover:bg-green-700 flex items-center gap-2 justify-center px-4 py-2"
             onClick={handleWhatsAppClick}
           >
-            <img src="/icons/whatsapp.png" alt="WhatsApp" className="w-5 h-5" />
-            <span>Join on WhatsApp</span>
+            <img src="/icons/whatsapp.png" alt="WhatsApp" className="w-4 h-4" />
+            <span className="text-sm md:text-base">Join on WhatsApp</span>
           </Button>
           <Button 
-            size="lg" 
+            size="md" 
             variant="outline" 
-            className="bg-transparent border-white text-white hover:bg-white hover:text-blue-600"
+            className="bg-transparent border-white text-white hover:bg-white hover:text-blue-600 px-4 py-2"
             onClick={onOpen}
           >
-            Apply Now
+            <span className="text-sm md:text-base">Apply Now</span>
           </Button>
         </div>
       </div>
