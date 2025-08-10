@@ -10,7 +10,6 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import Autoplay from "embla-carousel-autoplay";
 import { Skeleton } from "@/components/ui/skeleton";
 
 type Reel = {
@@ -62,12 +61,6 @@ export const InstagramReelsSection = () => {
           </div>
         ) : reels.length > 0 ? (
           <Carousel
-            plugins={[
-              Autoplay({
-                delay: 15000, // 15 seconds
-                stopOnInteraction: true,
-              }),
-            ]}
             opts={{
               align: "start",
               loop: true,
@@ -91,8 +84,8 @@ export const InstagramReelsSection = () => {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious className="hidden sm:flex" />
-            <CarouselNext className="hidden sm:flex" />
+            <CarouselPrevious />
+            <CarouselNext />
           </Carousel>
         ) : (
           <div className="text-center text-gray-500">
