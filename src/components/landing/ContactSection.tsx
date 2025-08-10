@@ -41,7 +41,7 @@ export const ContactSection = () => {
         <div className="mt-8 flex justify-center gap-4">
           <Button 
             size="lg" 
-            variant="secondary"
+            className="bg-green-600 text-white hover:bg-green-700"
             onClick={handleWhatsAppClick}
           >
             Join on WhatsApp
