@@ -10,48 +10,47 @@ export const Footer = () => {
   return (
     <footer className="bg-white text-gray-700 py-6 border-t border-gray-200">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-center md:text-left">
-          <div className="md:col-span-1">
+        <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+          {/* Left Side: Logo and Copyright */}
+          <div className="text-center md:text-left">
             <a href="/" className="inline-block mb-2">
               <img src="/logo.png" alt="Placibo Logo" className="h-8 mx-auto md:mx-0" />
             </a>
-            <p className="text-sm">Placibo – Design your future with us.</p>
-          </div>
-          
-          <div className="md:col-span-1">
-            <h3 className="font-semibold text-gray-900 mb-2">Navigate</h3>
-            <ul className="space-y-1">
-              <li><a href="/#about" className="hover:text-blue-600 transition-colors">About</a></li>
-              <li><a href="/#why" className="hover:text-blue-600 transition-colors">Why Us</a></li>
-              <li><a href="/faq" className="hover:text-blue-600 transition-colors">FAQ</a></li>
-              <li><a href="/#contact" className="hover:text-blue-600 transition-colors">Contact</a></li>
-            </ul>
+            <p className="text-sm text-gray-500">
+              &copy; {new Date().getFullYear()} Placibo. All rights reserved.
+            </p>
           </div>
 
-          <div className="md:col-span-1">
-            <h3 className="font-semibold text-gray-900 mb-2">Connect</h3>
-            <div className="flex items-center justify-center md:justify-start gap-4">
+          {/* Right Side: Navigation and Socials */}
+          <div className="flex flex-col md:flex-row items-center gap-6 md:gap-8">
+            {/* Navigation */}
+            <nav className="flex flex-wrap justify-center gap-4 md:gap-6 text-sm font-medium">
+              <a href="/#about" className="hover:text-blue-600 transition-colors">About</a>
+              <a href="/#why" className="hover:text-blue-600 transition-colors">Why Us</a>
+              <a href="/faq" className="hover:text-blue-600 transition-colors">FAQ</a>
+              <a href="/#contact" className="hover:text-blue-600 transition-colors">Contact</a>
+            </nav>
+
+            {/* Social Icons */}
+            <div className="flex items-center gap-4">
               <a 
                 href="https://www.instagram.com/placibo_official?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 aria-label="Instagram" 
-                className="hover:text-blue-600 transition-colors"
+                className="text-gray-500 hover:text-blue-600 transition-colors"
               >
                 <Instagram className="h-5 w-5" />
               </a>
               <button 
                 aria-label="WhatsApp" 
-                className="hover:text-blue-600 transition-colors"
+                className="text-gray-500 hover:text-blue-600 transition-colors"
                 onClick={handleWhatsAppClick}
               >
                 <MessageCircle className="h-5 w-5" />
               </button>
             </div>
           </div>
-        </div>
-        <div className="text-center mt-4 pt-4 border-t border-gray-200 text-xs md:text-sm text-gray-500">
-          &copy; {new Date().getFullYear()} Placibo. All rights reserved.
         </div>
       </div>
     </footer>
