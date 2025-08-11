@@ -1,7 +1,7 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts"
 
 // This is the URL of your Google Apps Script
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzWaIqos3cBDYqSdT0QMCO4EP8BJh8G514QOb68H-YeZN0HJmsM_PhE2SF34V6KUeG9cQ/exec";
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw8K2vr1V7vronNtAX1M9eo2Rhfjy1-23Z8iUTvsJIvA8nNq7aHp6KELNTC4B9NKh6o3w/exec";
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
