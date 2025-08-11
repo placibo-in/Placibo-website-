@@ -18,17 +18,17 @@ export const Header = () => {
   };
 
   return (
-    <header className="w-full py-3 px-4 sm:px-6 lg:px-8 bg-white border-b border-gray-200 fixed top-0 z-50 transition-colors duration-500 text-gray-900">
+    <header className="w-full py-3 px-4 sm:px-6 lg:px-8 bg-white border-b border-gray-200 fixed top-0 z-50 transition-colors duration-500 text-gray-900 shadow-sm">
       <div className="container mx-auto flex justify-between items-center">
         <Link to="/" className="flex items-center">
           <img src="/logo.png" alt="Placibo Logo" className="h-8 md:h-10" />
         </Link>
         
         <nav className="hidden md:flex items-center gap-6 font-medium tracking-wide text-sm sm:text-base">
-          <Link to="/#about" className="hover:text-blue-600 transition-colors text-gray-900">About</Link>
-          <Link to="/#why" className="hover:text-blue-600 transition-colors text-gray-900">Why Us</Link>
+          <a href="/#about" className="hover:text-blue-600 transition-colors text-gray-900">About</a>
+          <a href="/#why" className="hover:text-blue-600 transition-colors text-gray-900">Why Us</a>
           <Link to="/faq" className="hover:text-blue-600 transition-colors text-gray-900">FAQ</Link>
-          <Link to="/#contact" className="hover:text-blue-600 transition-colors text-gray-900">Contact</Link>
+          <a href="/#contact" className="hover:text-blue-600 transition-colors text-gray-900">Contact</a>
 
           <div 
             className="relative group"
@@ -109,20 +109,20 @@ export const Header = () => {
       {mobileMenuOpen && (
         <div className="md:hidden bg-white border-t border-gray-200 absolute top-full left-0 right-0 shadow-lg py-5 px-6 animate-fade-in">
           <div className="flex flex-col gap-5 font-semibold tracking-wide text-base text-gray-900">
-            <Link 
-              to="/#about" 
+            <a 
+              href="/#about" 
               className="hover:text-blue-600 transition-colors"
               onClick={() => setMobileMenuOpen(false)}
             >
               About
-            </Link>
-            <Link 
-              to="/#why" 
+            </a>
+            <a 
+              href="/#why" 
               className="hover:text-blue-600 transition-colors"
               onClick={() => setMobileMenuOpen(false)}
             >
               Why Us
-            </Link>
+            </a>
             <Link 
               to="/faq" 
               className="hover:text-blue-600 transition-colors"
@@ -130,54 +130,19 @@ export const Header = () => {
             >
               FAQ
             </Link>
-            <Link 
-              to="/#contact" 
+            <a 
+              href="/#contact" 
               className="hover:text-blue-600 transition-colors"
               onClick={() => setMobileMenuOpen(false)}
             >
               Contact
-            </Link>
+            </a>
             <Link 
               to="/courses" 
               className="hover:text-blue-600 transition-colors"
               onClick={() => setMobileMenuOpen(false)}
             >
               Courses
-            </Link>
-            <Link 
-              to="/courses/ui-ux-design" 
-              className="hover:text-blue-600 transition-colors"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              UI/UX Design
-            </Link>
-            <Link 
-              to="/courses/frontend-development" 
-              className="hover:text-blue-600 transition-colors"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Frontend Development
-            </Link>
-            <Link 
-              to="/courses/backend-nodejs" 
-              className="hover:text-blue-600 transition-colors"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Backend Node.js
-            </Link>
-            <Link 
-              to="/courses/backend-django" 
-              className="hover:text-blue-600 transition-colors"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Backend Django
-            </Link>
-            <Link 
-              to="/courses/generative-ai" 
-              className="hover:text-blue-600 transition-colors"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Generative AI
             </Link>
             <Button onClick={handleEnrollClick} className="btn-glow w-full mt-4 py-3 text-base">
               Enroll Now

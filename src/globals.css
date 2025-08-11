@@ -3,13 +3,36 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+    --radius: 0.5rem;
+  }
+
   html {
-    @apply scroll-smooth bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 text-white;
+    @apply scroll-smooth;
     font-family: 'Inter', sans-serif;
   }
 
   body {
-    @apply bg-transparent;
+    @apply bg-background text-foreground;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -18,14 +41,13 @@
   }
 
   p {
-    @apply text-sm leading-relaxed;
+    @apply text-base leading-relaxed;
   }
 
   a {
-    @apply text-blue-400 hover:text-blue-500 transition-colors;
+    @apply text-blue-600 hover:text-blue-700 transition-colors;
   }
 
-  /* Button glow effect */
   .btn-glow {
     @apply bg-blue-600 text-white font-semibold rounded-lg shadow-lg transition-all duration-300;
   }
@@ -33,7 +55,6 @@
     @apply bg-blue-500 shadow-[0_0_15px_3px_rgba(59,130,246,0.7)];
   }
 
-  /* Smooth fade-in animation */
   .fade-in {
     animation: fadeIn 1s ease forwards;
     opacity: 0;
