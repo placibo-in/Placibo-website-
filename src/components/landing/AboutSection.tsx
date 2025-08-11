@@ -56,13 +56,13 @@ export const AboutSection = () => {
       id="about"
       ref={ref}
       className={cn(
-        "py-10 md:py-16 bg-gray-50 transition-all duration-700 ease-in-out",
+        "py-10 md:py-16 bg-white transition-all duration-700 ease-in-out",
         inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"
       )}
     >
       <div className="container mx-auto px-4">
         <div className="text-center mb-8 md:mb-12">
-          <h2 className="text-2xl md:text-3xl font-bold text-gray-900">About the Course</h2>
+          <h2 className="text-2xl md:text-3xl font-bold text-gray-900">Our Programs</h2>
           <p className="mt-2 max-w-xl mx-auto text-base md:text-lg text-gray-600">
             We offer a range of programs designed to help you achieve your career goals.
           </p>
@@ -75,7 +75,7 @@ export const AboutSection = () => {
               className="block"
               aria-label={`Go to ${program.title} course page`}
             >
-              <Card className="flex flex-col shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer">
+              <Card className="flex flex-col h-full shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer">
                 <CardHeader className="flex-row items-start gap-3">
                   <div className="bg-blue-100 rounded-full p-2.5 w-fit">
                     {program.icon}

@@ -81,7 +81,7 @@ const Frontend = () => {
       </Helmet>
       <EnrollmentDialog />
       <Header />
-      <CourseLayout title={course.name}>
+      <CourseLayout title="">
         <p className="text-lg sm:text-xl text-gray-700 mb-8">{course.description}</p>
 
         <div className="mt-8 mb-12">
@@ -121,13 +121,13 @@ const Frontend = () => {
 
         <div>
           <h2 className="text-2xl font-bold mb-6 text-center">Course Syllabus</h2>
-          <Accordion type="single" collapsible className="w-full">
+          <Accordion type="single" collapsible className="w-full space-y-2">
             {course.syllabus.map((item, i) => (
-              <AccordionItem value={`item-${i}`} key={i} className="border-b">
-                <AccordionTrigger className="text-left font-semibold text-lg hover:no-underline">
+              <AccordionItem value={`item-${i}`} key={i} className="border-b-0 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors">
+                <AccordionTrigger className="text-left font-semibold text-lg hover:no-underline px-6 py-4">
                   {item.title}
                 </AccordionTrigger>
-                <AccordionContent className="text-gray-600 text-base">
+                <AccordionContent className="text-gray-600 text-base px-6 pb-4">
                   {item.content}
                 </AccordionContent>
               </AccordionItem>
@@ -135,10 +135,10 @@ const Frontend = () => {
           </Accordion>
         </div>
 
-        <div className="mt-16 text-center bg-gray-100 p-8 rounded-lg">
-          <h2 className="text-2xl font-bold mb-4">Ready to Become a Frontend Developer?</h2>
-          <p className="text-gray-600 mb-6 max-w-xl mx-auto">Join our next batch and start building the web of tomorrow. Limited seats available!</p>
-          <Button onClick={onOpen} size="lg" className="bg-blue-600 hover:bg-blue-700">
+        <div className="mt-16 text-center bg-gradient-to-r from-blue-600 to-blue-700 text-white p-8 md:p-12 rounded-lg shadow-xl">
+          <h2 className="text-2xl md:text-3xl font-bold mb-4">Ready to Become a Frontend Developer?</h2>
+          <p className="text-blue-200 mb-6 max-w-xl mx-auto">Join our next batch and start building the web of tomorrow. Limited seats available!</p>
+          <Button onClick={onOpen} size="lg" className="bg-white text-blue-700 hover:bg-gray-100 font-bold">
             Apply Now & Get Syllabus
           </Button>
         </div>

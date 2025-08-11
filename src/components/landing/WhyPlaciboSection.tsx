@@ -52,7 +52,7 @@ export const WhyPlaciboSection = () => {
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
           {benefits.map((benefit) => (
-            <Card key={benefit.title} className="shadow-sm hover:shadow-md transition-shadow flex flex-col sm:flex-row items-center p-4 sm:p-5">
+            <Card key={benefit.title} className="shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 flex flex-col sm:flex-row items-center p-4 sm:p-5">
               <div className="bg-blue-100 rounded-full p-2.5 mb-3 sm:mb-0 sm:mr-4">
                 {benefit.icon}
               </div>
