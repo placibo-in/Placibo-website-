@@ -51,7 +51,7 @@ export const Header = () => {
 
       {/* Mobile menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-transparent border-t border-white/20 absolute top-full left-0 right-0 shadow-lg py-5 px-6 animate-fade-in">
+        <div className="md:hidden bg-gray-900 border-t border-white/20 absolute top-full left-0 right-0 shadow-lg py-5 px-6 animate-fade-in">
           <div className="flex flex-col gap-5 text-white font-semibold tracking-wide text-base">
             <Link 
               to="/#about" 
