@@ -24,7 +24,7 @@ const formSchema = z.object({
 
 type EnrollmentFormValues = z.infer<typeof formSchema>;
 
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzWaIqos3cBDYqSdT0QMCO4EP8BJh8G514QOb68H-YeZN0HJmsM_PhE2SF34V6KUeG9cQ/exec";
+const SCRIPT_URL = "https://lwvijcdvemceqynquaoa.supabase.co/functions/v1/submit-form";
 
 export const EnrollmentForm = ({ onSuccess }: { onSuccess?: () => void }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -41,8 +41,7 @@ export const EnrollmentForm = ({ onSuccess }: { onSuccess?: () => void }) => {
   const onSubmit = async (data: EnrollmentFormValues) => {
     setIsSubmitting(true);
     try {
-      // Temporarily removing 'no-cors' to help debug the Google Script.
-      // This will likely cause a CORS error in the console, which is expected.
+      // Call the Supabase Edge Function instead of Google Script directly
       const response = await fetch(SCRIPT_URL, {
         method: "POST",
         headers: {
@@ -53,17 +52,17 @@ export const EnrollmentForm = ({ onSuccess }: { onSuccess?: () => void }) => {
 
       const result = await response.json();
 
-      if (result.result === "success") {
-        toast.success("Thank you for your interest! We will be in touch shortly.");
-        onSuccess?.();
-        form.reset();
-      } else {
-        // If the script returns an error message, show it.
-        throw new Error(result.message || "The script reported a failure.");
+      // Check for errors from the Edge Function or Google Script
+      if (!response.ok || result.result !== "success") {
+        throw new Error(result.message || result.error || "Submission failed.");
       }
+
+      toast.success("Thank you for your interest! We will be in touch shortly.");
+      onSuccess?.();
+      form.reset();
     } catch (error: any) {
       console.error("Submission Error:", error);
-      toast.error(`Submission failed: ${error.message}. Please check the browser console for more details.`);
+      toast.error(`Submission failed: ${error.message}`);
     } finally {
       setIsSubmitting(false);
     }
