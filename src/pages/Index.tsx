@@ -9,7 +9,6 @@ import { Footer } from "@/components/landing/Footer";
 import { FloatingActionButton } from "@/components/landing/FloatingActionButton";
 import { LoadingScreen } from "@/components/landing/LoadingScreen";
 import { EnrollmentDialog } from "@/components/landing/EnrollmentDialog";
-import { ImpactMarquee } from "@/components/landing/ImpactMarquee";
 
 const Index = () => {
   return (
@@ -17,7 +16,7 @@ const Index = () => {
       <LoadingScreen />
       <EnrollmentDialog />
       <Header />
-      <ImpactMarquee />
+      {/* Removed ImpactMarquee */}
       <main>
         <HeroSection />
         <AboutSection />
