@@ -40,7 +40,7 @@ const FaqPage = () => {
     <>
       <EnrollmentDialog />
       <Header />
-      <main className="bg-white">
+      <main className="bg-white pt-20 md:pt-24">
         <section className="py-10 md:py-16">
           <div className="container mx-auto px-4">
             <div className="text-center mb-8 md:mb-12">
