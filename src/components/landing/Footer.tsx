@@ -12,7 +12,9 @@ export const Footer = () => {
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-center md:text-left">
           <div className="md:col-span-1">
-            {/* Logo removed */}
+            <a href="/" className="inline-block mb-2">
+              <img src="/logo.png" alt="Placibo Logo" className="h-8 mx-auto md:mx-0" />
+            </a>
             <p className="text-sm">Placibo – Design your future with us.</p>
           </div>
           

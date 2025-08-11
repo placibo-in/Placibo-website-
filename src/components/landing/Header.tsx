@@ -20,7 +20,7 @@ export const Header = () => {
     <header className="w-full py-3 px-4 sm:px-6 lg:px-8 bg-white border-b border-gray-200 fixed top-0 z-50 transition-colors duration-500 text-gray-900">
       <div className="container mx-auto flex justify-between items-center">
         <Link to="/" className="flex items-center">
-          {/* Logo removed */}
+          <img src="/logo.png" alt="Placibo Logo" className="h-8 md:h-10" />
         </Link>
         
         <nav className="hidden md:flex items-center gap-6 font-medium tracking-wide text-sm sm:text-base">
