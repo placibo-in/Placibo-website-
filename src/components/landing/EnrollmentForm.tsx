@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
+import { useState } from "react";
 
 const formSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters." }),
@@ -23,7 +24,11 @@ const formSchema = z.object({
 
 type EnrollmentFormValues = z.infer<typeof formSchema>;
 
+const SCRIPT_URL = "https://script.google.com/a/macros/placibo.in/s/AKfycbwzHYL9oTPZ4wN9DBtRNQa-NF2_3Fhg05gou96q0So7CajCUxFnqPqgKlvaqavOyfE0ug/exec";
+
 export const EnrollmentForm = ({ onSuccess }: { onSuccess?: () => void }) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const form = useForm<EnrollmentFormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -33,11 +38,30 @@ export const EnrollmentForm = ({ onSuccess }: { onSuccess?: () => void }) => {
     },
   });
 
-  const onSubmit = (data: EnrollmentFormValues) => {
-    console.log("Enrollment data:", data);
-    toast.success("Thank you for your interest! We will be in touch shortly.");
-    onSuccess?.();
-    form.reset();
+  const onSubmit = async (data: EnrollmentFormValues) => {
+    setIsSubmitting(true);
+    try {
+      // We use 'no-cors' mode to send the data without needing a complex
+      // CORS setup on the Google Apps Script side. This is a "fire-and-forget" request.
+      await fetch(SCRIPT_URL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      // Since we can't read the response in 'no-cors' mode, we assume success.
+      toast.success("Thank you for your interest! We will be in touch shortly.");
+      onSuccess?.();
+      form.reset();
+    } catch (error) {
+      console.error("Error submitting to Google Sheet:", error);
+      toast.error("An error occurred. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -82,8 +106,8 @@ export const EnrollmentForm = ({ onSuccess }: { onSuccess?: () => void }) => {
             </FormItem>
           )}
         />
-        <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 text-white">
-          Submit Application
+        <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 text-white" disabled={isSubmitting}>
+          {isSubmitting ? "Submitting..." : "Submit Application"}
         </Button>
       </form>
     </Form>
