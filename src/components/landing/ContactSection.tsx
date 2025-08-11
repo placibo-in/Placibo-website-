@@ -1,7 +1,9 @@
 "use client";
 
+import { useState, useEffect } from "react";
+import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
-import { Calendar, MessageCircle } from "lucide-react";
+import { Calendar, MessageCircle, Loader2 } from "lucide-react";
 import { useInView } from 'react-intersection-observer';
 import { cn } from '@/lib/utils';
 import { useEnrollmentDialog } from "@/hooks/use-enrollment-dialog";
@@ -12,6 +14,30 @@ export const ContactSection = () => {
     threshold: 0.1,
   });
   const { onOpen } = useEnrollmentDialog();
+  const [batchDate, setBatchDate] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchBatchDate = async () => {
+      setIsLoading(true);
+      const { data, error } = await supabase
+        .from('site_settings')
+        .select('value')
+        .eq('key', 'next_batch_start_date')
+        .single();
+      
+      if (data?.value) {
+        setBatchDate(data.value);
+      } else {
+        // Fallback to a default date if there's an error or no date is set
+        setBatchDate("the next available date");
+        console.error("Error fetching batch date:", error?.message);
+      }
+      setIsLoading(false);
+    };
+
+    fetchBatchDate();
+  }, []);
 
   const handleWhatsAppClick = () => {
     window.open('https://wa.me/9566627297', '_blank');
@@ -31,7 +57,14 @@ export const ContactSection = () => {
         <div className="mt-4 flex flex-col md:flex-row justify-center items-center gap-4 md:gap-8 text-sm md:text-base">
           <div className="flex items-center gap-2">
             <Calendar className="h-4 w-4 md:h-5 md:w-5" />
-            <span>Next batch starts: <strong>August 5, 2025</strong></span>
+            <span>
+              Next batch starts:{" "}
+              {isLoading ? (
+                <Loader2 className="h-4 w-4 animate-spin inline-block" />
+              ) : (
+                <strong>{batchDate}</strong>
+              )}
+            </span>
           </div>
           <div className="flex items-center gap-2">
             <MessageCircle className="h-4 w-4 md:h-5 md:w-5" />

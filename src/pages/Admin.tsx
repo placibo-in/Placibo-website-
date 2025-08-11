@@ -1,70 +1,44 @@
-import { supabase } from "@/integrations/supabase/client";
-import { Button } from "@/components/ui/button";
-import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import type { User } from "@supabase/supabase-js";
-import { HeroSlideManager } from "@/components/admin/HeroSlideManager";
-import { InstagramReelManager } from "@/components/admin/InstagramReelManager";
-import { Separator } from "@/components/ui/separator";
+import { supabase } from "@/integrations/supabase/client";
+import { useNavigate } from "react-router-dom";
+import { Header } from "@/components/landing/Header";
+import { Footer } from "@/components/landing/Footer";
+import { HeroSlidesManager } from "@/components/admin/HeroSlidesManager";
+import { InstagramReelsManager } from "@/components/admin/InstagramReelsManager";
+import { BatchDateManager } from "@/components/admin/BatchDateManager";
 
 const Admin = () => {
   const navigate = useNavigate();
-  const [user, setUser] = useState<User | null>(null);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    const checkSession = async () => {
+    const checkUser = async () => {
       const { data: { session } } = await supabase.auth.getSession();
       if (!session) {
-        navigate("/login");
-      } else {
-        setUser(session.user);
-      }
-    };
-
-    checkSession();
-
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
-      if (event === 'SIGNED_OUT') {
         navigate('/login');
+      } else {
+        setIsLoaded(true);
       }
-      if (event === 'SIGNED_IN') {
-        setUser(session?.user ?? null);
-      }
-    });
-
-    return () => {
-      subscription.unsubscribe();
     };
+    checkUser();
   }, [navigate]);
 
-  const handleLogout = async () => {
-    await supabase.auth.signOut();
-  };
-
-  if (!user) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-white text-gray-900">
-        <p>Loading...</p>
-      </div>
-    );
+  if (!isLoaded) {
+    return <div>Loading...</div>;
   }
 
   return (
-    <div className="min-h-screen bg-white text-gray-900 p-6 md:p-10">
-      <div className="max-w-5xl mx-auto rounded-lg shadow-md p-6 bg-white">
-        <div className="flex flex-col sm:flex-row justify-between sm:items-center mb-6 gap-4">
-          <div>
-            <h1 className="text-2xl font-bold text-gray-900">Admin Dashboard</h1>
-            <p className="text-gray-800">Welcome, {user.email}</p>
-          </div>
-          <Button onClick={handleLogout} variant="destructive">
-            Logout
-          </Button>
+    <div className="flex flex-col min-h-screen bg-gray-50">
+      <Header />
+      <main className="flex-grow container mx-auto px-4 py-8 pt-24 md:pt-32">
+        <h1 className="text-3xl font-bold mb-8">Admin Dashboard</h1>
+        <div className="grid gap-8">
+          <BatchDateManager />
+          <HeroSlidesManager />
+          <InstagramReelsManager />
         </div>
-        <HeroSlideManager />
-        <Separator className="my-8" />
-        <InstagramReelManager />
-      </div>
+      </main>
+      <Footer />
     </div>
   );
 };
