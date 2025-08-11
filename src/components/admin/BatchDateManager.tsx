@@ -76,7 +76,7 @@ export const BatchDateManager = () => {
             <Loader2 className="h-6 w-6 animate-spin text-gray-500" />
           </div>
         ) : (
-          <div className="flex items-center gap-4">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
             <Input
               type="text"
               value={date}
@@ -84,7 +84,7 @@ export const BatchDateManager = () => {
               placeholder="e.g., September 1, 2025"
               className="flex-grow"
             />
-            <Button onClick={handleSave} disabled={isSaving}>
+            <Button onClick={handleSave} disabled={isSaving} className="w-full sm:w-auto">
               {isSaving ? <Loader2 className="h-4 w-4 animate-spin" /> : 'Save'}
             </Button>
           </div>

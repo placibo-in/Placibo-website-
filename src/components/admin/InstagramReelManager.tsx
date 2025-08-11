@@ -100,7 +100,7 @@ export const InstagramReelManager = () => {
     <div className="mt-8">
       <h2 className="text-xl font-semibold text-gray-900 mb-4">Instagram Reels Management</h2>
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="flex items-start gap-4 mb-6">
+        <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col sm:flex-row items-stretch sm:items-start gap-4 mb-6">
           <FormField
             control={form.control}
             name="reel_url"
@@ -113,7 +113,7 @@ export const InstagramReelManager = () => {
           />
           <Button 
             type="submit" 
-            className="bg-blue-600 text-white hover:bg-blue-700 flex items-center gap-2 px-4 py-2 rounded-md shadow-md"
+            className="bg-blue-600 text-white hover:bg-blue-700 flex items-center justify-center gap-2 px-4 py-2 rounded-md shadow-md w-full sm:w-auto"
             disabled={form.formState.isSubmitting}
           >
             <PlusCircle className="mr-2 h-4 w-4" /> Add Reel
@@ -129,7 +129,7 @@ export const InstagramReelManager = () => {
           </div>
         ) : (
           <Table>
-            <TableHeader>
+            <TableHeader className="hidden md:table-header-group">
               <TableRow>
                 <TableHead>Reel URL</TableHead>
                 <TableHead className="text-right">Actions</TableHead>
@@ -137,9 +137,12 @@ export const InstagramReelManager = () => {
             </TableHeader>
             <TableBody>
               {reels.map((reel) => (
-                <TableRow key={reel.id}>
-                  <TableCell className="font-medium truncate max-w-xs text-gray-900">{reel.reel_url}</TableCell>
-                  <TableCell className="text-right">
+                <TableRow key={reel.id} className="block md:table-row mb-4 md:mb-0 border md:border-0 rounded-lg">
+                  <TableCell className="flex justify-between items-center p-2 md:table-cell">
+                    <span className="font-bold md:hidden">URL</span>
+                    <span className="font-medium truncate max-w-[200px] sm:max-w-md text-gray-900 text-right">{reel.reel_url}</span>
+                  </TableCell>
+                  <TableCell className="flex justify-end items-center p-2 md:table-cell md:text-right">
                     <Button 
                       variant="ghost" 
                       size="icon" 

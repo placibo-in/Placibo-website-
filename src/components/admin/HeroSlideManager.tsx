@@ -197,7 +197,7 @@ const SlideForm = ({
             </FormItem>
           )}
         />
-        <div className="flex items-center space-x-4">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-4">
           <FormField
             control={form.control}
             name="enroll_button_visible"
@@ -289,11 +289,11 @@ export const HeroSlideManager = () => {
 
   return (
     <div>
-      <div className="flex justify-between items-center mb-4">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-4">
         <h2 className="text-xl font-semibold text-gray-900">Hero Section Management</h2>
         <Button 
           onClick={handleAddNew} 
-          className="bg-blue-600 text-white hover:bg-blue-700 flex items-center gap-2 px-4 py-2 rounded-md shadow-md"
+          className="bg-blue-600 text-white hover:bg-blue-700 flex items-center gap-2 px-4 py-2 rounded-md shadow-md w-full sm:w-auto"
         >
           <PlusCircle className="mr-2 h-4 w-4" /> Add New Slide
         </Button>
@@ -318,7 +318,7 @@ export const HeroSlideManager = () => {
           </div>
         ) : (
           <Table>
-            <TableHeader>
+            <TableHeader className="hidden md:table-header-group">
               <TableRow>
                 <TableHead>Order</TableHead>
                 <TableHead>Title</TableHead>
@@ -328,13 +328,20 @@ export const HeroSlideManager = () => {
             </TableHeader>
             <TableBody>
               {slides.map((slide) => (
-                <TableRow key={slide.id}>
-                  <TableCell className="font-medium text-gray-900">{slide.slide_order}</TableCell>
-                  <TableCell className="text-gray-900">{slide.title || "No Title"}</TableCell>
-                  <TableCell>
+                <TableRow key={slide.id} className="block md:table-row mb-4 md:mb-0 border md:border-0 rounded-lg">
+                  <TableCell className="flex justify-between items-center p-2 md:table-cell">
+                    <span className="font-bold md:hidden">Order</span>
+                    <span className="text-gray-900">{slide.slide_order}</span>
+                  </TableCell>
+                  <TableCell className="flex justify-between items-center p-2 md:table-cell">
+                    <span className="font-bold md:hidden">Title</span>
+                    <span className="text-gray-900 text-right">{slide.title || "No Title"}</span>
+                  </TableCell>
+                  <TableCell className="flex justify-between items-center p-2 md:table-cell">
+                    <span className="font-bold md:hidden">Image</span>
                     <img src={slide.image_url} alt={slide.title || "Slide"} className="h-10 w-16 object-cover rounded-md border" />
                   </TableCell>
-                  <TableCell className="text-right">
+                  <TableCell className="flex justify-end items-center p-2 md:table-cell md:text-right">
                     <Button 
                       variant="ghost" 
                       size="icon" 
