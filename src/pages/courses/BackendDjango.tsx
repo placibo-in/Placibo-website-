@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/accordion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { CheckCircle2, Clock } from "lucide-react";
+import { EnrollmentDialog } from "@/components/landing/EnrollmentDialog";
 
 const BackendDjango = () => {
   const { onOpen } = useEnrollmentDialog();
@@ -78,6 +79,7 @@ const BackendDjango = () => {
           })}
         </script>
       </Helmet>
+      <EnrollmentDialog />
       <Header />
       <CourseLayout title={course.name}>
         <p className="text-lg sm:text-xl text-gray-700 mb-8">{course.description}</p>

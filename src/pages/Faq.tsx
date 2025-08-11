@@ -6,6 +6,7 @@ import {
 } from "@/components/ui/accordion";
 import { Header } from "@/components/landing/Header";
 import { Footer } from "@/components/landing/Footer";
+import { EnrollmentDialog } from "@/components/landing/EnrollmentDialog";
 
 const faqData = [
   {
@@ -37,6 +38,7 @@ const faqData = [
 const FaqPage = () => {
   return (
     <>
+      <EnrollmentDialog />
       <Header />
       <main className="bg-white">
         <section className="py-10 md:py-16">

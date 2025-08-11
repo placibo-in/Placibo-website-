@@ -6,6 +6,7 @@ import { Header } from "@/components/landing/Header";
 import { Footer } from "@/components/landing/Footer";
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { PenTool, Code, Server, Database, BrainCircuit, ArrowRight } from "lucide-react";
+import { EnrollmentDialog } from "@/components/landing/EnrollmentDialog";
 
 const courses = [
   {
@@ -47,6 +48,7 @@ const CoursesPage = () => {
         <title>Our Courses | Placibo</title>
         <meta name="description" content="Explore our range of courses in UI/UX, Frontend, Backend, and AI." />
       </Helmet>
+      <EnrollmentDialog />
       <Header />
       <main className="bg-gray-50 text-gray-900 py-16 sm:py-24">
         <div className="container mx-auto px-4">
