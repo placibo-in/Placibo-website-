@@ -63,8 +63,8 @@ const UIUXDesign = () => {
     <>
       <Helmet>
         <title>{course.name} | Placibo</title>
-        <meta name="description" content={course.description} />
-        <link rel="canonical" href="https://yourdomain.com/courses/ui-ux-design" />
+        <meta name="description" content={`Join the best ${course.name}. Learn design thinking, wireframing, and build a job-ready portfolio with Placibo, Tamil Nadu's leading tech educator.`} />
+        <link rel="canonical" href="https://placibo.in/courses/ui-ux-design" />
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
@@ -74,14 +74,14 @@ const UIUXDesign = () => {
             "provider": {
               "@type": "Organization",
               "name": "Placibo",
-              "sameAs": "https://yourdomain.com",
+              "sameAs": "https://placibo.in",
             },
           })}
         </script>
       </Helmet>
       <EnrollmentDialog />
       <Header />
-      <CourseLayout title="">
+      <CourseLayout title={course.name}>
         <p className="text-lg sm:text-xl text-gray-700 mb-8">{course.description}</p>
 
         <div className="mt-8 mb-12">

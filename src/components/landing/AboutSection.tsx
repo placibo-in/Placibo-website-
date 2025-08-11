@@ -62,7 +62,7 @@ export const AboutSection = () => {
     >
       <div className="container mx-auto px-4">
         <div className="text-center mb-8 md:mb-12">
-          <h2 className="text-2xl md:text-3xl font-bold text-gray-900">Our Programs</h2>
+          <h2 className="text-2xl md:text-3xl font-bold text-gray-900">Our Programs in Chennai</h2>
           <p className="mt-2 max-w-xl mx-auto text-base md:text-lg text-gray-600">
             We offer a range of programs designed to help you achieve your career goals.
           </p>

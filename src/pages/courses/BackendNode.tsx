@@ -63,8 +63,8 @@ const BackendNode = () => {
     <>
       <Helmet>
         <title>{course.name} | Placibo</title>
-        <meta name="description" content={course.description} />
-        <link rel="canonical" href="https://yourdomain.com/courses/backend-nodejs" />
+        <meta name="description" content={`Join the best ${course.name}. Learn Node.js, Express, and MongoDB with Placibo, Tamil Nadu's leading tech educator.`} />
+        <link rel="canonical" href="https://placibo.in/courses/backend-nodejs" />
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
@@ -74,14 +74,14 @@ const BackendNode = () => {
             "provider": {
               "@type": "Organization",
               "name": "Placibo",
-              "sameAs": "https://yourdomain.com",
+              "sameAs": "https://placibo.in",
             },
           })}
         </script>
       </Helmet>
       <EnrollmentDialog />
       <Header />
-      <CourseLayout title="">
+      <CourseLayout title={course.name}>
         <p className="text-lg sm:text-xl text-gray-700 mb-8">{course.description}</p>
 
         <div className="mt-8 mb-12">

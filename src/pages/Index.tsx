@@ -15,10 +15,10 @@ const Index = () => {
   return (
     <div className="bg-white text-gray-800 antialiased">
       <Helmet>
-        <title>Placibo - Design Your Future</title>
+        <title>Placibo: Job-Ready Tech Courses in Chennai</title>
         <meta
           name="description"
-          content="Placibo offers hands-on online courses in UI/UX, Frontend, Backend, and AI to help you build a career."
+          content="Placibo offers top-rated courses in UI/UX, Full-Stack Development, and AI in Chennai, Tamil Nadu. Start your tech career with our hands-on, project-based training."
         />
       </Helmet>
       <LoadingScreen />

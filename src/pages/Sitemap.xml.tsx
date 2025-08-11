@@ -5,7 +5,7 @@ const Sitemap = () => {
 };
 
 export const getServerSideProps = async ({ res }: { res: any }) => {
-  const baseUrl = "https://yourdomain.com";
+  const baseUrl = "https://placibo.in"; // Please replace with your actual domain
 
   // Static pages
   const staticPages = [
@@ -13,6 +13,7 @@ export const getServerSideProps = async ({ res }: { res: any }) => {
     "faq",
     "login",
     "admin",
+    "courses",
     "courses/ui-ux-design",
     "courses/frontend-development",
     "courses/backend-nodejs",
