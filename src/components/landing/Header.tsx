@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import { useState } from "react";
 import { useEnrollmentDialog } from "@/hooks/use-enrollment-dialog";
 import { cn } from "@/lib/utils";
@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 
 export const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [coursesMenuOpen, setCoursesMenuOpen] = useState(false);
   const { onOpen } = useEnrollmentDialog();
 
   const handleEnrollClick = () => {
@@ -28,11 +29,66 @@ export const Header = () => {
           <Link to="/#why" className="hover:text-blue-600 transition-colors text-gray-900">Why Us</Link>
           <Link to="/faq" className="hover:text-blue-600 transition-colors text-gray-900">FAQ</Link>
           <Link to="/#contact" className="hover:text-blue-600 transition-colors text-gray-900">Contact</Link>
-          <Link to="/courses/ui-ux-design" className="hover:text-blue-600 transition-colors text-gray-900">UI/UX Design</Link>
-          <Link to="/courses/frontend-development" className="hover:text-blue-600 transition-colors text-gray-900">Frontend Dev</Link>
-          <Link to="/courses/backend-nodejs" className="hover:text-blue-600 transition-colors text-gray-900">Backend Node.js</Link>
-          <Link to="/courses/backend-django" className="hover:text-blue-600 transition-colors text-gray-900">Backend Django</Link>
-          <Link to="/courses/generative-ai" className="hover:text-blue-600 transition-colors text-gray-900">Generative AI</Link>
+
+          <div 
+            className="relative group"
+            onMouseEnter={() => setCoursesMenuOpen(true)}
+            onMouseLeave={() => setCoursesMenuOpen(false)}
+          >
+            <button 
+              className="inline-flex items-center gap-1 hover:text-blue-600 transition-colors text-gray-900 font-medium"
+              aria-haspopup="true"
+              aria-expanded={coursesMenuOpen}
+            >
+              Courses <ChevronDown size={16} />
+            </button>
+            {coursesMenuOpen && (
+              <div className="absolute top-full left-0 mt-2 w-56 bg-white border border-gray-200 rounded-md shadow-lg z-50">
+                <Link 
+                  to="/courses" 
+                  className="block px-4 py-2 text-gray-900 hover:bg-blue-50"
+                  onClick={() => setCoursesMenuOpen(false)}
+                >
+                  All Courses
+                </Link>
+                <Link 
+                  to="/courses/ui-ux-design" 
+                  className="block px-4 py-2 text-gray-900 hover:bg-blue-50"
+                  onClick={() => setCoursesMenuOpen(false)}
+                >
+                  UI/UX Design
+                </Link>
+                <Link 
+                  to="/courses/frontend-development" 
+                  className="block px-4 py-2 text-gray-900 hover:bg-blue-50"
+                  onClick={() => setCoursesMenuOpen(false)}
+                >
+                  Frontend Development
+                </Link>
+                <Link 
+                  to="/courses/backend-nodejs" 
+                  className="block px-4 py-2 text-gray-900 hover:bg-blue-50"
+                  onClick={() => setCoursesMenuOpen(false)}
+                >
+                  Backend Node.js
+                </Link>
+                <Link 
+                  to="/courses/backend-django" 
+                  className="block px-4 py-2 text-gray-900 hover:bg-blue-50"
+                  onClick={() => setCoursesMenuOpen(false)}
+                >
+                  Backend Django
+                </Link>
+                <Link 
+                  to="/courses/generative-ai" 
+                  className="block px-4 py-2 text-gray-900 hover:bg-blue-50"
+                  onClick={() => setCoursesMenuOpen(false)}
+                >
+                  Generative AI
+                </Link>
+              </div>
+            )}
+          </div>
         </nav>
 
         <div className="flex items-center gap-4">
@@ -82,6 +138,13 @@ export const Header = () => {
               Contact
             </Link>
             <Link 
+              to="/courses" 
+              className="hover:text-blue-600 transition-colors"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Courses
+            </Link>
+            <Link 
               to="/courses/ui-ux-design" 
               className="hover:text-blue-600 transition-colors"
               onClick={() => setMobileMenuOpen(false)}
@@ -93,7 +156,7 @@ export const Header = () => {
               className="hover:text-blue-600 transition-colors"
               onClick={() => setMobileMenuOpen(false)}
             >
-              Frontend Dev
+              Frontend Development
             </Link>
             <Link 
               to="/courses/backend-nodejs" 
