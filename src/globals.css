@@ -25,11 +25,6 @@
     @apply text-blue-400 hover:text-blue-500 transition-colors;
   }
 
-  /* Glassmorphism card style */
-  .glass-card {
-    @apply bg-white/10 backdrop-blur-md border border-white/20 rounded-xl shadow-lg;
-  }
-
   /* Button glow effect */
   .btn-glow {
     @apply bg-blue-600 text-white font-semibold rounded-lg shadow-lg transition-all duration-300;
