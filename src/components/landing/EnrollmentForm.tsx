@@ -15,6 +15,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
 import { useState } from "react";
+import { supabase } from "@/integrations/supabase/client";
 
 const formSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters." }),
@@ -23,8 +24,6 @@ const formSchema = z.object({
 });
 
 type EnrollmentFormValues = z.infer<typeof formSchema>;
-
-const SCRIPT_URL = "https://lwvijcdvemceqynquaoa.supabase.co/functions/v1/submit-form";
 
 export const EnrollmentForm = ({ onSuccess }: { onSuccess?: () => void }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -41,19 +40,17 @@ export const EnrollmentForm = ({ onSuccess }: { onSuccess?: () => void }) => {
   const onSubmit = async (data: EnrollmentFormValues) => {
     setIsSubmitting(true);
     try {
-      // Call the Supabase Edge Function instead of Google Script directly
-      const response = await fetch(SCRIPT_URL, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
+      // Use supabase.functions.invoke to automatically handle authorization
+      const { data: result, error } = await supabase.functions.invoke('submit-form', {
+        body: data,
       });
 
-      const result = await response.json();
+      if (error) {
+        throw error;
+      }
 
       // Check for errors from the Edge Function or Google Script
-      if (!response.ok || result.result !== "success") {
+      if (result.result !== "success") {
         throw new Error(result.message || result.error || "Submission failed.");
       }
 
