@@ -27,7 +27,6 @@ const UIUXDesign = () => {
       "Usability Testing",
       "Portfolio Development",
     ],
-    price: "₹50,000",
   };
 
   return (
@@ -60,13 +59,6 @@ const UIUXDesign = () => {
               "startDate": "2025-08-05",
               "endDate": "2025-12-05",
               "url": "https://yourdomain.com/courses/ui-ux-design",
-              "offers": {
-                "@type": "Offer",
-                "price": "50000",
-                "priceCurrency": "INR",
-                "availability": "https://schema.org/InStock",
-                "url": "https://yourdomain.com/courses/ui-ux-design",
-              },
             },
           })}
         </script>
@@ -98,11 +90,6 @@ const UIUXDesign = () => {
                 <li key={i}>{item}</li>
               ))}
             </ul>
-          </section>
-
-          <section className="bg-gray-50 rounded-lg shadow p-6">
-            <h2 className="text-2xl font-semibold mb-4">Pricing</h2>
-            <p className="text-lg font-semibold">{course.price}</p>
           </section>
         </div>
       </main>
