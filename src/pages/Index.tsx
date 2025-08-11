@@ -24,7 +24,7 @@ const Index = () => {
       <LoadingScreen />
       <EnrollmentDialog />
       <Header />
-      <main>
+      <main className="pt-20 md:pt-24">
         <HeroSection />
         <AboutSection />
         <WhyPlaciboSection />
