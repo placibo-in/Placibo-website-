@@ -1,7 +1,14 @@
 function doPost(e) {
   try {
-    // IMPORTANT: Make sure this sheet name matches your sheet tab exactly.
-    var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Web leads");
+    var spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+    var sheetName = "Web leads";
+    var sheet = spreadsheet.getSheetByName(sheetName);
+
+    // If the sheet doesn't exist, create it and add headers.
+    if (!sheet) {
+      sheet = spreadsheet.insertSheet(sheetName);
+      sheet.appendRow(["Name", "Email", "Phone", "Timestamp"]);
+    }
     
     // Parse the incoming data from the website form
     var data = JSON.parse(e.postData.contents);
