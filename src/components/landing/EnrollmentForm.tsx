@@ -24,7 +24,7 @@ const formSchema = z.object({
 
 type EnrollmentFormValues = z.infer<typeof formSchema>;
 
-const SCRIPT_URL = "https://script.google.com/a/macros/placibo.in/s/AKfycbwzHYL9oTPZ4wN9DBtRNQa-NF2_3Fhg05gou96q0So7CajCUxFnqPqgKlvaqavOyfE0ug/exec";
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxZ11MxmQEtkzgGfG3gPlo2bzrhHWZFA-QCM3xszqfpDukfLXN8SdEkGuKOeaQ6QvU4gA/exec";
 
 export const EnrollmentForm = ({ onSuccess }: { onSuccess?: () => void }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
