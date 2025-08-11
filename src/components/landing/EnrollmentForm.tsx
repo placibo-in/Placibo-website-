@@ -41,24 +41,29 @@ export const EnrollmentForm = ({ onSuccess }: { onSuccess?: () => void }) => {
   const onSubmit = async (data: EnrollmentFormValues) => {
     setIsSubmitting(true);
     try {
-      // We use 'no-cors' mode to send the data without needing a complex
-      // CORS setup on the Google Apps Script side. This is a "fire-and-forget" request.
-      await fetch(SCRIPT_URL, {
+      // Temporarily removing 'no-cors' to help debug the Google Script.
+      // This will likely cause a CORS error in the console, which is expected.
+      const response = await fetch(SCRIPT_URL, {
         method: "POST",
-        mode: "no-cors",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
       });
 
-      // Since we can't read the response in 'no-cors' mode, we assume success.
-      toast.success("Thank you for your interest! We will be in touch shortly.");
-      onSuccess?.();
-      form.reset();
-    } catch (error) {
-      console.error("Error submitting to Google Sheet:", error);
-      toast.error("An error occurred. Please try again.");
+      const result = await response.json();
+
+      if (result.result === "success") {
+        toast.success("Thank you for your interest! We will be in touch shortly.");
+        onSuccess?.();
+        form.reset();
+      } else {
+        // If the script returns an error message, show it.
+        throw new Error(result.message || "The script reported a failure.");
+      }
+    } catch (error: any) {
+      console.error("Submission Error:", error);
+      toast.error(`Submission failed: ${error.message}. Please check the browser console for more details.`);
     } finally {
       setIsSubmitting(false);
     }
