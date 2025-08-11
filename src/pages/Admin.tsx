@@ -3,8 +3,8 @@ import { supabase } from "@/integrations/supabase/client";
 import { useNavigate } from "react-router-dom";
 import { Header } from "@/components/landing/Header";
 import { Footer } from "@/components/landing/Footer";
-import { HeroSlidesManager } from "@/components/admin/HeroSlidesManager";
-import { InstagramReelsManager } from "@/components/admin/InstagramReelsManager";
+import { HeroSlideManager } from "@/components/admin/HeroSlideManager";
+import { InstagramReelManager } from "@/components/admin/InstagramReelManager";
 import { BatchDateManager } from "@/components/admin/BatchDateManager";
 
 const Admin = () => {
@@ -34,8 +34,8 @@ const Admin = () => {
         <h1 className="text-3xl font-bold mb-8">Admin Dashboard</h1>
         <div className="grid gap-8">
           <BatchDateManager />
-          <HeroSlidesManager />
-          <InstagramReelsManager />
+          <HeroSlideManager />
+          <InstagramReelManager />
         </div>
       </main>
       <Footer />
