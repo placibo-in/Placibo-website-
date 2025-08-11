@@ -3,8 +3,22 @@
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import CourseLayout from "@/components/courses/CourseLayout";
+import { Header } from "@/components/landing/Header";
+import { Footer } from "@/components/landing/Footer";
+import { Button } from "@/components/ui/button";
+import { useEnrollmentDialog } from "@/hooks/use-enrollment-dialog";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { CheckCircle2, Clock } from "lucide-react";
 
 const UIUXDesign = () => {
+  const { onOpen } = useEnrollmentDialog();
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -12,21 +26,35 @@ const UIUXDesign = () => {
   const course = {
     name: "UI/UX Design Course in Chennai",
     description:
-      "Dive into the world of design thinking, wireframing, prototyping, and user research to craft seamless digital experiences.",
+      "Dive into the world of design thinking, wireframing, prototyping, and user research to craft seamless digital experiences that users love.",
     duration: "4 Months",
-    benefits: [
-      "Learn design thinking and user research",
-      "Master wireframing and prototyping tools",
-      "Build a portfolio of real-world projects",
-      "Get personalized mentorship",
+    highlights: [
+      "Build a job-ready portfolio with 3 real-world projects.",
+      "1-on-1 mentorship from industry experts.",
+      "Master Figma, Adobe XD, and other essential design tools.",
+      "Comprehensive job assistance and interview preparation.",
     ],
     syllabus: [
-      "Introduction to UI/UX Design",
-      "User Research and Personas",
-      "Wireframing and Prototyping",
-      "Visual Design Principles",
-      "Usability Testing",
-      "Portfolio Development",
+      {
+        title: "Module 1: Foundations of UX Design",
+        content: "Understand the core principles of User Experience, design thinking methodologies, and how to conduct effective user research. Learn to create user personas and journey maps.",
+      },
+      {
+        title: "Module 2: Wireframing and Prototyping",
+        content: "From low-fidelity sketches to high-fidelity interactive prototypes. Master tools like Figma and Adobe XD to bring your ideas to life and test them with users.",
+      },
+      {
+        title: "Module 3: Visual Design and UI Principles",
+        content: "Dive into the principles of User Interface design. Learn about color theory, typography, layout, and creating a consistent design system for your projects.",
+      },
+      {
+        title: "Module 4: Usability Testing and Feedback",
+        content: "Learn how to plan and conduct usability tests, gather valuable feedback, and iterate on your designs to create user-centered products.",
+      },
+      {
+        title: "Module 5: Portfolio and Career Prep",
+        content: "Build a compelling portfolio that showcases your skills. Get ready for the job market with resume workshops, mock interviews, and networking strategies.",
+      },
     ],
   };
 
@@ -47,50 +75,73 @@ const UIUXDesign = () => {
               "name": "Placibo",
               "sameAs": "https://yourdomain.com",
             },
-            "hasCourseInstance": {
-              "@type": "CourseInstance",
-              "name": course.name,
-              "description": course.description,
-              "courseMode": "Online",
-              "instructor": {
-                "@type": "Person",
-                "name": "Expert Instructor",
-              },
-              "duration": "P4M",
-              "startDate": "2025-08-05",
-              "endDate": "2025-12-05",
-              "url": "https://yourdomain.com/courses/ui-ux-design",
-            },
           })}
         </script>
       </Helmet>
-
+      <Header />
       <CourseLayout title={course.name}>
         <p className="text-lg sm:text-xl text-gray-700 mb-8">{course.description}</p>
 
-        <section className="bg-gray-50 rounded-lg shadow p-6 mb-8">
-          <h2 className="text-2xl font-semibold mb-4">Course Duration</h2>
-          <p className="text-base">{course.duration}</p>
-        </section>
+        <div className="mt-8 mb-12">
+          <Button onClick={onOpen} size="lg" className="bg-blue-600 hover:bg-blue-700">
+            Enroll Now
+          </Button>
+        </div>
 
-        <section className="bg-gray-50 rounded-lg shadow p-6 mb-8">
-          <h2 className="text-2xl font-semibold mb-4">Benefits</h2>
-          <ul className="list-disc list-inside space-y-2 text-gray-700 text-base">
-            {course.benefits.map((benefit, i) => (
-              <li key={i}>{benefit}</li>
-            ))}
-          </ul>
-        </section>
+        <div className="grid md:grid-cols-2 gap-8 mb-12">
+          <Card className="border-gray-200 shadow-sm">
+            <CardHeader>
+              <CardTitle className="text-xl">Key Highlights</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <ul className="space-y-3">
+                {course.highlights.map((highlight, i) => (
+                  <li key={i} className="flex items-start gap-3">
+                    <CheckCircle2 className="h-5 w-5 text-green-500 mt-1 flex-shrink-0" />
+                    <span className="text-gray-700">{highlight}</span>
+                  </li>
+                ))}
+              </ul>
+            </CardContent>
+          </Card>
+          <Card className="border-gray-200 shadow-sm">
+            <CardHeader>
+              <CardTitle className="text-xl">Course Details</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="flex items-center gap-3 text-gray-700">
+                <Clock className="h-5 w-5 text-blue-500" />
+                <span><strong>Duration:</strong> {course.duration}</span>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
 
-        <section className="bg-gray-50 rounded-lg shadow p-6">
-          <h2 className="text-2xl font-semibold mb-4">Syllabus</h2>
-          <ul className="list-decimal list-inside space-y-2 text-gray-700 text-base">
+        <div>
+          <h2 className="text-2xl font-bold mb-6 text-center">Course Syllabus</h2>
+          <Accordion type="single" collapsible className="w-full">
             {course.syllabus.map((item, i) => (
-              <li key={i}>{item}</li>
+              <AccordionItem value={`item-${i}`} key={i} className="border-b">
+                <AccordionTrigger className="text-left font-semibold text-lg hover:no-underline">
+                  {item.title}
+                </AccordionTrigger>
+                <AccordionContent className="text-gray-600 text-base">
+                  {item.content}
+                </AccordionContent>
+              </AccordionItem>
             ))}
-          </ul>
-        </section>
+          </Accordion>
+        </div>
+
+        <div className="mt-16 text-center bg-gray-100 p-8 rounded-lg">
+          <h2 className="text-2xl font-bold mb-4">Ready to Start Your Design Journey?</h2>
+          <p className="text-gray-600 mb-6 max-w-xl mx-auto">Join our next batch and transform your career. Limited seats available!</p>
+          <Button onClick={onOpen} size="lg" className="bg-blue-600 hover:bg-blue-700">
+            Apply Now & Get Syllabus
+          </Button>
+        </div>
       </CourseLayout>
+      <Footer />
     </>
   );
 };
