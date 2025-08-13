@@ -5,19 +5,19 @@ import { cn } from '@/lib/utils';
 import { useState } from 'react';
 
 const logos = [
-  { src: '/logos/colleges/peri-institute-of-technology.jpg', alt: 'PERI Institute of Technology' },
-  { src: '/logos/colleges/vit-chennai.jpg', alt: 'VIT Chennai' },
-  { src: '/logos/colleges/srm-institute-of-science-and-technology.jpg', alt: 'SRM Institute of Science and Technology' },
-  { src: '/logos/colleges/svct-vadakal-campus.jpg', alt: 'SVCT Vadakal Campus' },
-  { src: '/logos/colleges/jerusalem-college-of-engineering.jpg', alt: 'Jerusalem College of Engineering' },
-  { src: '/logos/colleges/jeppiaar-university.jpg', alt: 'Jeppiaar University' },
-  { src: '/logos/colleges/smk-fomra-institute-of-technology.jpg', alt: 'SMK Fomra Institute of Technology' },
-  { src: '/logos/colleges/measi-academy-of-architecture.jpg', alt: 'MEASI Academy of Architecture' },
-  { src: '/logos/colleges/prince-shri-venkateshwara-padmavathy-engineering-college.jpg', alt: 'Prince Shri Venkateshwara Padmavathy Engineering College' },
-  { src: '/logos/colleges/panimalar-engineering-college.jpg', alt: 'Panimalar Engineering College' },
-  { src: '/logos/colleges/sastra-university.jpg', alt: 'Sastra University' },
-  { src: '/logos/colleges/dhanalakshmi-srinivasan-engineering-college.jpg', alt: 'Dhanalakshmi Srinivasan Engineering College' },
-  { src: '/logos/colleges/excel-engineering-college.jpg', alt: 'Excel Engineering College' },
+  { src: '/logos/colleges/whatsapp-image-2025-08-13-at-5.51.40-pm.jpeg', alt: 'College 1' },
+  { src: '/logos/colleges/whatsapp-image-2025-08-13-at-5.51.40-pm-1.jpeg', alt: 'College 2' },
+  { src: '/logos/colleges/whatsapp-image-2025-08-13-at-5.51.41-pm.jpeg', alt: 'College 3' },
+  { src: '/logos/colleges/whatsapp-image-2025-08-13-at-5.51.41-pm-1.jpeg', alt: 'College 4' },
+  { src: '/logos/colleges/whatsapp-image-2025-08-13-at-5.51.42-pm.jpeg', alt: 'College 5' },
+  { src: '/logos/colleges/whatsapp-image-2025-08-13-at-5.51.42-pm-1.jpeg', alt: 'College 6' },
+  { src: '/logos/colleges/whatsapp-image-2025-08-13-at-5.51.42-pm-2.jpeg', alt: 'College 7' },
+  { src: '/logos/colleges/whatsapp-image-2025-08-13-at-5.51.43-pm.jpeg', alt: 'College 8' },
+  { src: '/logos/colleges/whatsapp-image-2025-08-13-at-5.51.43-pm-1.jpeg', alt: 'College 9' },
+  { src: '/logos/colleges/whatsapp-image-2025-08-13-at-5.51.43-pm-2.jpeg', alt: 'College 10' },
+  { src: '/logos/colleges/whatsapp-image-2025-08-13-at-5.51.44-pm.jpeg', alt: 'College 11' },
+  { src: '/logos/colleges/whatsapp-image-2025-08-13-at-5.51.44-pm-1.jpeg', alt: 'College 12' },
+  { src: '/logos/colleges/whatsapp-image-2025-08-13-at-5.51.45-pm.jpeg', alt: 'College 13' },
 ];
 
 export const CollaborationsSection = () => {
@@ -26,7 +26,6 @@ export const CollaborationsSection = () => {
     threshold: 0.1,
   });
 
-  // Track which images failed to load
   const [failedImages, setFailedImages] = useState<Set<number>>(new Set());
 
   const handleImageError = (index: number) => {
@@ -53,12 +52,12 @@ export const CollaborationsSection = () => {
             {[...logos, ...logos].map((logo, index) => (
               <div key={index} className="flex-shrink-0">
                 {!failedImages.has(index) ? (
-                  <img 
-                    src={logo.src} 
-                    alt={logo.alt} 
-                    width={160} 
-                    height={96} 
-                    className="object-contain filter grayscale hover:grayscale-0 transition-all duration-300" 
+                  <img
+                    src={logo.src}
+                    alt={logo.alt}
+                    width={160}
+                    height={96}
+                    className="object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
                     loading="lazy"
                     onError={() => handleImageError(index)}
                   />
