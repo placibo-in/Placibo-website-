@@ -4,18 +4,19 @@ import { useInView } from 'react-intersection-observer';
 import { cn } from '@/lib/utils';
 
 const logos = [
-  { src: '/logos/colleges/velammal.jpeg', alt: 'Velammal Engineering College' },
-  { src: '/logos/colleges/srm_vdp.jpeg', alt: 'SRM Valliammai Engineering College' },
-  { src: '/logos/colleges/srm_ist.jpeg', alt: 'SRM IST' },
-  { src: '/logos/colleges/smk_fomra.jpeg', alt: 'SMK Fomra Institute of Technology' },
-  { src: '/logos/colleges/skr_engineering.jpeg', alt: 'SKR Engineering College' },
-  { src: '/logos/colleges/sastra.jpeg', alt: 'Sastra University' },
-  { src: '/logos/colleges/panimalar.jpeg', alt: 'Panimalar Engineering College' },
-  { src: '/logos/colleges/measi.jpeg', alt: 'MEASI Academy of Architecture' },
-  { src: '/logos/colleges/prince_shri_venkateshwara.jpeg', alt: 'Prince Shri Venkateshwara Padmavathy Engineering College' },
-  { src: '/logos/colleges/jerusalem_college.jpeg', alt: 'Jerusalem College of Engineering' },
-  { src: '/logos/colleges/jeppiaar_srr.jpeg', alt: 'Jeppiaar SRR Engineering College' },
+  { src: '/logos/colleges/peri_institute_of_technology.jpeg', alt: 'PERI Institute of Technology' },
   { src: '/logos/colleges/vit_chennai.jpeg', alt: 'VIT Chennai' },
+  { src: '/logos/colleges/srm_institute_of_science_and_technology.jpeg', alt: 'SRM Institute of Science and Technology' },
+  { src: '/logos/colleges/svct_vadakal_campus.jpeg', alt: 'SVCT Vadakal Campus' },
+  { src: '/logos/colleges/jerusalem_college_of_engineering.jpeg', alt: 'Jerusalem College of Engineering' },
+  { src: '/logos/colleges/jeppiaar_university.jpeg', alt: 'Jeppiaar University' },
+  { src: '/logos/colleges/smk_fomra_institute_of_technology.jpeg', alt: 'SMK Fomra Institute of Technology' },
+  { src: '/logos/colleges/measi_academy_of_architecture.jpeg', alt: 'MEASI Academy of Architecture' },
+  { src: '/logos/colleges/prince_shri_venkateshwara_padmavathy_engineering_college.jpeg', alt: 'Prince Shri Venkateshwara Padmavathy Engineering College' },
+  { src: '/logos/colleges/panimalar_engineering_college.jpeg', alt: 'Panimalar Engineering College' },
+  { src: '/logos/colleges/sastra_university.jpeg', alt: 'Sastra University' },
+  { src: '/logos/colleges/dhanalakshmi_srinivasan_engineering_college.jpeg', alt: 'Dhanalakshmi Srinivasan Engineering College' },
+  { src: '/logos/colleges/excel_engineering_college.jpeg', alt: 'Excel Engineering College' },
 ];
 
 export const CollaborationsSection = () => {
@@ -23,13 +24,6 @@ export const CollaborationsSection = () => {
     triggerOnce: true,
     threshold: 0.1,
   });
-
-  // Debug: log image URLs to verify paths
-  if (typeof window !== 'undefined') {
-    logos.forEach((logo) => {
-      console.log('Logo image URL:', logo.src);
-    });
-  }
 
   return (
     <section
