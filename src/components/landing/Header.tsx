@@ -27,6 +27,7 @@ export const Header = () => {
         <nav className="hidden md:flex items-center gap-6 font-medium tracking-wide text-sm sm:text-base">
           <a href="/#about" className="hover:text-blue-600 transition-colors text-gray-900">About</a>
           <a href="/#why" className="hover:text-blue-600 transition-colors text-gray-900">Why Us</a>
+          <Link to="/student-work" className="hover:text-blue-600 transition-colors text-gray-900">Student Work</Link>
           <Link to="/faq" className="hover:text-blue-600 transition-colors text-gray-900">FAQ</Link>
           <a href="/#contact" className="hover:text-blue-600 transition-colors text-gray-900">Contact</a>
 
@@ -123,6 +124,13 @@ export const Header = () => {
             >
               Why Us
             </a>
+            <Link 
+              to="/student-work" 
+              className="hover:text-blue-600 transition-colors"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Student Work
+            </Link>
             <Link 
               to="/faq" 
               className="hover:text-blue-600 transition-colors"

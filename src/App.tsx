@@ -15,6 +15,7 @@ import BackendNode from "./pages/courses/BackendNode";
 import BackendDjango from "./pages/courses/BackendDjango";
 import GenerativeAI from "./pages/courses/GenerativeAI";
 import { ScrollToTop } from "./components/ScrollToTop";
+import StudentWorkPage from "./pages/StudentWork";
 
 const queryClient = new QueryClient();
 
@@ -30,6 +31,7 @@ const App = () => (
           <Route path="/login" element={<Login />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/faq" element={<FaqPage />} />
+          <Route path="/student-work" element={<StudentWorkPage />} />
           <Route path="/courses" element={<CoursesPage />} />
           <Route path="/courses/ui-ux-design" element={<UIUXDesign />} />
           <Route path="/courses/frontend-development" element={<Frontend />} />
