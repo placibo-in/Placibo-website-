@@ -3,6 +3,7 @@ import { Header } from "@/components/landing/Header";
 import { HeroSection } from "@/components/landing/HeroSection";
 import { AboutSection } from "@/components/landing/AboutSection";
 import { WhyPlaciboSection } from "@/components/landing/WhyPlaciboSection";
+import { CollaborationsSection } from "@/components/landing/CollaborationsSection";
 import { TestimonialsSection } from "@/components/landing/TestimonialsSection";
 import { InstagramReelsSection } from "@/components/landing/InstagramReelsSection";
 import { ContactSection } from "@/components/landing/ContactSection";
@@ -28,6 +29,7 @@ const Index = () => {
         <HeroSection />
         <AboutSection />
         <WhyPlaciboSection />
+        <CollaborationsSection />
         <TestimonialsSection />
         <InstagramReelsSection />
         <ContactSection />
