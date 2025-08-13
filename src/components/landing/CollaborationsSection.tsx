@@ -5,19 +5,19 @@ import { cn } from '@/lib/utils';
 import { useState } from 'react';
 
 const logos = [
-  { src: '/logos/colleges/whatsapp-image-2025-08-13-at-5.51.40-pm.jpeg', alt: 'Velammal Engineering College' },
-  { src: '/logos/colleges/whatsapp-image-2025-08-13-at-5.51.40-pm-1.jpeg', alt: 'SRM Valliammai Engineering College' },
-  { src: '/logos/colleges/whatsapp-image-2025-08-13-at-5.51.41-pm.jpeg', alt: 'SRM Institute of Science and Technology' },
-  { src: '/logos/colleges/whatsapp-image-2025-08-13-at-5.51.41-pm-1.jpeg', alt: 'SMK Fomra Institute of Technology' },
-  { src: '/logos/colleges/whatsapp-image-2025-08-13-at-5.51.42-pm.jpeg', alt: 'SKR Engineering College' },
-  { src: '/logos/colleges/whatsapp-image-2025-08-13-at-5.51.42-pm-1.jpeg', alt: 'Sastra University' },
-  { src: '/logos/colleges/whatsapp-image-2025-08-13-at-5.51.42-pm-2.jpeg', alt: 'Panimalar Engineering College' },
-  { src: '/logos/colleges/whatsapp-image-2025-08-13-at-5.51.43-pm.jpeg', alt: 'MEASI Academy of Architecture' },
-  { src: '/logos/colleges/whatsapp-image-2025-08-13-at-5.51.43-pm-1.jpeg', alt: 'Prince Shri Venkateshwara Padmavathy Engineering College' },
-  { src: '/logos/colleges/whatsapp-image-2025-08-13-at-5.51.43-pm-2.jpeg', alt: 'Jerusalem College of Engineering' },
-  { src: '/logos/colleges/whatsapp-image-2025-08-13-at-5.51.44-pm.jpeg', alt: 'Jeppiaar SRR Engineering College' },
-  { src: '/logos/colleges/whatsapp-image-2025-08-13-at-5.51.44-pm-1.jpeg', alt: 'VIT Chennai' },
-  { src: '/logos/colleges/whatsapp-image-2025-08-13-at-5.51.45-pm.jpeg', alt: 'Dhanalakshmi Srinivasan Engineering College' },
+  { src: '/logos/colleges/whatsapp-image-2025-08-13-at-5-51-40-pm.jpeg', alt: 'Velammal Engineering College' },
+  { src: '/logos/colleges/whatsapp-image-2025-08-13-at-5-51-40-pm-1.jpeg', alt: 'SRM Valliammai Engineering College' },
+  { src: '/logos/colleges/whatsapp-image-2025-08-13-at-5-51-41-pm.jpeg', alt: 'SRM Institute of Science and Technology' },
+  { src: '/logos/colleges/whatsapp-image-2025-08-13-at-5-51-41-pm-1.jpeg', alt: 'SMK Fomra Institute of Technology' },
+  { src: '/logos/colleges/whatsapp-image-2025-08-13-at-5-51-42-pm.jpeg', alt: 'SKR Engineering College' },
+  { src: '/logos/colleges/whatsapp-image-2025-08-13-at-5-51-42-pm-1.jpeg', alt: 'Sastra University' },
+  { src: '/logos/colleges/whatsapp-image-2025-08-13-at-5-51-42-pm-2.jpeg', alt: 'Panimalar Engineering College' },
+  { src: '/logos/colleges/whatsapp-image-2025-08-13-at-5-51-43-pm.jpeg', alt: 'MEASI Academy of Architecture' },
+  { src: '/logos/colleges/whatsapp-image-2025-08-13-at-5-51-43-pm-1.jpeg', alt: 'Prince Shri Venkateshwara Padmavathy Engineering College' },
+  { src: '/logos/colleges/whatsapp-image-2025-08-13-at-5-51-43-pm-2.jpeg', alt: 'Jerusalem College of Engineering' },
+  { src: '/logos/colleges/whatsapp-image-2025-08-13-at-5-51-44-pm.jpeg', alt: 'Jeppiaar SRR Engineering College' },
+  { src: '/logos/colleges/whatsapp-image-2025-08-13-at-5-51-44-pm-1.jpeg', alt: 'VIT Chennai' },
+  { src: '/logos/colleges/whatsapp-image-2025-08-13-at-5-51-45-pm.jpeg', alt: 'Dhanalakshmi Srinivasan Engineering College' },
 ];
 
 export const CollaborationsSection = () => {
