@@ -24,6 +24,13 @@ export const CollaborationsSection = () => {
     threshold: 0.1,
   });
 
+  // Debug: log image URLs to verify paths
+  if (typeof window !== 'undefined') {
+    logos.forEach((logo) => {
+      console.log('Logo image URL:', logo.src);
+    });
+  }
+
   return (
     <section
       ref={ref}
@@ -46,8 +53,14 @@ export const CollaborationsSection = () => {
                 <img 
                   src={logo.src} 
                   alt={logo.alt} 
-                  className="h-20 md:h-24 object-contain filter grayscale hover:grayscale-0 transition-all duration-300" 
+                  width={160} 
+                  height={96} 
+                  className="object-contain filter grayscale hover:grayscale-0 transition-all duration-300" 
                   loading="lazy"
+                  onError={(e) => {
+                    (e.currentTarget as HTMLImageElement).style.display = 'none';
+                    console.error('Failed to load image:', logo.src);
+                  }}
                 />
               </div>
             ))}
