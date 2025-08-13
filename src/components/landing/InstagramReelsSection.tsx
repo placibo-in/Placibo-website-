@@ -42,22 +42,22 @@ export const InstagramReelsSection = () => {
     <section
       id="reels"
       className={cn(
-        "py-10 md:py-16 bg-gray-50 transition-all duration-700 ease-in-out"
+        "py-8 md:py-16 bg-gray-50 transition-all duration-700 ease-in-out"
       )}
     >
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-8 md:mb-12">
-          <h2 className="text-2xl md:text-3xl font-bold text-gray-900">From Our Instagram</h2>
-          <p className="mt-2 max-w-xl mx-auto text-base md:text-lg text-gray-600">
+      <div className="container mx-auto px-2 sm:px-4">
+        <div className="text-center mb-6 md:mb-12">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900">From Our Instagram</h2>
+          <p className="mt-1 max-w-lg mx-auto text-sm sm:text-base md:text-lg text-gray-600">
             See what our students and community are up to.
           </p>
         </div>
         
         {loading ? (
-          <div className="flex justify-center gap-4">
-            <Skeleton className="w-[180px] aspect-[9/16] rounded-xl" />
-            <Skeleton className="w-[180px] aspect-[9/16] rounded-xl hidden md:block" />
-            <Skeleton className="w-[180px] aspect-[9/16] rounded-xl hidden lg:block" />
+          <div className="flex justify-center gap-3">
+            <Skeleton className="w-[140px] aspect-[9/16] rounded-xl" />
+            <Skeleton className="w-[140px] aspect-[9/16] rounded-xl hidden md:block" />
+            <Skeleton className="w-[140px] aspect-[9/16] rounded-xl hidden lg:block" />
           </div>
         ) : reels.length > 0 ? (
           <Carousel
@@ -65,11 +65,11 @@ export const InstagramReelsSection = () => {
               align: "start",
               loop: true,
             }}
-            className="w-full max-w-5xl mx-auto relative"
+            className="w-full max-w-4xl mx-auto relative"
           >
-            <CarouselContent className="flex gap-4 -ml-4">
+            <CarouselContent className="flex gap-3 -ml-3">
               {reels.map((reel) => (
-                <CarouselItem key={reel.id} className="flex-shrink-0 w-[180px] sm:w-[220px] md:w-[280px] lg:w-[320px]">
+                <CarouselItem key={reel.id} className="flex-shrink-0 w-[140px] sm:w-[180px] md:w-[220px] lg:w-[260px]">
                   <div className="aspect-[9/16] rounded-xl shadow-md overflow-hidden">
                     <iframe
                       src={reel.reel_url}
