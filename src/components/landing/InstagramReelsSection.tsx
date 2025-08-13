@@ -69,8 +69,8 @@ export const InstagramReelsSection = () => {
           >
             <CarouselContent className="flex gap-3 -ml-3">
               {reels.map((reel) => (
-                <CarouselItem key={reel.id} className="flex-shrink-0 w-[140px] sm:w-[180px] md:w-[220px] lg:w-[260px]">
-                  <div className="aspect-[9/16] rounded-xl shadow-md overflow-hidden">
+                <CarouselItem key={reel.id} className="flex-shrink-0 w-[140px] sm:w-[160px] md:w-[180px] lg:w-[220px]">
+                  <div className="aspect-[9/16] rounded-xl shadow-md overflow-hidden max-w-full max-h-[320px]">
                     <iframe
                       src={reel.reel_url}
                       className="w-full h-full"
