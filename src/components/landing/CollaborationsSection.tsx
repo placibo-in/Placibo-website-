@@ -40,18 +40,17 @@ export const CollaborationsSection = () => {
           </p>
         </div>
         <div className="relative w-full overflow-hidden group">
-          <div className="flex w-max animate-scroll group-hover:pause">
-            <div className="flex items-center justify-center flex-shrink-0">
-              {[...logos, ...logos].map((logo, index) => (
-                <div key={index} className="mx-8 flex-shrink-0">
-                  <img 
-                    src={logo.src} 
-                    alt={logo.alt} 
-                    className="h-16 md:h-20 object-contain filter grayscale hover:grayscale-0 transition-all duration-300" 
-                  />
-                </div>
-              ))}
-            </div>
+          <div className="flex w-max gap-16 animate-scroll group-hover:pause">
+            {[...logos, ...logos].map((logo, index) => (
+              <div key={index} className="flex-shrink-0">
+                <img 
+                  src={logo.src} 
+                  alt={logo.alt} 
+                  className="h-20 md:h-24 object-contain filter grayscale hover:grayscale-0 transition-all duration-300" 
+                  loading="lazy"
+                />
+              </div>
+            ))}
           </div>
         </div>
       </div>
