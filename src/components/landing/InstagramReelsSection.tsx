@@ -68,7 +68,7 @@ export const InstagramReelsSection = () => {
               }}
               className="relative"
             >
-              <CarouselContent className="flex justify-center gap-3">
+              <CarouselContent className="flex justify-center gap-3 px-0">
                 {reels.map((reel) => (
                   <CarouselItem key={reel.id} className="flex-shrink-0 w-[140px] sm:w-[160px] md:w-[180px] lg:w-[220px]">
                     <div className="aspect-[9/16] rounded-xl shadow-md overflow-hidden max-w-full max-h-[320px]">
