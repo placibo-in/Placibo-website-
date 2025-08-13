@@ -62,9 +62,14 @@ export const CollaborationsSection = () => {
                     onError={() => handleImageError(index)}
                   />
                 ) : (
-                  <div className="w-[160px] h-[96px] bg-gray-200 flex items-center justify-center text-gray-500 text-xs select-none">
-                    Image not found
-                  </div>
+                  <img
+                    src="/logos/colleges/peri.png"
+                    alt="PERI Institute of Technology (Fallback Logo)"
+                    width={160}
+                    height={96}
+                    className="object-contain grayscale opacity-50 select-none"
+                    draggable={false}
+                  />
                 )}
               </div>
             ))}
