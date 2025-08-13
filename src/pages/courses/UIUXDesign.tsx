@@ -82,25 +82,25 @@ const UIUXDesign = () => {
       <EnrollmentDialog />
       <Header />
       <CourseLayout title={course.name}>
-        <p className="text-lg sm:text-xl text-gray-700 mb-8">{course.description}</p>
+        <p className="text-base sm:text-lg md:text-xl text-gray-700 mb-6">{course.description}</p>
 
-        <div className="mt-8 mb-12">
-          <Button onClick={onOpen} size="lg" className="bg-blue-600 hover:bg-blue-700">
+        <div className="mt-6 mb-10">
+          <Button onClick={onOpen} size="lg" className="bg-blue-600 hover:bg-blue-700 w-full sm:w-auto">
             Enroll Now
           </Button>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
           <Card className="border-gray-200 shadow-sm">
             <CardHeader>
-              <CardTitle className="text-xl">Key Highlights</CardTitle>
+              <CardTitle className="text-lg md:text-xl">Key Highlights</CardTitle>
             </CardHeader>
             <CardContent>
-              <ul className="space-y-3">
+              <ul className="space-y-2">
                 {course.highlights.map((highlight, i) => (
-                  <li key={i} className="flex items-start gap-3">
-                    <CheckCircle2 className="h-5 w-5 text-green-500 mt-1 flex-shrink-0" />
-                    <span className="text-gray-700">{highlight}</span>
+                  <li key={i} className="flex items-start gap-2 text-sm md:text-base">
+                    <CheckCircle2 className="h-4 w-4 text-green-500 mt-1 flex-shrink-0" />
+                    <span>{highlight}</span>
                   </li>
                 ))}
               </ul>
@@ -108,10 +108,10 @@ const UIUXDesign = () => {
           </Card>
           <Card className="border-gray-200 shadow-sm">
             <CardHeader>
-              <CardTitle className="text-xl">Course Details</CardTitle>
+              <CardTitle className="text-lg md:text-xl">Course Details</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="flex items-center gap-3 text-gray-700">
+              <div className="flex items-center gap-2 text-sm md:text-base text-gray-700">
                 <Clock className="h-5 w-5 text-blue-500" />
                 <span><strong>Duration:</strong> {course.duration}</span>
               </div>
@@ -120,14 +120,14 @@ const UIUXDesign = () => {
         </div>
 
         <div>
-          <h2 className="text-2xl font-bold mb-6 text-center">Course Syllabus</h2>
+          <h2 className="text-xl md:text-2xl font-bold mb-4 text-center">Course Syllabus</h2>
           <Accordion type="single" collapsible className="w-full space-y-2">
             {course.syllabus.map((item, i) => (
               <AccordionItem value={`item-${i}`} key={i} className="border-b-0 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors">
-                <AccordionTrigger className="text-left font-semibold text-lg hover:no-underline px-6 py-4">
+                <AccordionTrigger className="text-left font-semibold text-base md:text-lg hover:no-underline px-4 py-3">
                   {item.title}
                 </AccordionTrigger>
-                <AccordionContent className="text-gray-600 text-base px-6 pb-4">
+                <AccordionContent className="text-gray-600 text-sm md:text-base px-4 pb-3">
                   {item.content}
                 </AccordionContent>
               </AccordionItem>
@@ -135,10 +135,10 @@ const UIUXDesign = () => {
           </Accordion>
         </div>
 
-        <div className="mt-16 text-center bg-gradient-to-r from-blue-600 to-blue-700 text-white p-8 md:p-12 rounded-lg shadow-xl">
-          <h2 className="text-2xl md:text-3xl font-bold mb-4">Ready to Start Your Design Journey?</h2>
-          <p className="text-blue-200 mb-6 max-w-xl mx-auto">Join our next batch and transform your career. Limited seats available!</p>
-          <Button onClick={onOpen} size="lg" className="bg-white text-blue-700 hover:bg-gray-100 font-bold">
+        <div className="mt-12 text-center bg-gradient-to-r from-blue-600 to-blue-700 text-white p-6 md:p-10 rounded-lg shadow-xl">
+          <h2 className="text-xl md:text-3xl font-bold mb-3">Ready to Start Your Design Journey?</h2>
+          <p className="text-blue-200 mb-5 max-w-lg mx-auto text-sm md:text-base">Join our next batch and transform your career. Limited seats available!</p>
+          <Button onClick={onOpen} size="lg" className="bg-white text-blue-700 hover:bg-gray-100 font-bold w-full sm:w-auto">
             Apply Now & Get Syllabus
           </Button>
         </div>

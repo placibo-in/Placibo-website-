@@ -57,14 +57,14 @@ export const TestimonialsSection = () => {
       id="testimonials"
       ref={ref}
       className={cn(
-        "py-10 md:py-16 bg-white transition-all duration-700 ease-in-out",
+        "py-8 md:py-12 bg-white transition-all duration-700 ease-in-out",
         inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"
       )}
     >
       <div className="container mx-auto px-4">
-        <div className="text-center mb-8 md:mb-12">
-          <h2 className="text-2xl md:text-3xl font-bold text-gray-900">Loved by Students Worldwide</h2>
-          <p className="mt-2 max-w-xl mx-auto text-base md:text-lg text-gray-600">
+        <div className="text-center mb-6 md:mb-10">
+          <h2 className="text-xl md:text-2xl font-bold text-gray-900">Loved by Students Worldwide</h2>
+          <p className="mt-1 max-w-lg mx-auto text-sm md:text-base text-gray-600">
             Don't just take our word for it. Here's what our students have to say.
           </p>
         </div>
@@ -88,15 +88,15 @@ export const TestimonialsSection = () => {
                 <div className="p-1 h-full">
                   <Card className="shadow-sm hover:shadow-md transition-shadow h-full flex flex-col">
                     <CardContent className="pt-4 flex-grow flex flex-col">
-                      <p className="text-gray-600 italic mb-3 text-sm md:text-base">"{testimonial.review}"</p>
+                      <p className="text-gray-600 italic mb-3 text-xs sm:text-sm md:text-base">"{testimonial.review}"</p>
                       <div className="mt-auto flex items-center gap-3">
                         <Avatar>
                           <AvatarImage src={testimonial.image} alt={testimonial.name} />
                           <AvatarFallback>{testimonial.name.charAt(0)}</AvatarFallback>
                         </Avatar>
                         <div>
-                          <p className="font-semibold text-gray-900 text-sm md:text-base">{testimonial.name}</p>
-                          <p className="text-xs md:text-sm text-gray-500">{testimonial.role}</p>
+                          <p className="font-semibold text-gray-900 text-xs sm:text-sm md:text-base">{testimonial.name}</p>
+                          <p className="text-[10px] sm:text-xs md:text-sm text-gray-500">{testimonial.role}</p>
                         </div>
                       </div>
                     </CardContent>
