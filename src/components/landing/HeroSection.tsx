@@ -7,8 +7,6 @@ import {
   Carousel, 
   CarouselContent, 
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 import { supabase } from "@/integrations/supabase/client";
@@ -134,10 +132,6 @@ export const HeroSection = () => {
             );
           })}
         </CarouselContent>
-        <CarouselPrevious className="absolute left-2 top-1/2 -translate-y-1/2 z-20 flex text-white hover:text-blue-400 transition-colors cursor-pointer md:hidden" />
-        <CarouselNext className="absolute right-2 top-1/2 -translate-y-1/2 z-20 flex text-white hover:text-blue-400 transition-colors cursor-pointer md:hidden" />
-        <CarouselPrevious className="absolute left-4 top-1/2 -translate-y-1/2 z-20 hidden md:flex text-white hover:text-blue-400 transition-colors cursor-pointer" />
-        <CarouselNext className="absolute right-4 top-1/2 -translate-y-1/2 z-20 hidden md:flex text-white hover:text-blue-400 transition-colors cursor-pointer" />
       </Carousel>
     </section>
   );
