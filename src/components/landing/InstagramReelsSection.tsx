@@ -45,20 +45,20 @@ export const InstagramReelsSection = () => {
         "py-8 md:py-16 bg-gray-50 transition-all duration-700 ease-in-out"
       )}
     >
-      <div className="container mx-auto px-2 sm:px-4 flex justify-center">
-        <div className="w-full max-w-4xl">
-          <div className="text-center mb-6 md:mb-12">
-            <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900">From Our Instagram</h2>
-            <p className="mt-1 max-w-lg mx-auto text-sm sm:text-base md:text-lg text-gray-600">
-              See what our students and community are up to.
-            </p>
-          </div>
-          
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-6 md:mb-12">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900">From Our Instagram</h2>
+          <p className="mt-1 max-w-lg mx-auto text-sm sm:text-base md:text-lg text-gray-600">
+            See what our students and community are up to.
+          </p>
+        </div>
+        
+        <div className="flex justify-center">
           {loading ? (
-            <div className="flex justify-center gap-3">
-              <Skeleton className="w-[140px] aspect-[9/16] rounded-xl" />
-              <Skeleton className="w-[140px] aspect-[9/16] rounded-xl hidden md:block" />
-              <Skeleton className="w-[140px] aspect-[9/16] rounded-xl hidden lg:block" />
+            <div className="flex justify-center gap-4">
+              <Skeleton className="w-40 h-72 rounded-xl" />
+              <Skeleton className="w-40 h-72 rounded-xl hidden sm:block" />
+              <Skeleton className="w-40 h-72 rounded-xl hidden md:block" />
             </div>
           ) : reels.length > 0 ? (
             <Carousel
@@ -66,12 +66,12 @@ export const InstagramReelsSection = () => {
                 align: "center",
                 loop: true,
               }}
-              className="relative"
+              className="w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-2xl"
             >
-              <CarouselContent className="flex justify-center gap-3 px-0">
+              <CarouselContent className="-ml-4">
                 {reels.map((reel) => (
-                  <CarouselItem key={reel.id} className="flex-shrink-0 w-[140px] sm:w-[160px] md:w-[180px] lg:w-[220px]">
-                    <div className="aspect-[9/16] rounded-xl shadow-md overflow-hidden max-w-full max-h-[320px]">
+                  <CarouselItem key={reel.id} className="pl-4 basis-1/2 sm:basis-1/3 md:basis-1/3 lg:basis-1/4">
+                    <div className="aspect-[9/16] rounded-xl shadow-md overflow-hidden">
                       <iframe
                         src={reel.reel_url}
                         className="w-full h-full"
@@ -85,8 +85,8 @@ export const InstagramReelsSection = () => {
                   </CarouselItem>
                 ))}
               </CarouselContent>
-              <CarouselPrevious className="absolute left-2 top-1/2 -translate-y-1/2 z-30 flex text-gray-700 hover:text-blue-600 transition-colors cursor-pointer" />
-              <CarouselNext className="absolute right-2 top-1/2 -translate-y-1/2 z-30 flex text-gray-700 hover:text-blue-600 transition-colors cursor-pointer" />
+              <CarouselPrevious className="hidden sm:flex" />
+              <CarouselNext className="hidden sm:flex" />
             </Carousel>
           ) : (
             <div className="text-center text-gray-500">
