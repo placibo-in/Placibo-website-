@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useNavigate } from "react-router-dom";
 import { Header } from "@/components/landing/Header";
@@ -64,7 +64,7 @@ const Admin = () => {
   const [isLoaded, setIsLoaded] = useState(false);
 
   // Programs state and form
-  const [programs, setPrograms] = useState<ProgramFormValues & { id: string }[]>([]);
+  const [programs, setPrograms] = useState<(ProgramFormValues & { id: string })[]>([]);
   const [loadingPrograms, setLoadingPrograms] = useState(true);
   const [fetchError, setFetchError] = useState<string | null>(null);
   const [editingProgram, setEditingProgram] = useState<null | (ProgramFormValues & { id: string })>(null);
@@ -95,19 +95,16 @@ const Admin = () => {
   const fetchPrograms = async () => {
     setLoadingPrograms(true);
     setFetchError(null);
-    console.log("Fetching programs...");
     const { data, error } = await supabase
       .from("programs")
       .select("*")
       .order("created_at", { ascending: true });
 
     if (error) {
-      console.error("Failed to fetch programs:", error);
       setFetchError(error.message);
       toast.error("Failed to fetch programs.");
       setPrograms([]);
     } else if (data) {
-      console.log("Programs fetched:", data);
       setPrograms(data as any);
     }
     setLoadingPrograms(false);
@@ -173,7 +170,7 @@ const Admin = () => {
   };
 
   if (!isLoaded) {
-    return <div>Loading...</div>;
+    return <div className="flex h-screen items-center justify-center">Loading...</div>;
   }
 
   return (
@@ -268,7 +265,7 @@ const Admin = () => {
                             {iconOptions.map((option) => (
                               <SelectItem key={option.value} value={option.value}>
                                 <div className="flex items-center gap-2">
-                                  {React.createElement(iconMap[option.value], { className: "h-4 w-4" })}
+                                  {React.createElement(iconMap[option.value as keyof typeof iconMap], { className: "h-4 w-4" })}
                                   <span>{option.label}</span>
                                 </div>
                               </SelectItem>
@@ -306,7 +303,7 @@ const Admin = () => {
             ) : (
               <div className="space-y-4">
                 {programs.map((program) => {
-                  const IconComponent = iconMap[program.icon] || PenTool;
+                  const IconComponent = iconMap[program.icon as keyof typeof iconMap] || PenTool;
                   return (
                     <Card key={program.id} className="flex justify-between items-center p-4">
                       <div className="flex items-center gap-4">
