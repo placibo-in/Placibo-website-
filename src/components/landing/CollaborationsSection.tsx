@@ -6,6 +6,9 @@ import { cn } from '@/lib/utils';
 const logos = [
   { src: '/logos/colleges/Peri.png', alt: 'PERI Institute of Technology' },
   { src: '/logos/colleges/DHANALAKSHMI.png', alt: 'Dhanalakshmi College of Engineering' },
+  { src: '/logos/colleges/COIMBATORE.png', alt: 'Coimbatore Institute of Technology' },
+  { src: '/logos/colleges/EXCEL.png', alt: 'Excel Engineering College' },
+  { src: '/logos/colleges/REC.png', alt: 'Rajalakshmi Engineering College' },
 ];
 
 export const CollaborationsSection = () => {
@@ -29,7 +32,7 @@ export const CollaborationsSection = () => {
             Our Students from
           </p>
         </div>
-        <div className="flex justify-center gap-16">
+        <div className="flex justify-center gap-16 flex-wrap">
           {logos.map((logo, index) => (
             <div key={index} className="flex-shrink-0">
               <img
