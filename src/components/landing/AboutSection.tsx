@@ -63,16 +63,21 @@ export const AboutSection = () => {
       )}
     >
       <div className="container mx-auto px-4">
-        <div className="text-center mb-8 md:mb-12">
-          <h2 className="text-2xl md:text-3xl font-bold text-gray-900">Our Programs in Chennai</h2>
-          <p className="mt-2 max-w-xl mx-auto text-base md:text-lg text-gray-600">
-            We offer a range of programs designed to help you achieve your career goals.
+        <div className="text-center mb-8 md:mb-12 max-w-3xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900">
+            Our Programs in Chennai
+          </h2>
+          <p className="mt-4 text-lg text-gray-600">
+            We offer a range of programs designed to help you achieve your career goals. Each program is crafted by industry experts to provide you with job-ready skills.
           </p>
         </div>
+
         {loading ? (
           <p className="text-center text-gray-500">Loading programs...</p>
+        ) : programs.length === 0 ? (
+          <p className="text-center text-gray-500">No programs available at the moment.</p>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
             {programs.map((program) => {
               const IconComponent = iconMap[program.icon] || PenTool;
               return (
@@ -84,7 +89,7 @@ export const AboutSection = () => {
                 >
                   <Card className="flex flex-col h-full shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer">
                     <CardHeader className="flex-row items-start gap-3">
-                      <div className="bg-blue-100 rounded-full p-2.5 w-fit">
+                      <div className="bg-blue-100 rounded-full p-3 w-fit">
                         <IconComponent className="h-8 w-8 text-blue-600" />
                       </div>
                       <div className="flex-1">
@@ -93,7 +98,7 @@ export const AboutSection = () => {
                       </div>
                     </CardHeader>
                     <CardContent className="flex-grow">
-                      <p className="text-gray-600 text-sm md:text-base">{program.description}</p>
+                      <p className="text-gray-700 text-sm md:text-base">{program.description}</p>
                     </CardContent>
                   </Card>
                 </Link>
