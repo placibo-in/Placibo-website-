@@ -23,7 +23,8 @@ type Program = {
   duration: string;
   description: string;
   link: string;
-  icon: keyof typeof iconMap;
+  icon: keyof typeof iconMap | null;
+  icon_url: string | null;
 };
 
 export const AboutSection = () => {
@@ -45,7 +46,7 @@ export const AboutSection = () => {
         console.error("Error fetching programs:", error);
         setPrograms([]);
       } else if (data) {
-        setPrograms(data);
+        setPrograms(data as Program[]);
       }
       setLoading(false);
     };
@@ -79,7 +80,7 @@ export const AboutSection = () => {
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
             {programs.map((program) => {
-              const IconComponent = iconMap[program.icon] || PenTool;
+              const IconComponent = program.icon ? iconMap[program.icon] : null;
               return (
                 <Link
                   to={program.link}
@@ -89,8 +90,12 @@ export const AboutSection = () => {
                 >
                   <Card className="flex flex-col h-full shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer">
                     <CardHeader className="flex-row items-start gap-3">
-                      <div className="bg-blue-100 rounded-full p-3 w-fit">
-                        <IconComponent className="h-8 w-8 text-blue-600" />
+                      <div className="bg-blue-100 rounded-full p-3 w-14 h-14 flex items-center justify-center">
+                        {program.icon_url ? (
+                          <img src={program.icon_url} alt={program.title} className="h-8 w-8 object-contain" />
+                        ) : IconComponent ? (
+                          <IconComponent className="h-8 w-8 text-blue-600" />
+                        ) : null}
                       </div>
                       <div className="flex-1">
                         <CardTitle className="text-lg md:text-xl">{program.title}</CardTitle>
