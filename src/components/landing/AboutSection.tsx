@@ -7,8 +7,7 @@ import { PenTool, Code, Server, Database, BrainCircuit } from "lucide-react";
 import { useInView } from "react-intersection-observer";
 import { cn } from "@/lib/utils";
 import { Link } from "react-router-dom";
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
-import type { Database } from "@/types/supabase"; // optional, if you have types
+import { supabase } from "@/integrations/supabase/client";
 
 const iconMap = {
   PenTool: PenTool,
@@ -36,20 +35,22 @@ export const AboutSection = () => {
   });
 
   useEffect(() => {
-    const supabase = createClientComponentClient<Database>();
-    supabase
-      .from("programs")
-      .select("*")
-      .order("created_at", { ascending: true })
-      .then(({ data, error }) => {
-        if (error) {
-          console.error("Error fetching programs:", error);
-          setPrograms([]);
-        } else if (data) {
-          setPrograms(data);
-        }
-        setLoading(false);
-      });
+    const fetchPrograms = async () => {
+      const { data, error } = await supabase
+        .from("programs")
+        .select("*")
+        .order("created_at", { ascending: true });
+
+      if (error) {
+        console.error("Error fetching programs:", error);
+        setPrograms([]);
+      } else if (data) {
+        setPrograms(data);
+      }
+      setLoading(false);
+    };
+
+    fetchPrograms();
   }, []);
 
   return (
