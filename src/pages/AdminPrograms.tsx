@@ -25,6 +25,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { toast } from "sonner";
 import { PenTool, Code, Server, Database, BrainCircuit } from "lucide-react";
+import { SeedPrograms } from "@/components/SeedPrograms";
 
 const iconOptions = [
   { label: "PenTool", value: "PenTool" },
@@ -144,6 +145,8 @@ export default function AdminPrograms() {
 
   return (
     <div className="container mx-auto p-4 pt-28">
+      <SeedPrograms />
+
       <Card>
         <CardHeader>
           <CardTitle>{editingProgram ? "Edit Program" : "Add New Program"}</CardTitle>
