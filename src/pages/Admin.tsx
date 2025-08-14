@@ -33,8 +33,10 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { toast } from "sonner";
-import { PenTool, Code, Server, Database, BrainCircuit } from "lucide-react";
+import { PenTool, Code, Server, Database, BrainCircuit, Edit, Trash2 } from "lucide-react";
 import { SeedPrograms } from "@/components/SeedPrograms";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const iconOptions = [
   { label: "PenTool", value: "PenTool" },
@@ -173,6 +175,7 @@ const Admin = () => {
     form.reset(program);
     if (program.icon_url) setIconChoice('custom');
     else setIconChoice('default');
+    window.scrollTo({ top: document.getElementById('program-form')?.offsetTop, behavior: 'smooth' });
   };
 
   const handleCancelEdit = () => {
@@ -204,7 +207,7 @@ const Admin = () => {
           <HeroSlideManager />
           <InstagramReelManager />
         </div>
-        <section>
+        <section id="program-form">
           <SeedPrograms />
           <Card className="mt-8">
             <CardHeader>
@@ -214,26 +217,22 @@ const Admin = () => {
             <CardContent>
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 max-w-lg">
-                  {/* Form fields for title, duration, etc. */}
                   <FormField control={form.control} name="title" render={({ field }) => (<FormItem><FormLabel>Title</FormLabel><FormControl><Input placeholder="UI/UX Design Course" {...field} /></FormControl><FormMessage /></FormItem>)} />
                   <FormField control={form.control} name="duration" render={({ field }) => (<FormItem><FormLabel>Duration</FormLabel><FormControl><Input placeholder="4 Months" {...field} /></FormControl><FormMessage /></FormItem>)} />
                   <FormField control={form.control} name="description" render={({ field }) => (<FormItem><FormLabel>Description</FormLabel><FormControl><Input placeholder="Learn design thinking..." {...field} /></FormControl><FormMessage /></FormItem>)} />
                   <FormField control={form.control} name="link" render={({ field }) => (<FormItem><FormLabel>Link</FormLabel><FormControl><Input placeholder="/courses/ui-ux-design" {...field} /></FormControl><FormMessage /></FormItem>)} />
-                  
                   <FormItem>
                     <FormLabel>Icon Type</FormLabel>
                     <RadioGroup value={iconChoice} onValueChange={(v) => setIconChoice(v as 'default' | 'custom')} className="flex gap-4 pt-2">
-                      <FormItem className="flex items-center space-x-2"><FormControl><RadioGroupItem value="default" id="default-icon" /></FormControl><Label htmlFor="default-icon">Default</Label></FormItem>
+                      <FormItem className="flex items-center space-x-2"><FormControl><RadioGroupItem value="default" id="default-icon" /></FormControl><Label htmlFor="default-icon">Default</FormLabel></FormItem>
                       <FormItem className="flex items-center space-x-2"><FormControl><RadioGroupItem value="custom" id="custom-icon" /></FormControl><Label htmlFor="custom-icon">Custom</Label></FormItem>
                     </RadioGroup>
                   </FormItem>
-
                   {iconChoice === 'default' ? (
                     <FormField control={form.control} name="icon" render={({ field }) => (<FormItem><FormLabel>Icon</FormLabel><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder="Select an icon" /></SelectTrigger></FormControl><SelectContent>{iconOptions.map(o => (<SelectItem key={o.value} value={o.value}><div className="flex items-center gap-2">{React.createElement(iconMap[o.value], { className: "h-4 w-4" })}<span>{o.label}</span></div></SelectItem>))}</SelectContent></Select><FormMessage /></FormItem>)} />
                   ) : (
                     <FormField control={form.control} name="image" render={({ field: { onChange, ...props } }) => (<FormItem><FormLabel>Custom Icon</FormLabel><FormControl><Input type="file" accept="image/*" onChange={e => onChange(e.target.files)} {...props} /></FormControl><FormDescription>Upload a custom icon.</FormDescription><FormMessage /></FormItem>)} />
                   )}
-
                   <div className="flex gap-4">
                     <Button type="submit" className="bg-blue-600 hover:bg-blue-700">{editingProgram ? "Update Program" : "Add Program"}</Button>
                     {editingProgram && <Button variant="outline" type="button" onClick={handleCancelEdit}>Cancel</Button>}
@@ -242,31 +241,53 @@ const Admin = () => {
               </Form>
             </CardContent>
           </Card>
-          <div className="mt-8 max-w-4xl">
+          <div className="mt-8">
             <h2 className="text-xl font-semibold mb-4">Existing Programs</h2>
             {fetchError && <p className="text-red-600 mb-4">Error: {fetchError}</p>}
-            {loadingPrograms ? <p>Loading...</p> : programs.length === 0 ? <p>No programs found.</p> : (
-              <div className="space-y-4">
-                {programs.map((program) => {
-                  const IconComponent = program.icon ? iconMap[program.icon] : null;
-                  return (
-                    <Card key={program.id} className="flex justify-between items-center p-4">
-                      <div className="flex items-center gap-4">
-                        <div className="bg-blue-100 rounded-full p-2.5 w-12 h-12 flex items-center justify-center">
-                          {program.icon_url ? <img src={program.icon_url} alt={program.title} className="h-8 w-8 object-contain" /> : IconComponent ? <IconComponent className="h-6 w-6 text-blue-600" /> : null}
-                        </div>
-                        <div>
-                          <h3 className="font-semibold text-lg">{program.title}</h3>
-                          <p className="text-sm text-gray-600">{program.duration}</p>
-                        </div>
-                      </div>
-                      <div className="flex gap-2">
-                        <Button variant="outline" onClick={() => handleEdit(program)}>Edit</Button>
-                        <Button variant="destructive" onClick={() => handleDelete(program.id)}>Delete</Button>
-                      </div>
-                    </Card>
-                  );
-                })}
+            {loadingPrograms ? (
+              <div className="space-y-2">
+                <Skeleton className="h-12 w-full" />
+                <Skeleton className="h-12 w-full" />
+              </div>
+            ) : programs.length === 0 ? (
+              <p>No programs found.</p>
+            ) : (
+              <div className="rounded-md border">
+                <Table>
+                  <TableHeader className="hidden md:table-header-group">
+                    <TableRow>
+                      <TableHead>Program</TableHead>
+                      <TableHead>Duration</TableHead>
+                      <TableHead className="text-right">Actions</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {programs.map((program) => {
+                      const IconComponent = program.icon ? iconMap[program.icon] : null;
+                      return (
+                        <TableRow key={program.id} className="block md:table-row mb-4 md:mb-0 border md:border-0 rounded-lg">
+                          <TableCell className="flex justify-between items-center p-2 md:table-cell font-medium">
+                            <span className="font-bold md:hidden mr-2">Program:</span>
+                            <div className="flex items-center gap-2">
+                              <div className="bg-blue-100 rounded-full p-2 w-10 h-10 flex items-center justify-center">
+                                {program.icon_url ? <img src={program.icon_url} alt={program.title} className="h-6 w-6 object-contain" /> : IconComponent ? <IconComponent className="h-5 w-5 text-blue-600" /> : null}
+                              </div>
+                              <span>{program.title}</span>
+                            </div>
+                          </TableCell>
+                          <TableCell className="flex justify-between items-center p-2 md:table-cell">
+                            <span className="font-bold md:hidden mr-2">Duration:</span>
+                            {program.duration}
+                          </TableCell>
+                          <TableCell className="flex justify-end items-center p-2 md:table-cell md:text-right">
+                            <Button variant="ghost" size="icon" onClick={() => handleEdit(program)}><Edit className="h-4 w-4" /></Button>
+                            <Button variant="ghost" size="icon" className="text-destructive" onClick={() => handleDelete(program.id)}><Trash2 className="h-4 w-4" /></Button>
+                          </TableCell>
+                        </TableRow>
+                      );
+                    })}
+                  </TableBody>
+                </Table>
               </div>
             )}
           </div>
