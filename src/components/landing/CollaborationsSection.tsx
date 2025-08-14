@@ -4,15 +4,9 @@ import { useInView } from 'react-intersection-observer';
 import { cn } from '@/lib/utils';
 
 const logos = [
-  { src: '/logos/colleges/Peri.png', alt: 'PERI Institute of Technology' },
-  { src: '/logos/colleges/DHANALAKSHMI.png', alt: 'Dhanalakshmi College of Engineering' },
-  { src: '/logos/colleges/COIMBATORE.png', alt: 'Coimbatore Institute of Technology' },
-  { src: '/logos/colleges/EXCEL.png', alt: 'Excel Engineering College' },
-  { src: '/logos/colleges/REC.png', alt: 'Rajalakshmi Engineering College' },
-  { src: '/logos/colleges/SRM.png', alt: 'SRM Institute of Science and Technology' },
-  { src: '/logos/colleges/CIT.png', alt: 'Chennai Institute of Technology' },
-  { src: '/logos/colleges/SVCT.png', alt: 'Sri Venkateswara College of Technology' },
-  { src: '/logos/colleges/MADHA.png', alt: 'Madha Engineering College' },
+  { src: '/logos/colleges/Frame 398.png', alt: 'Dhanalakshmi Srinivasan Engineering College' },
+  { src: '/logos/colleges/Frame 399.png', alt: 'Chennai Institute of Technology' },
+  { src: '/logos/colleges/Frame 400.png', alt: 'Coimbatore Institute of Technology' },
 ];
 
 export const CollaborationsSection = () => {
