@@ -9,6 +9,10 @@ const logos = [
   { src: '/logos/colleges/COIMBATORE.png', alt: 'Coimbatore Institute of Technology' },
   { src: '/logos/colleges/EXCEL.png', alt: 'Excel Engineering College' },
   { src: '/logos/colleges/REC.png', alt: 'Rajalakshmi Engineering College' },
+  { src: '/logos/colleges/SRM.png', alt: 'SRM Institute of Science and Technology' },
+  { src: '/logos/colleges/CIT.png', alt: 'Chennai Institute of Technology' },
+  { src: '/logos/colleges/SVCT.png', alt: 'Sri Venkateswara College of Technology' },
+  { src: '/logos/colleges/MADHA.png', alt: 'Madha Engineering College' },
 ];
 
 export const CollaborationsSection = () => {
