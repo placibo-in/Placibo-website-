@@ -37,6 +37,7 @@ export const Header = () => {
             onMouseLeave={() => setCoursesMenuOpen(false)}
           >
             <button 
+              type="button"
               className="inline-flex items-center gap-1 hover:text-blue-600 transition-colors text-gray-900 font-medium"
               aria-haspopup="true"
               aria-expanded={coursesMenuOpen}
@@ -100,6 +101,7 @@ export const Header = () => {
             className="md:hidden text-gray-900 hover:text-blue-600 transition-colors"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle menu"
+            type="button"
           >
             {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
