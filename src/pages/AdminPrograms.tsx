@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
+import { useNavigate } from "react-router-dom";
 import {
   Card,
   CardContent,
@@ -54,9 +55,20 @@ const formSchema = z.object({
 type ProgramFormValues = z.infer<typeof formSchema>;
 
 export default function AdminPrograms() {
+  const navigate = useNavigate();
   const [programs, setPrograms] = useState<ProgramFormValues & { id: string }[]>([]);
   const [loading, setLoading] = useState(true);
   const [editingProgram, setEditingProgram] = useState<null | (ProgramFormValues & { id: string })>(null);
+
+  useEffect(() => {
+    const checkUser = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) {
+        navigate('/login');
+      }
+    };
+    checkUser();
+  }, [navigate]);
 
   const form = useForm<ProgramFormValues>({
     resolver: zodResolver(formSchema),
