@@ -5,6 +5,7 @@ import { cn } from '@/lib/utils';
 
 const logos = [
   { src: '/logos/colleges/Peri.png', alt: 'PERI Institute of Technology' },
+  { src: '/logos/colleges/DHANALAKSHMI.png', alt: 'Dhanalakshmi College of Engineering' },
 ];
 
 export const CollaborationsSection = () => {
