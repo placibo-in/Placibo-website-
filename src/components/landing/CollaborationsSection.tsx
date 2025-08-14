@@ -7,6 +7,19 @@ const logos = [
   { src: '/logos/colleges/Frame 398.png', alt: 'Dhanalakshmi Srinivasan Engineering College' },
   { src: '/logos/colleges/Frame 399.png', alt: 'Chennai Institute of Technology' },
   { src: '/logos/colleges/Frame 400.png', alt: 'Coimbatore Institute of Technology' },
+  { src: '/logos/colleges/Frame 401.png', alt: 'Excel Engineering College' },
+  { src: '/logos/colleges/Frame 402.png', alt: 'Jeppiaar University' },
+  { src: '/logos/colleges/Frame 403.png', alt: 'Jerusalem College of Engineering' },
+  { src: '/logos/colleges/Frame 404.png', alt: 'Madha Group of Academic Institutions' },
+  { src: '/logos/colleges/Frame 405.png', alt: 'Measi Academy of Architecture' },
+  { src: '/logos/colleges/Frame 406.png', alt: 'Panimalar Engineering College' },
+  { src: '/logos/colleges/Frame 407.png', alt: 'PERI Institute of Technology' },
+  { src: '/logos/colleges/Frame 408.png', alt: 'Prince Shri Venkateshwara Padmavathy Engineering College' },
+  { src: '/logos/colleges/Frame 409.png', alt: 'Sastra University' },
+  { src: '/logos/colleges/Frame 410.png', alt: 'SMK Fomra Institute of Technology' },
+  { src: '/logos/colleges/Frame 411.png', alt: 'SRM Institute of Science and Technology' },
+  { src: '/logos/colleges/Frame 412.png', alt: 'SVCT Vadakal Campus' },
+  { src: '/logos/colleges/Frame 413.png', alt: 'Velammal Engineering College' },
 ];
 
 export const CollaborationsSection = () => {
@@ -30,7 +43,7 @@ export const CollaborationsSection = () => {
             Our Students from
           </p>
         </div>
-        <div className="flex justify-center gap-16 flex-wrap">
+        <div className="flex justify-center gap-12 flex-wrap">
           {logos.map((logo, index) => (
             <div key={index} className="flex-shrink-0">
               <img
