@@ -4,19 +4,19 @@ import { useInView } from 'react-intersection-observer';
 import { cn } from '@/lib/utils';
 
 const logos = [
-  { src: '/logos/colleges/coimbatore.png', alt: 'Coimbatore Institute of Technology' },
-  { src: '/logos/colleges/dhanalakshmi.png', alt: 'Dhanalakshmi College of Engineering' },
-  { src: '/logos/colleges/excel.png', alt: 'Excel Engineering College' },
-  { src: '/logos/colleges/rec.png', alt: 'Rajalakshmi Engineering College' },
-  { src: '/logos/colleges/jerusalem.png', alt: 'Jerusalem College of Engineering' },
-  { src: '/logos/colleges/jeppiar.png', alt: 'Jeppiaar Engineering College' },
-  { src: '/logos/colleges/sathyabama.png', alt: 'Sathyabama Institute of Science and Technology' },
-  { src: '/logos/colleges/pannimalar.png', alt: 'Panimalar Engineering College' },
-  { src: '/logos/colleges/peri.png', alt: 'PERI Institute of Technology' },
-  { src: '/logos/colleges/madha.png', alt: 'Madha Engineering College' },
-  { src: '/logos/colleges/svct.png', alt: 'Sri Venkateswara College of Technology' },
-  { src: '/logos/colleges/cit.png', alt: 'Chennai Institute of Technology' },
-  { src: '/logos/colleges/srm.png', alt: 'SRM Institute of Science and Technology' },
+  { src: '/logos/colleges/COIMBATORE.png', alt: 'Coimbatore Institute of Technology' },
+  { src: '/logos/colleges/DHANALAKSHMI.png', alt: 'Dhanalakshmi College of Engineering' },
+  { src: '/logos/colleges/EXCEL.png', alt: 'Excel Engineering College' },
+  { src: '/logos/colleges/REC.png', alt: 'Rajalakshmi Engineering College' },
+  { src: '/logos/colleges/JERUSALEM.png', alt: 'Jerusalem College of Engineering' },
+  { src: '/logos/colleges/JEPPIAR.png', alt: 'Jeppiaar Engineering College' },
+  { src: '/logos/colleges/SATHYABAMA.png', alt: 'Sathyabama Institute of Science and Technology' },
+  { src: '/logos/colleges/PANNIMALAR.png', alt: 'Panimalar Engineering College' },
+  { src: '/logos/colleges/PERI.png', alt: 'PERI Institute of Technology' },
+  { src: '/logos/colleges/MADHA.png', alt: 'Madha Engineering College' },
+  { src: '/logos/colleges/SVCT.png', alt: 'Sri Venkateswara College of Technology' },
+  { src: '/logos/colleges/CIT.png', alt: 'Chennai Institute of Technology' },
+  { src: '/logos/colleges/SRM.png', alt: 'SRM Institute of Science and Technology' },
 ];
 
 export const CollaborationsSection = () => {
