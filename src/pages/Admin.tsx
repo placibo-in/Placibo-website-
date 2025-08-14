@@ -66,6 +66,7 @@ const Admin = () => {
   // Programs state and form
   const [programs, setPrograms] = useState<ProgramFormValues & { id: string }[]>([]);
   const [loadingPrograms, setLoadingPrograms] = useState(true);
+  const [fetchError, setFetchError] = useState<string | null>(null);
   const [editingProgram, setEditingProgram] = useState<null | (ProgramFormValues & { id: string })>(null);
 
   const form = useForm<ProgramFormValues>({
@@ -93,14 +94,20 @@ const Admin = () => {
 
   const fetchPrograms = async () => {
     setLoadingPrograms(true);
+    setFetchError(null);
+    console.log("Fetching programs...");
     const { data, error } = await supabase
       .from("programs")
       .select("*")
       .order("created_at", { ascending: true });
 
     if (error) {
+      console.error("Failed to fetch programs:", error);
+      setFetchError(error.message);
       toast.error("Failed to fetch programs.");
+      setPrograms([]);
     } else if (data) {
+      console.log("Programs fetched:", data);
       setPrograms(data as any);
     }
     setLoadingPrograms(false);
@@ -114,7 +121,6 @@ const Admin = () => {
 
   const onSubmit = async (values: ProgramFormValues) => {
     if (editingProgram) {
-      // Update existing
       const { error } = await supabase
         .from("programs")
         .update(values)
@@ -129,7 +135,6 @@ const Admin = () => {
         fetchPrograms();
       }
     } else {
-      // Insert new
       const { error } = await supabase.from("programs").insert([values]);
 
       if (error) {
@@ -291,6 +296,9 @@ const Admin = () => {
 
           <div className="mt-8 max-w-4xl">
             <h2 className="text-xl font-semibold mb-4">Existing Programs</h2>
+            {fetchError && (
+              <p className="text-red-600 mb-4">Error loading programs: {fetchError}</p>
+            )}
             {loadingPrograms ? (
               <p>Loading...</p>
             ) : programs.length === 0 ? (
