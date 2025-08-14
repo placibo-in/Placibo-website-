@@ -4,19 +4,7 @@ import { useInView } from 'react-intersection-observer';
 import { cn } from '@/lib/utils';
 
 const logos = [
-  { src: '/logos/colleges/COIMBATORE.png', alt: 'Coimbatore Institute of Technology' },
-  { src: '/logos/colleges/DHANALAKSHMI.png', alt: 'Dhanalakshmi College of Engineering' },
-  { src: '/logos/colleges/EXCEL.png', alt: 'Excel Engineering College' },
-  { src: '/logos/colleges/REC.png', alt: 'Rajalakshmi Engineering College' },
-  { src: '/logos/colleges/JERUSALEM.png', alt: 'Jerusalem College of Engineering' },
-  { src: '/logos/colleges/JEPPIAR.png', alt: 'Jeppiaar Engineering College' },
-  { src: '/logos/colleges/SATHYABAMA.png', alt: 'Sathyabama Institute of Science and Technology' },
-  { src: '/logos/colleges/PANNIMALAR.png', alt: 'Panimalar Engineering College' },
-  { src: '/logos/colleges/PERI.png', alt: 'PERI Institute of Technology' },
-  { src: '/logos/colleges/MADHA.png', alt: 'Madha Engineering College' },
-  { src: '/logos/colleges/SVCT.png', alt: 'Sri Venkateswara College of Technology' },
-  { src: '/logos/colleges/CIT.png', alt: 'Chennai Institute of Technology' },
-  { src: '/logos/colleges/SRM.png', alt: 'SRM Institute of Science and Technology' },
+  { src: '/logos/colleges/Peri.png', alt: 'PERI Institute of Technology' },
 ];
 
 export const CollaborationsSection = () => {
@@ -40,21 +28,19 @@ export const CollaborationsSection = () => {
             Our Students from
           </p>
         </div>
-        <div className="relative w-full overflow-hidden group">
-          <div className="flex w-max gap-16 animate-scroll group-hover:pause">
-            {[...logos, ...logos].map((logo, index) => (
-              <div key={index} className="flex-shrink-0">
-                <img
-                  src={logo.src}
-                  alt={logo.alt}
-                  width={160}
-                  height={96}
-                  className="object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
-                  loading="lazy"
-                />
-              </div>
-            ))}
-          </div>
+        <div className="flex justify-center gap-16">
+          {logos.map((logo, index) => (
+            <div key={index} className="flex-shrink-0">
+              <img
+                src={logo.src}
+                alt={logo.alt}
+                width={160}
+                height={96}
+                className="object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
+                loading="lazy"
+              />
+            </div>
+          ))}
         </div>
       </div>
     </section>
