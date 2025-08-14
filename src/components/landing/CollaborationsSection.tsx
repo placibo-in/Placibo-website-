@@ -36,15 +36,16 @@ export const CollaborationsSection = () => {
             Our Students from
           </p>
         </div>
-        <div className="flex justify-center gap-16 flex-wrap">
+        <div className="flex justify-center gap-8 flex-wrap">
           {logos.map((logo, index) => (
-            <div key={index} className="flex-shrink-0">
+            <div 
+              key={index} 
+              className="flex-shrink-0 flex items-center justify-center w-36 h-20 bg-white rounded-md shadow-sm"
+            >
               <img
                 src={logo.src}
                 alt={logo.alt}
-                width={160}
-                height={96}
-                className="object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
+                className="max-w-full max-h-full object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
                 loading="lazy"
               />
             </div>
