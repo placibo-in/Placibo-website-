@@ -195,7 +195,9 @@ const Admin = () => {
     }
   };
 
-  if (!isLoaded) return <div className="flex h-screen items-center justify-center">Loading...</div>;
+  if (!isLoaded) {
+    return <div className="flex h-screen items-center justify-center">Loading...</div>;
+  }
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-50 text-gray-900">
@@ -224,12 +226,35 @@ const Admin = () => {
                   <FormItem>
                     <FormLabel>Icon Type</FormLabel>
                     <RadioGroup value={iconChoice} onValueChange={(v) => setIconChoice(v as 'default' | 'custom')} className="flex gap-4 pt-2">
-                      <FormItem className="flex items-center space-x-2"><FormControl><RadioGroupItem value="default" id="default-icon" /></FormControl><Label htmlFor="default-icon">Default</FormLabel></FormItem>
+                      <FormItem className="flex items-center space-x-2"><FormControl><RadioGroupItem value="default" id="default-icon" /></FormControl><Label htmlFor="default-icon">Default</Label></FormItem>
                       <FormItem className="flex items-center space-x-2"><FormControl><RadioGroupItem value="custom" id="custom-icon" /></FormControl><Label htmlFor="custom-icon">Custom</Label></FormItem>
                     </RadioGroup>
                   </FormItem>
                   {iconChoice === 'default' ? (
-                    <FormField control={form.control} name="icon" render={({ field }) => (<FormItem><FormLabel>Icon</FormLabel><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder="Select an icon" /></SelectTrigger></FormControl><SelectContent>{iconOptions.map(o => (<SelectItem key={o.value} value={o.value}><div className="flex items-center gap-2">{React.createElement(iconMap[o.value], { className: "h-4 w-4" })}<span>{o.label}</span></div></SelectItem>))}</SelectContent></Select><FormMessage /></FormItem>)} />
+                    <FormField control={form.control} name="icon" render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Icon</FormLabel>
+                        <Select onValueChange={field.onChange} value={field.value || ''}>
+                          <FormControl>
+                            <SelectTrigger><SelectValue placeholder="Select an icon" /></SelectTrigger>
+                          </FormControl>
+                          <SelectContent>
+                            {iconOptions.map(o => {
+                              const Icon = iconMap[o.value as keyof typeof iconMap];
+                              return (
+                                <SelectItem key={o.value} value={o.value}>
+                                  <div className="flex items-center gap-2">
+                                    <Icon className="h-4 w-4" />
+                                    <span>{o.label}</span>
+                                  </div>
+                                </SelectItem>
+                              );
+                            })}
+                          </SelectContent>
+                        </Select>
+                        <FormMessage />
+                      </FormItem>
+                    )} />
                   ) : (
                     <FormField control={form.control} name="image" render={({ field: { onChange, ...props } }) => (<FormItem><FormLabel>Custom Icon</FormLabel><FormControl><Input type="file" accept="image/*" onChange={e => onChange(e.target.files)} {...props} /></FormControl><FormDescription>Upload a custom icon.</FormDescription><FormMessage /></FormItem>)} />
                   )}
