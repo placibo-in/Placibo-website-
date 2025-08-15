@@ -89,6 +89,7 @@ const Admin = () => {
       duration: "",
       description: "",
       link: "",
+      icon: "PenTool",
     },
   });
 
@@ -229,12 +230,41 @@ const Admin = () => {
                   </FormItem>
 
                   {iconChoice === 'default' ? (
-                    <FormField control={form.control} name="icon" render={({ field }) => (<FormItem><FormLabel>Icon</FormLabel><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder="Select an icon" /></SelectTrigger></FormControl><SelectContent>{iconOptions.map(o => {
-                      const IconComponent = iconMap[o.value as keyof typeof iconMap];
-                      return (<SelectItem key={o.value} value={o.value}><div className="flex items-center gap-2"><IconComponent className="h-4 w-4" /><span>{o.label}</span></div></SelectItem>)
-                    })}</SelectContent></Select><FormMessage /></FormItem>)} />
+                    <FormField control={form.control} name="icon" render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Icon</FormLabel>
+                        <Select onValueChange={field.onChange} value={field.value ?? ""}>
+                          <SelectTrigger>
+                            <SelectValue placeholder="Select an icon" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            {iconOptions.map(o => {
+                              const IconComponent = iconMap[o.value as keyof typeof iconMap];
+                              return (
+                                <SelectItem key={o.value} value={o.value}>
+                                  <div className="flex items-center gap-2">
+                                    <IconComponent className="h-4 w-4" />
+                                    <span>{o.label}</span>
+                                  </div>
+                                </SelectItem>
+                              );
+                            })}
+                          </SelectContent>
+                        </Select>
+                        <FormMessage />
+                      </FormItem>
+                    )} />
                   ) : (
-                    <FormField control={form.control} name="image" render={({ field: { onChange, ...props } }) => (<FormItem><FormLabel>Custom Icon</FormLabel><FormControl><Input type="file" accept="image/*" onChange={e => onChange(e.target.files)} {...props} /></FormControl><FormDescription>Upload a custom icon.</FormDescription><FormMessage /></FormItem>)} />
+                    <FormField control={form.control} name="image" render={({ field: { onChange, ...props } }) => (
+                      <FormItem>
+                        <FormLabel>Custom Icon</FormLabel>
+                        <FormControl>
+                          <Input type="file" accept="image/*" onChange={e => onChange(e.target.files)} {...props} />
+                        </FormControl>
+                        <FormDescription>Upload a custom icon.</FormDescription>
+                        <FormMessage />
+                      </FormItem>
+                    )} />
                   )}
 
                   <div className="flex gap-4">
