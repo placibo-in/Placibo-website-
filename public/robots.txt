@@ -1,14 +1,9 @@
-User-agent: Googlebot
-Allow: /
-
-User-agent: Bingbot
-Allow: /
-
-User-agent: Twitterbot
-Allow: /
-
-User-agent: facebookexternalhit
-Allow: /
-
+# Allow all friendly crawlers
 User-agent: *
 Allow: /
+
+# Disallow the admin area
+Disallow: /admin
+
+# Point to the sitemap
+Sitemap: https://placibo.in/sitemap.xml
