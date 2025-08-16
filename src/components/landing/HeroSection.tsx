@@ -14,6 +14,21 @@ import type { Slide } from "@/components/admin/HeroSlideManager";
 import { Skeleton } from "@/components/ui/skeleton";
 import { cn } from "@/lib/utils";
 
+/**
+ * ============================================================================
+ * Hero Section Image Upload Recommendations
+ * ============================================================================
+ * For the best results across all devices, please use the following specs:
+ *
+ * 1.  **Dimensions:** 1920x1080 pixels (a 16:9 aspect ratio). This works well
+ *     for desktops and crops nicely on mobile screens.
+ * 2.  **File Size:** Keep images under 500KB to ensure fast loading times.
+ *     You can use online tools like TinyPNG or Squoosh to compress them.
+ * 3.  **Format:** Use WebP for the best balance of quality and size, or a
+ *     highly optimized JPEG.
+ * ============================================================================
+ */
+
 export const HeroSection = () => {
   const { onOpen } = useEnrollmentDialog();
   const [slides, setSlides] = useState<Slide[]>([]);
@@ -74,8 +89,10 @@ export const HeroSection = () => {
 
             return (
               <CarouselItem key={slide.id}>
+                {/* This container is responsive using viewport height (vh) and a max-height */}
                 <div className="relative w-full h-[40vh] sm:h-[50vh] md:h-[60vh] max-h-[600px] text-white rounded-xl overflow-hidden">
                   <div className="absolute inset-0 z-0">
+                    {/* The 'object-cover' class ensures the image fills the space without distortion */}
                     <img
                       src={slide.image_url}
                       alt={slide.title || "Hero slide"}
@@ -90,6 +107,7 @@ export const HeroSection = () => {
                     )}></div>
                   </div>
 
+                  {/* This div centers the text and buttons, with responsive padding */}
                   <div className={cn(
                     "relative z-10 container mx-auto px-4 h-full flex flex-col items-center text-center transition-opacity duration-700",
                     hasText ? "justify-center opacity-100" : "justify-end pb-6 sm:pb-8 md:pb-12 opacity-90"
