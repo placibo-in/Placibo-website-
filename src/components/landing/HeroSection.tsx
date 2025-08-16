@@ -20,8 +20,8 @@ import { cn } from "@/lib/utils";
  * ============================================================================
  * For the best results across all devices, please use the following specs:
  *
- * 1.  **Dimensions:** 1920x1080 pixels (a 16:9 aspect ratio). This works well
- *     for desktops and crops nicely on mobile screens.
+ * 1.  **Dimensions:** 1920x1080 pixels (a 16:9 aspect ratio). This is crucial
+ *     for the component to display the image correctly without cropping.
  * 2.  **File Size:** Keep images under 500KB to ensure fast loading times.
  *     You can use online tools like TinyPNG or Squoosh to compress them.
  * 3.  **Format:** Use WebP for the best balance of quality and size, or a
@@ -53,7 +53,7 @@ export const HeroSection = () => {
 
   if (loading) {
     return (
-      <section className="relative w-full h-[40vh] sm:h-[50vh] md:h-[60vh] max-h-[600px]">
+      <section className="relative w-full aspect-video max-h-[600px]">
         <Skeleton className="w-full h-full rounded-xl" />
       </section>
     );
@@ -61,7 +61,7 @@ export const HeroSection = () => {
 
   if (!slides.length) {
     return (
-      <section className="relative w-full h-[40vh] sm:h-[50vh] md:h-[60vh] max-h-[600px] bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 flex flex-col items-center justify-center text-center text-white p-4 rounded-xl">
+      <section className="relative w-full aspect-video max-h-[600px] bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 flex flex-col items-center justify-center text-center text-white p-4 rounded-xl">
         <h1 className="text-2xl sm:text-3xl font-extrabold tracking-wide">Hero Section</h1>
         <p className="mt-3 text-sm sm:text-base text-gray-300 max-w-md mx-auto">No slides have been configured yet. Please add slides in the admin dashboard.</p>
       </section>
@@ -89,8 +89,8 @@ export const HeroSection = () => {
 
             return (
               <CarouselItem key={slide.id}>
-                {/* This container is responsive using viewport height (vh) and a max-height */}
-                <div className="relative w-full h-[40vh] sm:h-[50vh] md:h-[60vh] max-h-[600px] text-white rounded-xl overflow-hidden">
+                {/* This container now uses 'aspect-video' to enforce a 16:9 ratio */}
+                <div className="relative w-full aspect-video max-h-[600px] text-white rounded-xl overflow-hidden">
                   <div className="absolute inset-0 z-0">
                     {/* The 'object-cover' class ensures the image fills the space without distortion */}
                     <img
