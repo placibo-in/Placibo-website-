@@ -33,7 +33,7 @@ export const Header = () => {
           <a href="/#contact" className="hover:text-blue-600 transition-colors text-gray-900">Contact</a>
 
           <div 
-            className="relative group"
+            className="relative"
             onMouseEnter={() => setCoursesMenuOpen(true)}
             onMouseLeave={() => setCoursesMenuOpen(false)}
           >
@@ -46,49 +46,51 @@ export const Header = () => {
               Courses <ChevronDown size={16} />
             </button>
             {coursesMenuOpen && (
-              <div className="absolute top-full left-0 mt-2 w-56 bg-white border border-gray-200 rounded-md shadow-lg z-50">
-                <Link 
-                  to="/courses" 
-                  className="block px-4 py-2 text-gray-900 hover:bg-blue-50"
-                  onClick={() => setCoursesMenuOpen(false)}
-                >
-                  All Courses
-                </Link>
-                <Link 
-                  to="/courses/ui-ux-design" 
-                  className="block px-4 py-2 text-gray-900 hover:bg-blue-50"
-                  onClick={() => setCoursesMenuOpen(false)}
-                >
-                  UI/UX Design
-                </Link>
-                <Link 
-                  to="/courses/frontend-development" 
-                  className="block px-4 py-2 text-gray-900 hover:bg-blue-50"
-                  onClick={() => setCoursesMenuOpen(false)}
-                >
-                  Frontend Development
-                </Link>
-                <Link 
-                  to="/courses/backend-nodejs" 
-                  className="block px-4 py-2 text-gray-900 hover:bg-blue-50"
-                  onClick={() => setCoursesMenuOpen(false)}
-                >
-                  Backend Node.js
-                </Link>
-                <Link 
-                  to="/courses/backend-django" 
-                  className="block px-4 py-2 text-gray-900 hover:bg-blue-50"
-                  onClick={() => setCoursesMenuOpen(false)}
-                >
-                  Backend Django
-                </Link>
-                <Link 
-                  to="/courses/generative-ai" 
-                  className="block px-4 py-2 text-gray-900 hover:bg-blue-50"
-                  onClick={() => setCoursesMenuOpen(false)}
-                >
-                  Generative AI
-                </Link>
+              <div className="absolute top-full left-0 pt-2 w-56 z-50">
+                <div className="bg-white border border-gray-200 rounded-md shadow-lg">
+                  <Link 
+                    to="/courses" 
+                    className="block px-4 py-2 text-gray-900 hover:bg-blue-50"
+                    onClick={() => setCoursesMenuOpen(false)}
+                  >
+                    All Courses
+                  </Link>
+                  <Link 
+                    to="/courses/ui-ux-design" 
+                    className="block px-4 py-2 text-gray-900 hover:bg-blue-50"
+                    onClick={() => setCoursesMenuOpen(false)}
+                  >
+                    UI/UX Design
+                  </Link>
+                  <Link 
+                    to="/courses/frontend-development" 
+                    className="block px-4 py-2 text-gray-900 hover:bg-blue-50"
+                    onClick={() => setCoursesMenuOpen(false)}
+                  >
+                    Frontend Development
+                  </Link>
+                  <Link 
+                    to="/courses/backend-nodejs" 
+                    className="block px-4 py-2 text-gray-900 hover:bg-blue-50"
+                    onClick={() => setCoursesMenuOpen(false)}
+                  >
+                    Backend Node.js
+                  </Link>
+                  <Link 
+                    to="/courses/backend-django" 
+                    className="block px-4 py-2 text-gray-900 hover:bg-blue-50"
+                    onClick={() => setCoursesMenuOpen(false)}
+                  >
+                    Backend Django
+                  </Link>
+                  <Link 
+                    to="/courses/generative-ai" 
+                    className="block px-4 py-2 text-gray-900 hover:bg-blue-50"
+                    onClick={() => setCoursesMenuOpen(false)}
+                  >
+                    Generative AI
+                  </Link>
+                </div>
               </div>
             )}
           </div>
