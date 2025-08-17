@@ -8,9 +8,8 @@ import { Footer } from "@/components/landing/Footer";
 import { HeroSlideManager } from "@/components/admin/HeroSlideManager";
 import { InstagramReelManager } from "@/components/admin/InstagramReelManager";
 import { BatchDateManager } from "@/components/admin/BatchDateManager";
-import { BlogManager } from "@/components/admin/BlogManager"; // Import the new component
-
-// ... (rest of the imports)
+import { BlogManager } from "@/components/admin/BlogManager";
+import { GoogleReviewManager } from "@/components/admin/GoogleReviewManager";
 
 const Admin = () => {
   const navigate = useNavigate();
@@ -37,6 +36,7 @@ const Admin = () => {
           <HeroSlideManager />
           <InstagramReelManager />
           <BlogManager />
+          <GoogleReviewManager />
         </div>
       </main>
       <Footer />

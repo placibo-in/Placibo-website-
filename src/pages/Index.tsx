@@ -11,6 +11,7 @@ import { Footer } from "@/components/landing/Footer";
 import { FloatingActionButton } from "@/components/landing/FloatingActionButton";
 import { LoadingScreen } from "@/components/landing/LoadingScreen";
 import { EnrollmentDialog } from "@/components/landing/EnrollmentDialog";
+import { GoogleReviewsSection } from "@/components/landing/GoogleReviewsSection";
 
 const Index = () => {
   const title = "Placibo: Job-Ready Tech Courses in Chennai";
@@ -46,6 +47,7 @@ const Index = () => {
         <HeroSection />
         <AboutSection />
         <WhyPlaciboSection />
+        <GoogleReviewsSection />
         <CollaborationsSection />
         <TestimonialsSection />
         <InstagramReelsSection />
