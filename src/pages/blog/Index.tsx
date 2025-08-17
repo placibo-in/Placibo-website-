@@ -17,6 +17,7 @@ type Post = {
   excerpt: string;
   author: string;
   published_at: string;
+  featured_image_url: string | null;
 };
 
 const BlogIndexPage = () => {
@@ -28,7 +29,7 @@ const BlogIndexPage = () => {
       setLoading(true);
       const { data, error } = await supabase
         .from("posts")
-        .select("id, title, slug, excerpt, author, published_at")
+        .select("id, title, slug, excerpt, author, published_at, featured_image_url")
         .order("published_at", { ascending: false });
 
       if (data) {
@@ -65,28 +66,43 @@ const BlogIndexPage = () => {
           </div>
           {loading ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {[...Array(3)].map((_, i) => <Skeleton key={i} className="h-64 w-full" />)}
+              {[...Array(3)].map((_, i) => (
+                <div key={i} className="space-y-2">
+                  <Skeleton className="h-40 w-full" />
+                  <Skeleton className="h-6 w-3/4" />
+                  <Skeleton className="h-4 w-1/2" />
+                </div>
+              ))}
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {posts.map((post) => (
                 <Link to={`/blog/${post.slug}`} key={post.id} className="block group">
-                  <Card className="h-full flex flex-col shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 ease-in-out border border-gray-200">
-                    <CardHeader>
+                  <Card className="h-full flex flex-col shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 ease-in-out border border-gray-200 overflow-hidden">
+                    {post.featured_image_url && (
+                      <div className="aspect-video overflow-hidden">
+                        <img
+                          src={post.featured_image_url}
+                          alt={post.title}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        />
+                      </div>
+                    )}
+                    <div className="p-6 flex flex-col flex-grow">
                       <CardTitle className="text-lg font-semibold">{post.title}</CardTitle>
-                      <CardDescription>
+                      <CardDescription className="mt-1">
                         By {post.author} on {new Date(post.published_at).toLocaleDateString()}
                       </CardDescription>
-                    </CardHeader>
-                    <CardContent className="flex-grow">
-                      <p className="text-gray-600">{post.excerpt}</p>
-                    </CardContent>
-                    <CardFooter>
-                      <div className="flex items-center font-medium text-blue-600 group-hover:text-blue-800 transition-colors">
-                        Read More
-                        <ArrowRight className="ml-2 h-4 w-4 transform group-hover:translate-x-1 transition-transform" />
-                      </div>
-                    </CardFooter>
+                      <CardContent className="p-0 mt-4 flex-grow">
+                        <p className="text-gray-600">{post.excerpt}</p>
+                      </CardContent>
+                      <CardFooter className="p-0 mt-4">
+                        <div className="flex items-center font-medium text-blue-600 group-hover:text-blue-800 transition-colors">
+                          Read More
+                          <ArrowRight className="ml-2 h-4 w-4 transform group-hover:translate-x-1 transition-transform" />
+                        </div>
+                      </CardFooter>
+                    </div>
                   </Card>
                 </Link>
               ))}
