@@ -1,6 +1,7 @@
 "use client";
 
 import { Instagram, MessageCircle } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export const Footer = () => {
   const handleWhatsAppClick = () => {
@@ -27,7 +28,8 @@ export const Footer = () => {
             <nav className="flex flex-wrap justify-center gap-4 md:gap-6 text-sm font-medium">
               <a href="/#about" className="hover:text-blue-600 transition-colors">About</a>
               <a href="/#why" className="hover:text-blue-600 transition-colors">Why Us</a>
-              <a href="/faq" className="hover:text-blue-600 transition-colors">FAQ</a>
+              <Link to="/blog" className="hover:text-blue-600 transition-colors">Blog</Link>
+              <Link to="/faq" className="hover:text-blue-600 transition-colors">FAQ</Link>
               <a href="/#contact" className="hover:text-blue-600 transition-colors">Contact</a>
             </nav>
 

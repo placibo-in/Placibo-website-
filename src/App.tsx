@@ -16,6 +16,8 @@ import BackendDjango from "./pages/courses/BackendDjango";
 import GenerativeAI from "./pages/courses/GenerativeAI";
 import { ScrollToTop } from "./components/ScrollToTop";
 import StudentWorkPage from "./pages/StudentWork";
+import BlogIndexPage from "./pages/blog/Index";
+import BlogPostPage from "./pages/blog/Post";
 
 const queryClient = new QueryClient();
 
@@ -38,6 +40,8 @@ const App = () => (
           <Route path="/courses/backend-nodejs" element={<BackendNode />} />
           <Route path="/courses/backend-django" element={<BackendDjango />} />
           <Route path="/courses/generative-ai" element={<GenerativeAI />} />
+          <Route path="/blog" element={<BlogIndexPage />} />
+          <Route path="/blog/:slug" element={<BlogPostPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

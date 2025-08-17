@@ -28,6 +28,7 @@ export const Header = () => {
           <a href="/#about" className="hover:text-blue-600 transition-colors text-gray-900">About</a>
           <a href="/#why" className="hover:text-blue-600 transition-colors text-gray-900">Why Us</a>
           <Link to="/student-work" className="hover:text-blue-600 transition-colors text-gray-900">Student Work</Link>
+          <Link to="/blog" className="hover:text-blue-600 transition-colors text-gray-900">Blog</Link>
           <Link to="/faq" className="hover:text-blue-600 transition-colors text-gray-900">FAQ</Link>
           <a href="/#contact" className="hover:text-blue-600 transition-colors text-gray-900">Contact</a>
 
@@ -132,6 +133,13 @@ export const Header = () => {
               onClick={() => setMobileMenuOpen(false)}
             >
               Student Work
+            </Link>
+            <Link 
+              to="/blog" 
+              className="hover:text-blue-600 transition-colors"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Blog
             </Link>
             <Link 
               to="/faq" 
