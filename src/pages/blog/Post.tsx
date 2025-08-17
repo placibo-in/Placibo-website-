@@ -17,6 +17,8 @@ type Post = {
   content: string;
   author: string;
   published_at: string;
+  excerpt: string;
+  featured_image_url: string | null;
 };
 
 const BlogPostPage = () => {
@@ -30,7 +32,7 @@ const BlogPostPage = () => {
       setLoading(true);
       const { data } = await supabase
         .from("posts")
-        .select("*")
+        .select("*, excerpt, featured_image_url")
         .eq("slug", slug)
         .single();
       
@@ -45,7 +47,17 @@ const BlogPostPage = () => {
       {post && (
         <Helmet>
           <title>{post.title} | Placibo Blog</title>
-          <meta name="description" content={`Read the article "${post.title}" on the Placibo blog.`} />
+          <meta name="description" content={post.excerpt} />
+          <link rel="canonical" href={`https://placibo.in/blog/${slug}`} />
+          <meta property="og:title" content={post.title} />
+          <meta property="og:description" content={post.excerpt} />
+          <meta property="og:url" content={`https://placibo.in/blog/${slug}`} />
+          <meta property="og:type" content="article" />
+          {post.featured_image_url && <meta property="og:image" content={post.featured_image_url} />}
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:title" content={post.title} />
+          <meta name="twitter:description" content={post.excerpt} />
+          {post.featured_image_url && <meta name="twitter:image" content={post.featured_image_url} />}
         </Helmet>
       )}
       <Header />
@@ -66,6 +78,13 @@ const BlogPostPage = () => {
             </div>
           ) : post ? (
             <article>
+              {post.featured_image_url && (
+                <img
+                  src={post.featured_image_url}
+                  alt={post.title}
+                  className="w-full h-auto max-h-96 object-cover rounded-lg mb-8"
+                />
+              )}
               <h1 className="text-3xl md:text-4xl font-extrabold mb-4">{post.title}</h1>
               <p className="text-gray-600 mb-8">
                 By {post.author} on {new Date(post.published_at).toLocaleDateString()}

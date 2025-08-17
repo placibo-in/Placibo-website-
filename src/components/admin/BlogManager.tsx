@@ -9,9 +9,9 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage, FormDescription } from "@/components/ui/form";
 import { toast } from "sonner";
-import { Trash2, Edit, PlusCircle } from "lucide-react";
+import { Trash2, Edit } from "lucide-react";
 
 type Post = {
   id: string;
@@ -21,6 +21,7 @@ type Post = {
   author: string;
   excerpt: string;
   published_at: string;
+  featured_image_url: string | null;
 };
 
 const postSchema = z.object({
@@ -29,6 +30,7 @@ const postSchema = z.object({
   author: z.string().min(2, "Author is required."),
   excerpt: z.string().min(10, "Excerpt is required."),
   content: z.string().min(20, "Content is required."),
+  image: z.any().optional(),
 });
 
 type PostFormValues = z.infer<typeof postSchema>;
@@ -55,7 +57,35 @@ export const BlogManager = () => {
   }, []);
 
   const onSubmit = async (values: PostFormValues) => {
-    const payload = { ...values, published_at: new Date().toISOString() };
+    let featuredImageUrl = editingPost?.featured_image_url || null;
+
+    if (values.image && values.image.length > 0) {
+      const file = values.image[0] as File;
+      const fileName = `${Date.now()}-${file.name}`;
+      const { error: uploadError } = await supabase.storage
+        .from("hero_images")
+        .upload(`blog_images/${fileName}`, file);
+
+      if (uploadError) {
+        toast.error(`Image upload failed: ${uploadError.message}`);
+        return;
+      }
+
+      const { data: urlData } = supabase.storage
+        .from("hero_images")
+        .getPublicUrl(`blog_images/${fileName}`);
+      featuredImageUrl = urlData.publicUrl;
+    }
+
+    const payload = {
+      title: values.title,
+      slug: values.slug,
+      author: values.author,
+      excerpt: values.excerpt,
+      content: values.content,
+      published_at: new Date().toISOString(),
+      featured_image_url: featuredImageUrl,
+    };
     
     const promise = editingPost
       ? supabase.from("posts").update(payload).eq("id", editingPost.id)
@@ -107,6 +137,7 @@ export const BlogManager = () => {
               <FormField control={form.control} name="author" render={({ field }) => (<FormItem><FormLabel>Author</FormLabel><FormControl><Input {...field} /></FormControl><FormMessage /></FormItem>)} />
               <FormField control={form.control} name="excerpt" render={({ field }) => (<FormItem><FormLabel>Excerpt</FormLabel><FormControl><Textarea {...field} /></FormControl><FormMessage /></FormItem>)} />
               <FormField control={form.control} name="content" render={({ field }) => (<FormItem><FormLabel>Content (Markdown)</FormLabel><FormControl><Textarea {...field} rows={10} /></FormControl><FormMessage /></FormItem>)} />
+              <FormField control={form.control} name="image" render={({ field: { onChange, ...props } }) => (<FormItem><FormLabel>Featured Image</FormLabel><FormControl><Input type="file" accept="image/*" onChange={e => onChange(e.target.files)} {...props} /></FormControl><FormDescription>Optional. Recommended size: 1200x630 pixels.</FormDescription><FormMessage /></FormItem>)} />
               <div className="flex gap-4">
                 <Button type="submit">{editingPost ? "Update Post" : "Create Post"}</Button>
                 {editingPost && <Button variant="outline" type="button" onClick={() => { setEditingPost(null); form.reset(); }}>Cancel</Button>}
@@ -122,7 +153,10 @@ export const BlogManager = () => {
           <div className="space-y-4">
             {posts.map(post => (
               <Card key={post.id} className="flex justify-between items-center p-4">
-                <p className="font-semibold">{post.title}</p>
+                <div className="flex items-center gap-4">
+                  {post.featured_image_url && <img src={post.featured_image_url} alt={post.title} className="h-12 w-20 object-cover rounded-md" />}
+                  <p className="font-semibold">{post.title}</p>
+                </div>
                 <div className="flex gap-2">
                   <Button variant="ghost" size="icon" onClick={() => handleEdit(post)}><Edit className="h-4 w-4" /></Button>
                   <Button variant="ghost" size="icon" onClick={() => handleDelete(post.id)}><Trash2 className="h-4 w-4 text-destructive" /></Button>

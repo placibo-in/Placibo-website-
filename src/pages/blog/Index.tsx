@@ -44,6 +44,15 @@ const BlogIndexPage = () => {
       <Helmet>
         <title>Blog | Placibo</title>
         <meta name="description" content="Read the latest articles and insights from the Placibo team on UI/UX design, development, and tech careers in Chennai." />
+        <link rel="canonical" href="https://placibo.in/blog" />
+        <meta property="og:title" content="Blog | Placibo" />
+        <meta property="og:description" content="Read the latest articles and insights from the Placibo team on UI/UX design, development, and tech careers in Chennai." />
+        <meta property="og:url" content="https://placibo.in/blog" />
+        <meta property="og:image" content="https://placibo.in/logo.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Blog | Placibo" />
+        <meta name="twitter:description" content="Read the latest articles and insights from the Placibo team on UI/UX design, development, and tech careers in Chennai." />
+        <meta name="twitter:image" content="https://placibo.in/logo.png" />
       </Helmet>
       <Header />
       <main className="bg-gray-50 text-gray-900 py-16 sm:py-24 pt-28">
