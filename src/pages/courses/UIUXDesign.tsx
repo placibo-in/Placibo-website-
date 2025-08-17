@@ -59,6 +59,18 @@ const UIUXDesign = () => {
     ],
   };
 
+  const courseSchema = {
+    "@context": "https://schema.org",
+    "@type": "Course",
+    "name": "UI/UX Design Course in Chennai",
+    "description": "Learn UI/UX design from industry professionals in Chennai. Includes hands-on projects, mentorship, and certification.",
+    "provider": {
+      "@type": "Organization",
+      "name": "Placibo",
+      "sameAs": "https://placibo.in"
+    }
+  };
+
   return (
     <>
       <Helmet>
@@ -66,17 +78,7 @@ const UIUXDesign = () => {
         <meta name="description" content={`Join the best ${course.name}. Learn design thinking, wireframing, and build a job-ready portfolio with Placibo, Tamil Nadu's leading tech educator.`} />
         <link rel="canonical" href="https://placibo.in/courses/ui-ux-design" />
         <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Course",
-            "name": course.name,
-            "description": course.description,
-            "provider": {
-              "@type": "Organization",
-              "name": "Placibo",
-              "sameAs": "https://placibo.in",
-            },
-          })}
+          {JSON.stringify(courseSchema)}
         </script>
       </Helmet>
       <EnrollmentDialog />

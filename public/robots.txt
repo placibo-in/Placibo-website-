@@ -1,9 +1,3 @@
-# Allow all friendly crawlers
 User-agent: *
-Allow: /
-
-# Disallow the admin area
-Disallow: /admin
-
-# Point to the sitemap
+Disallow:
 Sitemap: https://placibo.in/sitemap.xml
