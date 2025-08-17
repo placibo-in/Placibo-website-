@@ -89,8 +89,10 @@ const BlogPostPage = () => {
               <p className="text-gray-600 mb-8">
                 By {post.author} on {new Date(post.published_at).toLocaleDateString()}
               </p>
-              <div className="prose sm:prose-lg max-w-none">
-                <ReactMarkdown remarkPlugins={[remarkGfm]}>{post.content}</ReactMarkdown>
+              <div className="prose prose-lg max-w-none prose-headings:font-semibold prose-p:font-normal">
+                <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                  {post.content.replace(/\\n/g, "\n")}
+                </ReactMarkdown>
               </div>
             </article>
           ) : (
