@@ -10,6 +10,7 @@ import { InstagramReelManager } from "@/components/admin/InstagramReelManager";
 import { BatchDateManager } from "@/components/admin/BatchDateManager";
 import { BlogManager } from "@/components/admin/BlogManager";
 import { GoogleReviewManager } from "@/components/admin/GoogleReviewManager";
+import { ProgramManager } from "@/components/admin/ProgramManager";
 
 const Admin = () => {
   const navigate = useNavigate();
@@ -34,6 +35,7 @@ const Admin = () => {
         <div className="grid gap-8">
           <BatchDateManager />
           <HeroSlideManager />
+          <ProgramManager />
           <InstagramReelManager />
           <BlogManager />
           <GoogleReviewManager />
