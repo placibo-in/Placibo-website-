@@ -7,6 +7,7 @@ import {
 import { Header } from "@/components/landing/Header";
 import { Footer } from "@/components/landing/Footer";
 import { EnrollmentDialog } from "@/components/landing/EnrollmentDialog";
+import { Helmet } from "react-helmet-async";
 
 const faqData = [
   {
@@ -38,6 +39,10 @@ const faqData = [
 const FaqPage = () => {
   return (
     <>
+      <Helmet>
+        <title>FAQ | Placibo</title>
+        <meta name="description" content="Find answers to frequently asked questions about Placibo's courses, admissions, job assistance, and more." />
+      </Helmet>
       <EnrollmentDialog />
       <Header />
       <main className="bg-white pt-20 md:pt-24">
