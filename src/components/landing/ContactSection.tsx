@@ -86,6 +86,7 @@ export const ContactSection = () => {
           >
             <span className="text-sm md:text-base">Apply Now</span>
           </Button>
+          <form><script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_RGyEKD0Xxj3tWZ" async> </script> </form>
         </div>
       </div>
     </section>
