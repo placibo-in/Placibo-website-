@@ -39,6 +39,27 @@ export const ContactSection = () => {
     fetchBatchDate();
   }, []);
 
+  useEffect(() => {
+    // Dynamically load the Razorpay script
+    const script = document.createElement('script');
+    script.src = "https://checkout.razorpay.com/v1/payment-button.js";
+    script.async = true;
+    script.dataset.payment_button_id = "pl_RGyEKD0Xxj3tWZ";
+    
+    // Append the script to a specific div or the body
+    const razorpayContainer = document.getElementById('razorpay-button-container');
+    if (razorpayContainer) {
+      razorpayContainer.appendChild(script);
+    }
+
+    return () => {
+      // Clean up the script if the component unmounts
+      if (razorpayContainer && razorpayContainer.contains(script)) {
+        razorpayContainer.removeChild(script);
+      }
+    };
+  }, []); // Empty dependency array means this runs once on mount
+
   const handleWhatsAppClick = () => {
     window.open('https://wa.me/9566627297', '_blank');
   };
@@ -86,7 +107,8 @@ export const ContactSection = () => {
           >
             <span className="text-sm md:text-base">Apply Now</span>
           </Button>
-          <form><script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_RGyEKD0Xxj3tWZ" async> </script> </form>
+          {/* Container for the dynamically loaded Razorpay button */}
+          <div id="razorpay-button-container" className="min-w-[160px] flex items-center justify-center"></div>
         </div>
       </div>
     </section>
