@@ -7,6 +7,7 @@ import { Calendar, MessageCircle, Loader2 } from "lucide-react";
 import { useInView } from 'react-intersection-observer';
 import { cn } from '@/lib/utils';
 import { useEnrollmentDialog } from "@/hooks/use-enrollment-dialog";
+import { toast } from "sonner"; // Import toast for notifications
 
 export const ContactSection = () => {
   const { ref, inView } = useInView({
@@ -39,26 +40,7 @@ export const ContactSection = () => {
     fetchBatchDate();
   }, []);
 
-  useEffect(() => {
-    // Dynamically load the Razorpay script
-    const script = document.createElement('script');
-    script.src = "https://checkout.razorpay.com/v1/payment-button.js";
-    script.async = true;
-    script.dataset.payment_button_id = "pl_RGyEKD0Xxj3tWZ";
-    
-    // Append the script to a specific div or the body
-    const razorpayContainer = document.getElementById('razorpay-button-container');
-    if (razorpayContainer) {
-      razorpayContainer.appendChild(script);
-    }
-
-    return () => {
-      // Clean up the script if the component unmounts
-      if (razorpayContainer && razorpayContainer.contains(script)) {
-        razorpayContainer.removeChild(script);
-      }
-    };
-  }, []); // Empty dependency array means this runs once on mount
+  // Removed the useEffect for dynamic script loading as per your request.
 
   const handleWhatsAppClick = () => {
     window.open('https://wa.me/9566627297', '_blank');
@@ -107,8 +89,10 @@ export const ContactSection = () => {
           >
             <span className="text-sm md:text-base">Apply Now</span>
           </Button>
-          {/* Container for the dynamically loaded Razorpay button */}
-          <div id="razorpay-button-container" className="min-w-[160px] flex items-center justify-center"></div>
+          {/* Razorpay Payment Button */}
+          <form className="min-w-[160px] flex items-center justify-center">
+            <script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_RGyEKD0Xxj3tWZ" async></script>
+          </form>
         </div>
       </div>
     </section>
