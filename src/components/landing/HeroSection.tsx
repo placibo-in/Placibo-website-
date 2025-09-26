@@ -97,7 +97,7 @@ export const HeroSection = () => {
                       src={slide.image_url}
                       alt={slide.title || "Hero slide"}
                       className={cn(
-                        "w-full h-full object-cover transition-transform duration-700 ease-in-out scale-100 hover:scale-105",
+                        "w-full h-full object-cover xl:object-contain transition-transform duration-700 ease-in-out scale-100 hover:scale-105",
                         hasText && "blur-sm"
                       )}
                     />
