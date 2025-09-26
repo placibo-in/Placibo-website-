@@ -14,9 +14,9 @@ import { EnrollmentDialog } from "@/components/landing/EnrollmentDialog";
 import { GoogleReviewsSection } from "@/components/landing/GoogleReviewsSection";
 
 const Index = () => {
-  const title = "UI/UX Design Courses in Chennai | Placibo";
-  const description = "Join Placibo's UI/UX design courses in Chennai. Learn from industry experts with hands-on projects, certification, and career support. Enroll now for early bird discounts!";
-  const url = "https://placibo.in";
+  const title = "Placibo Technologies – EduTech company In Chennai";
+  const description = "Placibo An EduTech company empowering students with IT courses in Full Stack, UI/UX & Data Science. Build confidence, skills & career success with Placibo.in.";
+  const url = "https://www.placibo.in";
   const imageUrl = `${url}/logo.png`; // Using logo as a placeholder for the banner
 
   const schemaMarkup = {

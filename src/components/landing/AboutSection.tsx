@@ -65,9 +65,9 @@ export const AboutSection = () => {
     >
       <div className="container mx-auto px-4">
         <div className="text-center mb-8 md:mb-12 max-w-3xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900">
-            <h1>Welcome to Placibo Technologies</h1>
-          </h2>
+          <h1 className="text-3xl md:text-4xl font-extrabold text-gray-900">
+            <span>Welcome to Placibo Technologies</span>
+          </h1>
           <p className="mt-4 text-lg text-gray-600">
             We offer a range of programs designed to help you achieve your career goals. Each program is crafted by industry experts to provide you with job-ready skills.
           </p>
