@@ -37,6 +37,7 @@ export const Footer = () => {
             <nav>
               <div className="pb-4 text-center md:text-left font-bold">Our Courses:</div>
               <div className="flex flex-wrap gap-4 md:gap-6 text-sm font-medium">
+                <Link to="/courses" className="hover:text-blue-600 transition-colors ">All Courses</Link>
                 <Link to="/courses/ui-ux-design" className="hover:text-blue-600 transition-colors ">UI/UX Design</Link>
                 <Link to="/courses/frontend-development" className="hover:text-blue-600 transition-colors">Frontend Development</Link>
                 <Link to="/courses/backend-nodejs" className="hover:text-blue-600 transition-colors">Backend Node.js</Link>
