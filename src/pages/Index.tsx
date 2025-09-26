@@ -72,7 +72,7 @@ const Index = () => {
       <LoadingScreen />
       <EnrollmentDialog />
       <Header />
-      <main className="pt-20 md:pt-24 relative z-20">
+      <main className="pt-20 md:pt-16 relative z-20">
         <HeroSection />
         <AboutSection />
         <WhyPlaciboSection />
