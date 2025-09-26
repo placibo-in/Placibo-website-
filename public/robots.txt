@@ -1,3 +1,3 @@
 User-agent: *
 Disallow:
-Sitemap: placibo.in/sitemap.xml
+Sitemap: https://www.placibo.in/sitemap.xml
