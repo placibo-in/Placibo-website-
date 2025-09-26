@@ -90,14 +90,14 @@ export const HeroSection = () => {
             return (
               <CarouselItem key={slide.id}>
                 {/* This container now uses 'aspect-video' to enforce a 16:9 ratio */}
-                <div className="relative w-full aspect-video max-h-[750px] 3xl:max-h-[900px] text-white rounded-xl overflow-hidden">
+                <div className="relative w-full aspect-video max-h-[750px] 2xl:max-h-[900px] text-white rounded-xl overflow-hidden">
                   <div className="absolute inset-0 z-0">
                     {/* The 'object-cover' class ensures the image fills the space without distortion */}
                     <img
                       src={slide.image_url}
                       alt={slide.title || "Hero slide"}
                       className={cn(
-                        "w-full h-full object-cover 3xl:object-contain transition-transform duration-700 ease-in-out scale-100 hover:scale-105",
+                        "w-full h-full object-cover 2xl:object-contain transition-transform duration-700 ease-in-out scale-100 hover:scale-105",
                         hasText && "blur-sm"
                       )}
                     />
