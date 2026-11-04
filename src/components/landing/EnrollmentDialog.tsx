@@ -17,9 +17,9 @@ export const EnrollmentDialog = () => {
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="sm:max-w-[425px] bg-white text-gray-900">
         <DialogHeader>
-          <DialogTitle>Enroll Now</DialogTitle>
+          <DialogTitle>Enroll in the CyberSecurity Endurance Program</DialogTitle>
           <DialogDescription className="text-gray-600">
-            Fill out the form below to start your application. We're excited to have you!
+            Enter your details and our team will contact you about the program.
           </DialogDescription>
         </DialogHeader>
         <div className="py-4">

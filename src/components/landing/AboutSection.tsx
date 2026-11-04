@@ -1,58 +1,36 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { PenTool, Code, Server, Database, BrainCircuit } from "lucide-react";
+import { Shield, Network, Cloud, Globe } from "lucide-react";
 import { useInView } from "react-intersection-observer";
 import { cn } from "@/lib/utils";
 import { Link } from "react-router-dom";
-import { supabase } from "@/integrations/supabase/client";
 
-const iconMap = {
-  PenTool: PenTool,
-  Code: Code,
-  Server: Server,
-  Database: Database,
-  BrainCircuit: BrainCircuit,
-};
-
-type Program = {
-  id: string;
-  title: string;
-  duration: string;
-  description: string;
-  link: string;
-  icon: keyof typeof iconMap | null;
-  icon_url: string | null;
-};
+const tracks = [
+  {
+    icon: Shield,
+    title: "SOC / Blue Team",
+    description: "Threat investigation, incident response and detection with SIEM tools such as Microsoft Sentinel.",
+  },
+  {
+    icon: Network,
+    title: "Network Security",
+    description: "Networking foundations and Cisco security pathways, from CCST to CCNA.",
+  },
+  {
+    icon: Cloud,
+    title: "Cloud Security",
+    description: "Cloud fundamentals, identity and access management, and role-aligned AWS or Microsoft credentials.",
+  },
+  {
+    icon: Globe,
+    title: "Web / Application Security",
+    description: "Authorised hands-on labs with PortSwigger Web Security Academy, then advanced training.",
+  },
+];
 
 export const AboutSection = () => {
-  const [programs, setPrograms] = useState<Program[]>([]);
-  const [loading, setLoading] = useState(true);
-  const { ref, inView } = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  });
-
-  useEffect(() => {
-    const fetchPrograms = async () => {
-      const { data, error } = await supabase
-        .from("programs")
-        .select("*")
-        .order("created_at", { ascending: true });
-
-      if (error) {
-        console.error("Error fetching programs:", error);
-        setPrograms([]);
-      } else if (data) {
-        setPrograms(data as Program[]);
-      }
-      setLoading(false);
-    };
-
-    fetchPrograms();
-  }, []);
+  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
 
   return (
     <section
@@ -65,52 +43,30 @@ export const AboutSection = () => {
     >
       <div className="container mx-auto px-4">
         <div className="text-center mb-8 md:mb-12 max-w-3xl mx-auto">
-          <h1 className="text-3xl md:text-4xl font-extrabold text-gray-900">
-            <span>Welcome to Placibo Technologies</span>
-          </h1>
-          <p className="mt-4 text-lg text-gray-600">
-            We offer a range of programs designed to help you achieve your career goals. Each program is crafted by industry experts to provide you with job-ready skills.
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900">Cyber Security Roles</h2><br></br>
+          <p className="text-lg md:text-xl leading-relaxed">
+            Placibo teaches CyberSecurity for students, freshers and aspiring security professionals. Pick a career
+            track, follow the roadmap, and build skills, a portfolio and an industry network.
           </p>
         </div>
 
-        {loading ? (
-          <p className="text-center text-gray-500">Loading programs...</p>
-        ) : programs.length === 0 ? (
-          <p className="text-center text-gray-500">No programs available at the moment.</p>
-        ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
-            {programs.map((program) => {
-              const IconComponent = program.icon ? iconMap[program.icon] : null;
-              return (
-                <Link
-                  to={program.link}
-                  key={program.id}
-                  className="block"
-                  aria-label={`Go to ${program.title} course page`}
-                >
-                  <Card className="flex flex-col h-full shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer">
-                    <CardHeader className="flex-row items-start gap-3">
-                      <div className="bg-blue-100 rounded-full p-3 w-14 h-14 flex items-center justify-center">
-                        {program.icon_url ? (
-                          <img src={program.icon_url} alt={program.title} className="h-8 w-8 object-contain" />
-                        ) : IconComponent ? (
-                          <IconComponent className="h-8 w-8 text-blue-600" />
-                        ) : null}
-                      </div>
-                      <div className="flex-1">
-                        <CardTitle className="text-lg md:text-xl">{program.title}</CardTitle>
-                        <Badge variant="secondary" className="mt-1 text-xs md:text-sm">{program.duration}</Badge>
-                      </div>
-                    </CardHeader>
-                    <CardContent className="flex-grow">
-                      <p className="text-gray-700 text-sm md:text-base">{program.description}</p>
-                    </CardContent>
-                  </Card>
-                </Link>
-              );
-            })}
-          </div>
-        )}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {tracks.map(({ icon: Icon, title, description }) => (
+            <Link key={title} to="/courses/cybersecurity" className="block" aria-label={`${title}: view the program`}>
+              <Card className="flex flex-col h-full shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+                <CardHeader className="flex-row items-center gap-3">
+                  <div className="bg-blue-100 rounded-full p-3 w-12 h-12 flex items-center justify-center shrink-0">
+                    <Icon className="h-6 w-6 text-blue-600" />
+                  </div>
+                  <CardTitle className="text-lg">{title}</CardTitle>
+                </CardHeader>
+                <CardContent className="flex-grow">
+                  <p className="text-gray-700 text-sm md:text-base">{description}</p>
+                </CardContent>
+              </Card>
+            </Link>
+          ))}
+        </div>
       </div>
     </section>
   );
