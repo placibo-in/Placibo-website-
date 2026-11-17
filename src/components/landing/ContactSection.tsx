@@ -1,51 +1,20 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
-import { Calendar, MessageCircle, Loader2 } from "lucide-react";
-import { useInView } from 'react-intersection-observer';
-import { cn } from '@/lib/utils';
+import { Calendar, MessageCircle, Phone } from "lucide-react";
+import { useInView } from "react-intersection-observer";
+import { cn } from "@/lib/utils";
 import { useEnrollmentDialog } from "@/hooks/use-enrollment-dialog";
-import { toast } from "sonner"; // Import toast for notifications
+
+// Change this text to update the batch date shown on the site.
+const BATCH_START_DATE = "November 5th, 2026";
+
+// wa.me needs the country code, otherwise the link may not open the chat
+const WHATSAPP_URL = "https://wa.me/919566627297";
 
 export const ContactSection = () => {
-  const { ref, inView } = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  });
+  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
   const { onOpen } = useEnrollmentDialog();
-  const [batchDate, setBatchDate] = useState('');
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchBatchDate = async () => {
-      setIsLoading(true);
-      const { data, error } = await supabase
-        .from('site_settings')
-        .select('value')
-        .eq('key', 'next_batch_start_date')
-        .single();
-      
-      if (data?.value) {
-        setBatchDate(data.value);
-      } else {
-        // Fallback to a default date if there's an error or no date is set
-        setBatchDate("the next available date");
-        console.error("Error fetching batch date:", error?.message);
-      }
-      setIsLoading(false);
-    };
-
-    fetchBatchDate();
-  }, []);
-
-  // Removed the useEffect for dynamic script loading as per your request.
-
-  const handleWhatsAppClick = () => {
-    window.open('https://wa.me/9566627297', '_blank');
-  };
-
   return (
     <section
       id="contact"
@@ -57,42 +26,45 @@ export const ContactSection = () => {
     >
       <div className="container mx-auto px-4 text-center">
         <h2 className="text-2xl md:text-3xl font-bold">Start Your Journey Today</h2>
+        <p className="mt-2 text-sm md:text-base text-blue-100">
+          Tell us your current level, preferred career track and any certifications you have completed.
+        </p>
         <div className="mt-4 flex flex-col md:flex-row justify-center items-center gap-4 md:gap-8 text-sm md:text-base">
           <div className="flex items-center gap-2">
             <Calendar className="h-4 w-4 md:h-5 md:w-5" />
             <span>
               Next batch starts:{" "}
-              {isLoading ? (
-                <Loader2 className="h-4 w-4 animate-spin inline-block" />
-              ) : (
-                <strong>{batchDate}</strong>
-              )}
+              <strong>{BATCH_START_DATE}</strong>
             </span>
           </div>
           <div className="flex items-center gap-2">
             <MessageCircle className="h-4 w-4 md:h-5 md:w-5" />
-            <span>WhatsApp: <strong>95666 27297</strong></span>
+            <span>
+              WhatsApp: <strong>91762 44120</strong>
+            </span>
+          </div>
+          <div className="flex items-center gap-2">
+            <Phone className="h-4 w-4 md:h-5 md:w-5" />
+            <a href="tel:+919176244120" className="text-white hover:underline">
+              Phone: <strong>91762 44120</strong>
+            </a>
           </div>
         </div>
         <div className="mt-6 flex justify-center gap-6 flex-wrap">
-          <Button 
+          <Button
             className="bg-green-600 text-white hover:bg-green-700 flex items-center gap-2 justify-center px-4 py-2 min-w-[160px]"
-            onClick={handleWhatsAppClick}
+            onClick={() => window.open(WHATSAPP_URL, "_blank", "noopener,noreferrer")}
           >
-            <img src="/icons/whatsapp.png" alt="WhatsApp" className="w-4 h-4" />
+            <img src="/icons/whatsapp.png" alt="" className="w-4 h-4" />
             <span className="text-sm md:text-base">Join on WhatsApp</span>
           </Button>
-          <Button 
-            variant="outline" 
-            className="bg-transparent border-white text-white hover:bg-white hover:text-blue-600 px-4 py-2 min-w-[160px]"
-            onClick={onOpen}
-          >
-            <span className="text-sm md:text-base">Apply Now</span>
-          </Button>
-          {/* Razorpay Payment Button */}
-          <form className="min-w-[160px] flex items-center justify-center">
-            <script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_RGyEKD0Xxj3tWZ" async></script>
-          </form>
+          <Button
+  variant="outline"
+  className="bg-white text-blue-600 text-lg font-semibold border-white hover:bg-blue-50 hover:text-blue-700 px-4 py-2 min-w-[160px]"
+  onClick={onOpen}
+>
+  Apply Now
+</Button>
         </div>
       </div>
     </section>

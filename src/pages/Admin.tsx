@@ -6,11 +6,9 @@ import { useNavigate } from "react-router-dom";
 import { Header } from "@/components/landing/Header";
 import { Footer } from "@/components/landing/Footer";
 import { HeroSlideManager } from "@/components/admin/HeroSlideManager";
-import { InstagramReelManager } from "@/components/admin/InstagramReelManager";
 import { BatchDateManager } from "@/components/admin/BatchDateManager";
 import { BlogManager } from "@/components/admin/BlogManager";
 import { GoogleReviewManager } from "@/components/admin/GoogleReviewManager";
-import { ProgramManager } from "@/components/admin/ProgramManager";
 
 const Admin = () => {
   const navigate = useNavigate();
@@ -19,7 +17,7 @@ const Admin = () => {
   useEffect(() => {
     const checkUser = async () => {
       const { data: { session } } = await supabase.auth.getSession();
-      if (!session) navigate('/login');
+      if (!session) navigate("/login");
       else setIsLoaded(true);
     };
     checkUser();
@@ -35,8 +33,6 @@ const Admin = () => {
         <div className="grid gap-8">
           <BatchDateManager />
           <HeroSlideManager />
-          <ProgramManager />
-          <InstagramReelManager />
           <BlogManager />
           <GoogleReviewManager />
         </div>

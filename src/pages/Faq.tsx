@@ -9,30 +9,37 @@ import { Footer } from "@/components/landing/Footer";
 import { EnrollmentDialog } from "@/components/landing/EnrollmentDialog";
 import { Helmet } from "react-helmet-async";
 
+// TODO: replace the "duration, fees and certificate" answer with your real details.
 const faqData = [
   {
-    question: "What is the duration of the courses?",
-    answer: "Most of our core programs, like UI/UX Design and Frontend/Backend Development, are 4 months long. The Generative AI program is slightly longer at 5 months. This duration is designed to take you from beginner to job-ready.",
+    question: "Who is the Cybersecurity Endurance Program for?",
+    answer:
+      "Students, freshers and aspiring cybersecurity professionals. You can start from zero and follow the roadmap from beginner to expert, choosing one career track such as SOC / Blue Team, Network Security, Cloud Security or Web / Application Security.",
   },
   {
-    question: "Are these courses suitable for complete beginners?",
-    answer: "Absolutely! Our courses are designed to cater to everyone, from complete beginners with no prior experience to those with some foundational knowledge. We start with the basics and build up to advanced concepts.",
+    question: "I am a complete beginner. Where do I start?",
+    answer:
+      "Start with Cisco fundamentals and Microsoft SC-900 learning, then consider the Cisco CCST Cybersecurity credential. Knowledge goals at this stage include the CIA triad, the difference between threat, vulnerability, risk and incident, and basics like MFA, phishing, patching, backups and least privilege.",
   },
   {
-    question: "Will I get a certificate upon completion?",
-    answer: "Yes, upon successful completion of any course, you will receive a certificate from Placibo that you can share on your LinkedIn profile and add to your resume.",
+    question: "What do I get in the program that is not in the public roadmap?",
+    answer:
+      "The roadmap lists learning resources and certification options. After you join the program, you also get structured practical tasks, guided project work, expert feedback and portfolio-strengthening assignments.",
   },
   {
-    question: "Do you provide job assistance?",
-    answer: "We are deeply invested in your career success. While we don't guarantee job placement, we provide comprehensive job assistance, including portfolio reviews, resume building workshops, mock interviews, and access to our network of hiring partners.",
+    question: "Do certifications guarantee a job?",
+    answer:
+      "No. No certification or course guarantees employment. Expertise comes from sustained practice, deeper specialisation and sound security decisions, not from collecting certificates alone.",
   },
   {
-    question: "What kind of support can I expect during the course?",
-    answer: "You'll have multiple layers of support. This includes 1-on-1 mentorship sessions with industry experts, live Q&A sessions with instructors, and access to a vibrant community of fellow learners and alumni for peer support.",
+    question: "Are certification exams and training included in the fee?",
+    answer:
+      "Certification exams, subscriptions, training and retakes are run by the issuing providers and may involve their own fees. Names, prerequisites, formats and prices can change, so check the provider's official page for current details.",
   },
   {
-    question: "Can I pay the course fee in installments?",
-    answer: "Yes, we offer flexible payment options, including EMI plans, to make our courses more accessible. Please get in touch with our admissions team through the contact section to learn more about the payment plans.",
+    question: "What are the program duration, fees and certificate details?",
+    answer:
+      "Please contact our team on WhatsApp at 95666 27297 or call 91762 44120. Tell us your current level, preferred career track and any courses or certifications you have completed, and we will guide you from your starting point.",
   },
 ];
 
@@ -40,8 +47,22 @@ const FaqPage = () => {
   return (
     <>
       <Helmet>
-        <title>FAQ | Placibo</title>
-        <meta name="description" content="Find answers to frequently asked questions about Placibo's courses, admissions, job assistance, and more." />
+        <title>FAQ | Placibo Cybersecurity</title>
+        <meta
+          name="description"
+          content="Answers to common questions about the Placibo Cybersecurity Endurance Program, the career roadmap and certifications."
+        />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: faqData.map((f) => ({
+              "@type": "Question",
+              name: f.question,
+              acceptedAnswer: { "@type": "Answer", text: f.answer },
+            })),
+          })}
+        </script>
       </Helmet>
       <EnrollmentDialog />
       <Header />
@@ -57,7 +78,7 @@ const FaqPage = () => {
             <div className="max-w-xl mx-auto">
               <Accordion type="single" collapsible className="w-full">
                 {faqData.map((faq, index) => (
-                  <AccordionItem value={`item-${index}`} key={index}>
+                  <AccordionItem value={`item-${index}`} key={faq.question}>
                     <AccordionTrigger className="text-base md:text-lg text-left text-gray-900 font-medium">
                       {faq.question}
                     </AccordionTrigger>
