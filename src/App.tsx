@@ -8,7 +8,9 @@ import NotFound from "./pages/NotFound";
 import Login from "./pages/Login";
 import Admin from "./pages/Admin";
 import FaqPage from "./pages/Faq";
+import CoursesPage from "./pages/courses/Index";
 import Cybersecurity from "./pages/courses/Cybersecurity";
+import PowerBIPage from "./pages/courses/PowerBI";
 import { ScrollToTop } from "./components/ScrollToTop";
 import StudentWorkPage from "./pages/StudentWork";
 import BlogIndexPage from "./pages/blog/Index";
@@ -30,9 +32,10 @@ const App = () => (
           <Route path="/faq" element={<FaqPage />} />
           <Route path="/student-work" element={<StudentWorkPage />} />
           <Route path="/courses/cybersecurity" element={<Cybersecurity />} />
-          {/* Old course URLs now land on the only course */}
-          <Route path="/courses" element={<Navigate to="/courses/cybersecurity" replace />} />
-          <Route path="/courses/*" element={<Navigate to="/courses/cybersecurity" replace />} />
+          <Route path="/courses" element={<CoursesPage />} />
+          <Route path="/courses/power-bi" element={<PowerBIPage />} />
+          {/* Old course URLs (UI/UX, Frontend, Node, Django, Generative AI) go to the course list */}
+          <Route path="/courses/*" element={<Navigate to="/courses" replace />} />
           <Route path="/blog" element={<BlogIndexPage />} />
           <Route path="/blog/:slug" element={<BlogPostPage />} />
           <Route path="*" element={<NotFound />} />

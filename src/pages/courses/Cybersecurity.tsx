@@ -4,6 +4,7 @@ import { CybersecurityRoadmapSection } from "@/components/landing/CybersecurityR
 import { ContactSection } from "@/components/landing/ContactSection";
 import { Footer } from "@/components/landing/Footer";
 import { FloatingActionButton } from "@/components/landing/FloatingActionButton";
+import { EnrollmentDialog } from "@/components/landing/EnrollmentDialog";
 
 const perks = [
   ["Structured practical tasks", "Hands-on work matched to your chosen track."],
@@ -15,18 +16,19 @@ const perks = [
 const Cybersecurity = () => (
   <div className="bg-white text-gray-800 antialiased">
     <Helmet>
-      <title>CyberSecurity Endurance Program | Placibo</title>
+      <title>Cybersecurity Endurance Program | Placibo</title>
       <meta
         name="description"
         content="Placibo Cybersecurity Endurance Program: guided tasks, expert feedback and portfolio assignments, with a beginner-to-expert certification roadmap."
       />
       <link rel="canonical" href="https://www.placibo.in/courses/cybersecurity" />
     </Helmet>
+    <EnrollmentDialog />
     <Header />
     <main className="pt-20 md:pt-16">
       <section className="bg-blue-900 py-16 text-white">
         <div className="container mx-auto max-w-5xl px-4">
-          <h1 className="text-4xl font-bold md:text-5xl">Placibo CyberSecurity Endurance Program</h1>
+          <h1 className="text-4xl font-bold md:text-5xl">Placibo Cybersecurity Endurance Program</h1>
           <p className="mt-4 max-w-2xl text-blue-100">
             The roadmap shows you the direction. The program is where you practise it. When you contact us, tell us
             your current level, preferred career track and any certifications you have completed.

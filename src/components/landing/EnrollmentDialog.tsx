@@ -17,7 +17,7 @@ export const EnrollmentDialog = () => {
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="sm:max-w-[425px] bg-white text-gray-900">
         <DialogHeader>
-          <DialogTitle>Enroll in the CyberSecurity Endurance Program</DialogTitle>
+          <DialogTitle>Enroll in the Cybersecurity Endurance Program</DialogTitle>
           <DialogDescription className="text-gray-600">
             Enter your details and our team will contact you about the program.
           </DialogDescription>

@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 const navItems = [
   { label: "About", href: "/#about", type: "anchor" },
   { label: "Why Us", href: "/#why", type: "anchor" },
-  { label: "Roadmap", href: "/#roadmap", type: "anchor" },
+  { label: "Courses", href: "/courses", type: "route" },
   { label: "Student Work", href: "/student-work", type: "route" },
   { label: "Blog", href: "/blog", type: "route" },
   { label: "FAQ", href: "/faq", type: "route" },

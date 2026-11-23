@@ -40,7 +40,7 @@ const BlogIndexPage = () => {
   return (
     <>
       <Helmet>
-        <title>CyberSecurity Blog | Placibo</title>
+        <title>Cybersecurity Blog | Placibo</title>
         <meta
           name="description"
           content="Guides, certification advice and career tips for anyone starting or growing in cybersecurity."
@@ -51,9 +51,9 @@ const BlogIndexPage = () => {
       <main className="bg-white text-gray-900 py-16 sm:py-24 pt-28">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h1 className="text-3xl md:text-4xl font-extrabold">Placibo CyberSecurity Blog</h1>
+            <h1 className="text-3xl md:text-4xl font-extrabold">Placibo Cybersecurity Blog</h1>
             <p className="mt-3 max-w-2xl mx-auto text-base md:text-lg text-gray-600">
-              Guides, certification advice and career tips for anyone starting or growing in CyberSecurity.
+              Guides, certification advice and career tips for anyone starting or growing in cybersecurity.
             </p>
           </div>
 

@@ -30,13 +30,11 @@ export const Footer = () => (
             </div>
           </nav>
           <div className="text-center md:text-left">
-            <div className="font-bold">Our Course:</div>
-            <Link
-              to="/courses/cybersecurity"
-              className="text-sm font-medium hover:text-blue-600 transition-colors"
-            >
-              CyberSecurity
-            </Link>
+            <div className="font-bold">Our Courses:</div>
+            <div className="flex flex-wrap gap-4 text-sm font-medium">
+              <Link to="/courses/cybersecurity" className="hover:text-blue-600 transition-colors">Cybersecurity</Link>
+              <Link to="/courses/power-bi" className="hover:text-blue-600 transition-colors">Power BI</Link>
+            </div>
           </div>
           <a
             href="https://wa.me/919566627297"

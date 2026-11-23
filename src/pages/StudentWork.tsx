@@ -23,7 +23,7 @@ const StudentWorkPage = () => {
   return (
     <>
       <Helmet>
-        <title>Student Work | Placibo CyberSecurity</title>
+        <title>Student Work | Placibo Cybersecurity</title>
         <meta
           name="description"
           content="Projects and portfolio work from students of the Placibo Cybersecurity Endurance Program."
@@ -36,14 +36,14 @@ const StudentWorkPage = () => {
           <div className="text-center mb-12">
             <h1 className="text-3xl md:text-4xl font-extrabold text-gray-900">Student Showcase</h1>
             <p className="mt-3 max-w-2xl mx-auto text-base md:text-lg text-gray-600">
-              Practical tasks, guided projects and portfolio work built by students in the CyberSecurity Endurance
+              Practical tasks, guided projects and portfolio work built by students in the Cybersecurity Endurance
               Program.
             </p>
           </div>
 
           {videoCategories.length === 0 ? (
             <div className="mx-auto max-w-xl rounded-lg bg-white p-8 text-center shadow">
-              <h2 className="text-xl font-semibold">CyberSecurity projects are coming soon</h2>
+              <h2 className="text-xl font-semibold">Cybersecurity projects are coming soon</h2>
               <p className="mt-2 text-gray-600">
                 We are adding student work from the program. Join to start building yours.
               </p>

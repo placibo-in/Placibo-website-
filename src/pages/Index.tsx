@@ -2,6 +2,7 @@ import { Helmet } from "react-helmet-async";
 import { Header } from "@/components/landing/Header";
 import { HeroSection } from "@/components/landing/HeroSection";
 import { AboutSection } from "@/components/landing/AboutSection";
+import { CoursesSection } from "@/components/landing/CoursesSection";
 import { CybersecurityRoadmapSection } from "@/components/landing/CybersecurityRoadmapSection";
 import { WhyPlaciboSection } from "@/components/landing/WhyPlaciboSection";
 import { GoogleReviewsSection } from "@/components/landing/GoogleReviewsSection";
@@ -13,9 +14,9 @@ import { LoadingScreen } from "@/components/landing/LoadingScreen";
 import { EnrollmentDialog } from "@/components/landing/EnrollmentDialog";
 
 const url = "https://www.placibo.in";
-const title = "Placibo – Cybersecurity Training & Career Roadmap in Chennai";
+const title = "Placibo – Cybersecurity & Power BI Training in Chennai";
 const description =
-  "Placibo helps students and freshers build a cybersecurity career: a beginner-to-expert roadmap, industry-recognised certifications, guided tasks, expert feedback and portfolio work.";
+  "Placibo offers practical training in cybersecurity and Power BI for students and freshers, with structured roadmaps, guided tasks and portfolio work.";
 const imageUrl = `${url}/logo.png`;
 
 const schemaMarkup = {
@@ -94,13 +95,13 @@ const Index = () => (
       <meta name="description" content={description} />
       <meta
         name="keywords"
-        content="cybersecurity course Chennai, cybersecurity training, cybersecurity career roadmap, SOC analyst training, Placibo Cybersecurity Endurance Program"
+        content="cybersecurity course Chennai, Power BI course Chennai, cybersecurity training, cybersecurity career roadmap, SOC analyst training, Placibo Cybersecurity Endurance Program"
       />
       <link rel="canonical" href={url} />
 
       <meta property="og:type" content="website" />
       <meta property="og:url" content={url} />
-      <meta property="og:title" content="Placibo – Cybersecurity Career Roadmap" />
+      <meta property="og:title" content="Placibo – Cybersecurity & Power BI Training" />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={imageUrl} />
 
@@ -116,6 +117,7 @@ const Index = () => (
     <Header />
     <main className="pt-20 md:pt-16 relative z-20">
       <HeroSection />
+      <CoursesSection />
       <AboutSection />
       <CybersecurityRoadmapSection />
       <WhyPlaciboSection />

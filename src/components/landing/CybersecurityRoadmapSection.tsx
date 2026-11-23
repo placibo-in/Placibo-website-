@@ -133,9 +133,9 @@ const routes = [
 export const CybersecurityRoadmapSection = () => (
   <section id="roadmap" className="bg-gray-50 py-16 md:py-20">
     <div className="container mx-auto max-w-5xl px-4">
-      <h2 className="text-3xl md:text-4xl font-bold text-gray-900">CyberSecurity Certifications</h2>
-      <p className="mt-3 max-w-5xl text-gray-600">
-        <b>Terms and Conditions: </b>Five stages from beginner to expert. Exams, subscriptions and retakes may involve fees, so check each
+      <h2 className="text-3xl md:text-4xl font-bold text-gray-900">Cybersecurity career roadmap</h2>
+      <p className="mt-3 max-w-2xl text-gray-600">
+        Five stages from beginner to expert. Exams, subscriptions and retakes may involve fees, so check each
         provider's official page for current requirements and pricing.
       </p>
 

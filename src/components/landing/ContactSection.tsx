@@ -40,7 +40,7 @@ export const ContactSection = () => {
           <div className="flex items-center gap-2">
             <MessageCircle className="h-4 w-4 md:h-5 md:w-5" />
             <span>
-              WhatsApp: <strong>91762 44120</strong>
+              WhatsApp: <strong>95666 27297</strong>
             </span>
           </div>
           <div className="flex items-center gap-2">
@@ -59,12 +59,12 @@ export const ContactSection = () => {
             <span className="text-sm md:text-base">Join on WhatsApp</span>
           </Button>
           <Button
-  variant="outline"
-  className="bg-white text-blue-600 text-lg font-semibold border-white hover:bg-blue-50 hover:text-blue-700 px-4 py-2 min-w-[160px]"
-  onClick={onOpen}
->
-  Apply Now
-</Button>
+            variant="outline"
+            className="bg-transparent border-white text-white hover:bg-white hover:text-blue-600 px-4 py-2 min-w-[160px]"
+            onClick={onOpen}
+          >
+            <span className="text-sm md:text-base">Apply Now</span>
+          </Button>
         </div>
       </div>
     </section>

@@ -43,10 +43,9 @@ export const AboutSection = () => {
     >
       <div className="container mx-auto px-4">
         <div className="text-center mb-8 md:mb-12 max-w-3xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900">Cyber Security Roles</h2><br></br>
-          <p className="text-lg md:text-xl leading-relaxed">
-            Placibo teaches CyberSecurity for students, freshers and aspiring security professionals. Pick a career
-            track, follow the roadmap, and build skills, a portfolio and an industry network.
+          <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900">Cybersecurity career tracks</h2>
+          <p className="mt-4 text-lg text-gray-600">
+            Pick a career track, follow the roadmap, and build skills, a portfolio and an industry network.
           </p>
         </div>
 
